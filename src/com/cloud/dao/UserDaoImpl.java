@@ -15,7 +15,7 @@ public class UserDaoImpl implements UserDao {
 		return id;
 	}
 	
-	String getName() {
+	public String getName() {
 		return name;
 	}
 

@@ -10,25 +10,10 @@
         http://www.springframework.org/schema/mvc 
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
            
-    <context:component-scan base-package="com.cloud" />
+    <context:component-scan base-package="com.cloud.controller" />
     
-    <mvc:annotation-driven />           
+    <mvc:annotation-driven />          
 
-	<!-- <bean id="factory1"
-		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-		<property name="configLocation"
-			value="classpath:hibernate.cfg.xml" />
-	</bean>
-
-	<bean id="template"
-		class="org.springframework.orm.hibernate3.HibernateTemplate">
-		<constructor-arg ref="factory1" />	
-	</bean>
-	
-	<bean id="dao"
-		class="com.unisys.dao.EmployeeDaoSpringImpl">
-		<property name="template" ref="template" />	
-	</bean> -->
 </beans>
 
 

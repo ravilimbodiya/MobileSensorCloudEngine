@@ -9,7 +9,7 @@ phonecatControllers.controller('PhoneListCtrl', ['$scope', 'Phone',
     $scope.phones = Phone.loadPhones({phoneId: 'phones'});
     $scope.orderProp = 'age';
     $scope.getUserDetails = function() {
-    	Phone.getUserDetails(function(user) {
+    	Phone.getUserDetails({userId: "1"}, function(user) {
     		$scope.userName = user.name;
     	});
     };

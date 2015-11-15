@@ -9,6 +9,6 @@ phonecatServices.factory('Phone', ['$resource',
     return $resource('phones/:phoneId.json', {}, {
       loadPhones: {method:'GET', isArray:true},
       loadPhone: {method:'GET'},
-      getUserDetails: { method: 'GET', url: 'user.action' }
+      getUserDetails: { method: 'GET', url: 'rest/user/:userId' }
     });
   }]);

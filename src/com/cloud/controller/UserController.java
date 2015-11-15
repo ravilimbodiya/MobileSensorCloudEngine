@@ -4,6 +4,7 @@
 package com.cloud.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,12 +16,13 @@ import com.cloud.dao.UserDaoImpl;
  * Controls user requests and responses.
  */
 @Controller
+@RequestMapping("/user")
 public class UserController {
 	
-	@RequestMapping(method = RequestMethod.GET, value="/user.action")
-	public @ResponseBody UserDaoImpl getUserDetails() {
+	@RequestMapping(value = "{id}", method = RequestMethod.GET)
+	public @ResponseBody UserDaoImpl getUserDetails(@PathVariable String id) {
 		UserDaoImpl user = new UserDaoImpl();
-		user.setId("1");
+		user.setId(id);
 		user.setName("Test User");
 		return user;
 	}
