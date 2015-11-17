@@ -13,26 +13,7 @@ import com.cloud.entity.User;
  * @author Ravi
  *
  */
-public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
-	String id;
-	String name;	
-
-	public String getId() {
-		return id;
-	}
-	
-	public String getName() {
-		return name;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-	
+public class UserDaoImpl extends HibernateDaoSupport implements UserDao {	
 	public void save(User user){
 		getHibernateTemplate().save(user);
 	}

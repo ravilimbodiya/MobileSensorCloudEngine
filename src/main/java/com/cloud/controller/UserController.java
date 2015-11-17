@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloud.bo.UserBo;
-import com.cloud.dao.UserDaoImpl;
 import com.cloud.entity.User;
 
 /**
@@ -23,11 +22,11 @@ import com.cloud.entity.User;
 @RequestMapping("/user")
 public class UserController {
 	@RequestMapping(value = "{id}", method = RequestMethod.GET)
-	public @ResponseBody UserDaoImpl getUserDetails(@PathVariable String id) {
+	public @ResponseBody User getUserDetails(@PathVariable String id) {
 		loadData();
-		UserDaoImpl user = new UserDaoImpl();
-		user.setId(id);
-		user.setName("Test User");
+		User user = new User();
+		user.setUserId(Long.parseLong(id));
+		user.setUserName("Test User");
 		return user;
 	}
 	
