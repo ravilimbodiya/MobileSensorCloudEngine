@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.cloud.entity.User" table="users" catalog="cloudDb">
+		<id name="userId" type="integer">
+			<column name="user_id" />
+			<generator class="identity" />
+		</id>
+		<property name="firstName" type="string">
+			<column name="first_name"/>
+		</property>
+		<property name="lastName" type="string">
+			<column name="last_name"/>
+		</property>
+		<property name="email" type="string" not-null="true">
+			<column name="email" />
+		</property>
+		<property name="password" type="string" not-null="true" >
+			<column name="password" />
+		</property>
+		<property name="phoneNum" type="string">
+			<column name="phone_num" />
+		</property>
+		<property name="dateOfBirth" type="date">
+			<column name="date_of_birth" />
+		</property>
+		<property name="userType" type="string" not-null="true">
+			<column name="user_type" />
+		</property>
+	</class>
+</hibernate-mapping>

@@ -14,4 +14,16 @@
     
     <mvc:annotation-driven />      
 
+    <bean id="hibernateFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="configLocation"
+			value="classpath:hibernate.cfg.xml" />
+	</bean>
+	
+    <!-- this bean resolves a logical view-name to a physical view-file -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
 </beans>

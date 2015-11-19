@@ -3,15 +3,22 @@
  */
 package com.cloud.controller;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cloud.bo.UserBo;
 import com.cloud.entity.User;
 
 /**
@@ -19,38 +26,27 @@ import com.cloud.entity.User;
  * Controls user requests and responses.
  */
 @Controller
-@RequestMapping("/user")
 public class UserController {
-	@RequestMapping(value = "{id}", method = RequestMethod.GET)
-	public @ResponseBody User getUserDetails(@PathVariable String id) {
-		loadData();
-		User user = new User();
-		user.setUserId(Long.parseLong(id));
-		user.setUserName("Test User");
-		return user;
+	
+	@InitBinder
+	public void init(WebDataBinder binder){
+		SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy");
+		sdf.setLenient(false);
+		CustomDateEditor cde = new CustomDateEditor(sdf, false);
+		binder.registerCustomEditor(Date.class, cde);
 	}
 	
-	public void loadData() {
-		ApplicationContext appContext = new ClassPathXmlApplicationContext("app-context.xml");
-		
-	    UserBo userBo = (UserBo) appContext.getBean("userBo");
-	    
-    	/** insert **/
-    	User user = new User();
-    	user.setUserName("Test1");
-    	userBo.save(user);
-    	
-    	/** select **/
-    	User user2 = userBo.findByUserName("Test1");
-    	System.out.println(user2);
-    	
-    	/** update **/
-    	user2.setUserName("Test2");
-    	userBo.update(user2);
-    	
-    	/** delete **/
-    	userBo.delete(user2);
-    	
-    	System.out.println("Done");	    
+	@RequestMapping(value = "/userForm.action", method = RequestMethod.GET)
+	public String getUserDetails(Model model) {
+		model.addAttribute("user", new User());
+		System.out.println("in user controller 1");
+		return "userRegistration";
+	}
+	
+	@RequestMapping(value="/register.action", method = RequestMethod.POST)
+	public String saveUser(@ModelAttribute("user") User user,
+			BindingResult errors, HttpSession session){
+		System.out.println("in user controller 2");
+		return "userRegistration";
 	}
 }
