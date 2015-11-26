@@ -18,4 +18,14 @@
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="configLocation" value="/WEB-INF/classes/hibernate.cfg.xml" />
 	</bean>
+	
+	<!-- User business object -->
+   	<bean id="userBo" class="com.cloud.bo.UserBoImpl" >
+   		<property name="userDao" ref="userDao" />
+   	</bean>
+ 
+   	<!-- User Data Access Object -->
+   	<bean id="userDao" class="com.cloud.dao.UserDaoImpl" >
+   		<property name="sessionFactory" ref="hibernateFactory"></property>
+   	</bean> 
 </beans>
