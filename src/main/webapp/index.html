@@ -8,18 +8,7 @@
     <link href="app-content/app.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="credits text-center app-header">        
-        Mobile Sensor Cloud Engine               
-    </div>
-
-    <div class="jumbotron app-jumbotron">
-        <div class="container">
-            <div class="col-sm-8 col-sm-offset-2">
-                <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
-                <div ng-view></div>
-            </div>
-        </div>
-    </div>   
+	<div ng-view></div>       
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/angular/angular.js"></script>

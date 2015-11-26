@@ -3,6 +3,8 @@
  */
 package com.cloud.dao;
 
+import java.util.List;
+
 import com.cloud.entity.User;
 
 /**
@@ -18,5 +20,7 @@ public interface UserDao {
 	void delete(User user);
 	
 	User findByUserName(String userName);
+	
+	List<User> findAll();
 
 }

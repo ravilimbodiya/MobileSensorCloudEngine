@@ -1,5 +1,7 @@
 package com.cloud.bo;
 
+import java.util.List;
+
 import com.cloud.bo.UserBo;
 import com.cloud.dao.UserDao;
 import com.cloud.entity.User;
@@ -26,5 +28,9 @@ public class UserBoImpl implements UserBo{
 	
 	public User findByUserName(String userName){
 		return userDao.findByUserName(userName);
+	}
+	
+	public List<User> findAll() {
+		return userDao.findAll();
 	}
 }

@@ -4,6 +4,7 @@
 package com.cloud.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -43,6 +44,12 @@ public class UserController {
 	public @ResponseBody User getUser(@PathVariable String userName) {		
 		User user = userBo.findByUserName(userName);
 		return user;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public @ResponseBody List<User> getUsers() {		
+		List<User> users = userBo.findAll();
+		return users;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
