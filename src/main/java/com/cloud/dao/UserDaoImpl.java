@@ -5,6 +5,7 @@ package com.cloud.dao;
 
 import java.util.List;
 
+import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.cloud.entity.User;
@@ -13,21 +14,28 @@ import com.cloud.entity.User;
  * @author Ravi
  *
  */
-public class UserDaoImpl extends HibernateDaoSupport implements UserDao {	
+public class UserDaoImpl implements UserDao {	
+	
+	private HibernateTemplate hibernateTemplate;
+	
+	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+		this.hibernateTemplate = hibernateTemplate;
+	}
+
 	public void save(User user){
-		getHibernateTemplate().save(user);
+		hibernateTemplate.save(user);
 	}
 	
 	public void update(User user){
-		getHibernateTemplate().update(user);
+		hibernateTemplate.update(user);
 	}
 	
 	public void delete(User user){
-		getHibernateTemplate().delete(user);
+		hibernateTemplate.delete(user);
 	}
 	
 	public User findByUserName(String userName){
-		List list = getHibernateTemplate().find("from User where userName=?",userName);
+		List list = hibernateTemplate.find("from User where userName=?",userName);
 		return (User)list.get(0);
 	}
 

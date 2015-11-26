@@ -3,28 +3,45 @@ package com.cloud.bo;
 import com.cloud.bo.UserBo;
 import com.cloud.dao.UserDao;
 import com.cloud.entity.User;
+import com.cloud.exception.DaoException;
 
-public class UserBoImpl implements UserBo{
+public class UserBoImpl implements UserBo {
 
-	UserDao userDao;
-	
+	private UserDao userDao;
+
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
 	}
 
-	public void save(User user){
-		userDao.save(user);
+	public void save(User user) throws BoException {
+		try {
+			userDao.save(user);
+		} catch (Exception e) {
+			throw new BoException();
+		}
 	}
-	
-	public void update(User user){
-		userDao.update(user);
+
+	public void update(User user) throws BoException {
+		try {
+			userDao.update(user);
+		} catch (Exception e) {
+			throw new BoException();
+		}
 	}
-	
-	public void delete(User user){
-		userDao.delete(user);
+
+	public void delete(User user) throws BoException {
+		try {
+			userDao.delete(user);
+		} catch (Exception e) {
+			throw new BoException();
+		}
 	}
-	
-	public User findByUserName(String userName){
-		return userDao.findByUserName(userName);
+
+	public User findByUserName(String userName) throws BoException {
+		try {
+			return userDao.findByUserName(userName);
+		} catch (Exception e) {
+			throw new BoException();
+		}
 	}
 }

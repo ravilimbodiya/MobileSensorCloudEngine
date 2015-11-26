@@ -4,6 +4,7 @@
 package com.cloud.dao;
 
 import com.cloud.entity.User;
+import com.cloud.exception.DaoException;
 
 /**
  * @author Ravi
@@ -11,12 +12,12 @@ import com.cloud.entity.User;
  */
 public interface UserDao {
 	
-	void save(User user);
+	public void save(User user) throws DaoException;
 	
-	void update(User user);
+	public void update(User user) throws DaoException;
 	
-	void delete(User user);
+	public void delete(User user) throws DaoException;
 	
-	User findByUserName(String userName);
+	public User findByUserName(String userName) throws DaoException;
 
 }

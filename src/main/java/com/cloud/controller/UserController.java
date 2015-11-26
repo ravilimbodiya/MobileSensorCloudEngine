@@ -6,6 +6,7 @@ package com.cloud.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cloud.dao.UserDao;
 import com.cloud.entity.User;
+import com.cloud.exception.DaoException;
 
 /**
  * @author Ravi
@@ -27,6 +30,9 @@ import com.cloud.entity.User;
 @Controller
 @RequestMapping("/users")
 public class UserController {
+	
+	@Autowired
+	private UserDao userDao;
 	
 	@InitBinder
 	public void init(WebDataBinder binder){
@@ -53,7 +59,13 @@ public class UserController {
 	
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public ResponseEntity<User> createUser(@RequestBody User user) {
-		System.out.println("user created.");
+		System.out.println("user created."+ user.getEmail());
+		try {
+			userDao.save(user);
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		
 		return new ResponseEntity<User>(user, HttpStatus.CREATED);
 	}
 	

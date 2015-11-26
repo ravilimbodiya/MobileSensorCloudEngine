@@ -32,36 +32,11 @@
             <span ng-show="form.phoneNum.$dirty && form.phoneNum.$error.required" class="help-block">Phone Number is required</span>
         </div>
         
-        <div class="form-group" ng-class="{ 'has-error': form.dateOfBirth.$dirty && form.dateOfBirth.$error.required }">
-            <label for="dateOfBirth">Date of Birth (mm/dd/yyyy)</label>
-            <input type="text" name="dateOfBirth" id="dateOfBirth" class="form-control" ng-model="vm.user.dateOfBirth" required />
-            <span ng-show="form.dateOfBirth.$dirty && form.dateOfBirth.$error.required" class="help-block">Date of Birth is required</span>
-            
-            <div ng-controller="AppCtrl" style='padding: 40px;' ng-cloak>
-			  <md-content>
-			    <h4>Standard date-picker</h4>
-			    <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
-			    
-			    <form name="myForm">
-			      <md-datepicker name="dateField" ng-model="myDate" md-placeholder="Date of Birth"
-			          required md-min-date="minDate" md-max-date="maxDate"
-			          md-date-filter="onlyWeekendsPredicate"></md-datepicker>
-			      <div class="validation-messages" ng-messages="myForm.dateField.$error">
-			        <div ng-message="required">This date is required!</div>
-			        <div ng-message="mindate">Date is too early!</div>
-			        <div ng-message="maxdate">Date is too late!</div>
-			        <div ng-message="filtered">Only weekends are allowed!</div>
-			      </div>
-			    </form>
-			  </md-content>
-			</div>
-            
-            
-        </div>
+        
         
         <div class="form-group" ng-class="{ 'has-error': form.userType.$dirty && form.userType.$error.required }">
             <label for="userType">Registering As...</label>
-            <select name="singleSelect" ng-model="data.singleSelect">
+            <select name="singleSelect" ng-model="vm.user.userType">
               	<option value="">---Please select---</option>
 		      	<option value="u">Normal User</option>
 		      	<option value="o">Sensor Owner</option>

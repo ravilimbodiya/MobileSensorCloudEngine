@@ -4,12 +4,12 @@ import com.cloud.entity.User;
 
 public interface UserBo {
 	
-	void save(User user);
+	public void save(User user) throws BoException;
 	
-	void update(User user);
+	public void update(User user) throws BoException;
 	
-	void delete(User user);
+	public void delete(User user) throws BoException;
 	
-	User findByUserName(String userName);
+	public User findByUserName(String userName) throws BoException;
 
 }

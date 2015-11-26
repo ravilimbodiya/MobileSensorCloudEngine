@@ -31,7 +31,7 @@
         }
 
         function Create(user) {
-            return $http.post('/rest/users', user).then(handleSuccess, handleError('Error creating user'));
+            return $http.post('/MobileSensorCloudEngine/rest/users/save', user).then(handleSuccess, handleError('Error creating user'));
         }
 
         function Update(user) {

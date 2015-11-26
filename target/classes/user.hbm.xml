@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.cloud.entity.User" table="users" catalog="cloudDb">
+	<class name="com.cloud.entity.User" table="users">
 		<id name="userId" type="integer">
 			<column name="user_id" />
 			<generator class="identity" />
