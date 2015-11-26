@@ -1,5 +1,7 @@
 package com.cloud.bo;
 
+import java.util.List;
+
 import com.cloud.bo.UserBo;
 import com.cloud.dao.UserDao;
 import com.cloud.entity.User;
@@ -40,6 +42,14 @@ public class UserBoImpl implements UserBo {
 	public User findByUserName(String userName) throws BoException {
 		try {
 			return userDao.findByUserName(userName);
+		} catch (Exception e) {
+			throw new BoException();
+		}
+	}
+ 
+	public List<User> findAll() throws BoException {
+		try {
+			return userDao.findAll();
 		} catch (Exception e) {
 			throw new BoException();
 		}

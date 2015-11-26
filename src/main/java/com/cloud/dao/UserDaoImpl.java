@@ -38,5 +38,9 @@ public class UserDaoImpl implements UserDao {
 		List list = hibernateTemplate.find("from User where userName=?",userName);
 		return (User)list.get(0);
 	}
-
+	
+	public List<User> findAll(){
+		List<User> list = (List<User>) hibernateTemplate.find("from User");
+		return list;
+	}
 }

@@ -1,5 +1,7 @@
 package com.cloud.bo;
 
+import java.util.List;
+
 import com.cloud.entity.User;
 
 public interface UserBo {
@@ -12,4 +14,5 @@ public interface UserBo {
 	
 	public User findByUserName(String userName) throws BoException;
 
+	public List<User> findAll() throws BoException;
 }

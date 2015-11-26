@@ -19,15 +19,15 @@
         return service;
 
         function GetAll() {
-            return $http.get('/rest/users').then(handleSuccess, handleError('Error getting all users'));
+            return $http.get('rest/users').then(handleSuccess, handleError('Error getting all users'));
         }
 
         function GetById(id) {
-            return $http.get('/rest/users/' + id).then(handleSuccess, handleError('Error getting user by id'));
+            return $http.get('rest/users/' + id).then(handleSuccess, handleError('Error getting user by id'));
         }
 
-        function GetByUsername(username) {
-            return $http.get('/rest/users/' + username).then(handleSuccess, handleError('Error getting user by username'));
+        function GetByUsername(userName) {
+            return $http.get('rest/users/' + userName).then(handleSuccess, handleError('Error getting user by userName'));
         }
 
         function Create(user) {
@@ -35,11 +35,11 @@
         }
 
         function Update(user) {
-            return $http.put('/rest/users/' + user.id, user).then(handleSuccess, handleError('Error updating user'));
+            return $http.put('rest/users/' + user.id, user).then(handleSuccess, handleError('Error updating user'));
         }
 
         function Delete(id) {
-            return $http.delete('/rest/users/' + id).then(handleSuccess, handleError('Error deleting user'));
+            return $http.delete('rest/users/' + id).then(handleSuccess, handleError('Error deleting user'));
         }
 
         // private functions

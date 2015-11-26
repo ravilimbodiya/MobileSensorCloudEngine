@@ -13,9 +13,10 @@
 
         function register() {
             vm.dataLoading = true;
+            vm.user.userType = 'regular';
             UserService.Create(vm.user)
                 .then(function (response) {
-                    if (response.success) {
+                    if (response.userName) {
                         FlashService.Success('Registration successful', true);
                         $location.path('/login');
                     } else {

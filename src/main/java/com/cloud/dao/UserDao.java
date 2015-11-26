@@ -3,6 +3,8 @@
  */
 package com.cloud.dao;
 
+import java.util.List;
+
 import com.cloud.entity.User;
 import com.cloud.exception.DaoException;
 
@@ -19,5 +21,7 @@ public interface UserDao {
 	public void delete(User user) throws DaoException;
 	
 	public User findByUserName(String userName) throws DaoException;
+	
+	public List<User> findAll() throws DaoException;
 
 }

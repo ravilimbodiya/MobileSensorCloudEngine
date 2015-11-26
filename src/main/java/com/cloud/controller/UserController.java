@@ -2,9 +2,9 @@
  * 
  */
 package com.cloud.controller;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloud.dao.UserDao;
+import com.cloud.bo.BoException;
+import com.cloud.bo.UserBoImpl;
 import com.cloud.entity.User;
 import com.cloud.exception.DaoException;
 
@@ -42,20 +44,30 @@ public class UserController {
 		binder.registerCustomEditor(Date.class, cde);
 	}
 	
-	@RequestMapping(value = "{id}", method = RequestMethod.GET)
-	public @ResponseBody User getUser(@PathVariable String id) {		
-		User user = new User();
-		user.setUserId(Integer.parseInt(id));
-		user.setFirstName("Test");
-		user.setLastName("User");
+	@RequestMapping(value = "{userName}", method = RequestMethod.GET)
+	public @ResponseBody User getUser(@PathVariable String userName) {		
+		User user = null;
+		try {
+			user = userDao.findByUserName(userName);
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
 		return user;
 	}
 	
-	@RequestMapping(value="/save", method = RequestMethod.GET)
-	public ResponseEntity<User> check(@RequestBody User user) {
-		System.out.println("user created.");
-		return new ResponseEntity<User>(user, HttpStatus.CREATED);
+
+	@RequestMapping(method = RequestMethod.GET)
+	public @ResponseBody List<User> getUsers() {		
+		List<User> users = null;
+		try {
+			users = userDao.findAll();
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return users;
 	}
+	
+	
 	
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public ResponseEntity<User> createUser(@RequestBody User user) {
