@@ -39,19 +39,14 @@ public class UserController {
 		binder.registerCustomEditor(Date.class, cde);
 	}
 	
-	@RequestMapping(value = "{name}", method = RequestMethod.GET)
-	public @ResponseBody User getUser(@PathVariable String name) {		
-		User user = new User();
-		user.setUserName(name);
-		user.setFirstName("Test");
-		user.setLastName("User");
+	@RequestMapping(value = "{userName}", method = RequestMethod.GET)
+	public @ResponseBody User getUser(@PathVariable String userName) {		
+		User user = userBo.findByUserName(userName);
 		return user;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<User> createUser(@RequestBody User user) {
-		user.setUserId((int)(Math.random() * 50 + 1));
-		user.setUserType("regular");
 		userBo.save(user);
 		System.out.println("user created.");
 		return new ResponseEntity<User>(user, HttpStatus.CREATED);

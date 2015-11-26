@@ -14,9 +14,18 @@
     
     <mvc:annotation-driven />      
 
-    <bean id="hibernateFactory"
-		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="configLocation" value="/WEB-INF/classes/hibernate.cfg.xml" />
+	</bean>
+	
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory">
+		  <ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	   <property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
 	<!-- User business object -->
@@ -26,6 +35,6 @@
  
    	<!-- User Data Access Object -->
    	<bean id="userDao" class="com.cloud.dao.UserDaoImpl" >
-   		<property name="sessionFactory" ref="hibernateFactory"></property>
+   		<property name="sessionFactory" ref="sessionFactory"></property>
    	</bean> 
 </beans>
