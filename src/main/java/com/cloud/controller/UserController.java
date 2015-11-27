@@ -76,7 +76,7 @@ public class UserController {
 	public String login(Model model, HttpSession session) {
 		User validUser = (User) session.getAttribute("validUser");
 		if(validUser != null && validUser.getUserId() != null){
-			return "home";
+			return validUser.getUserType() + "-home";
 		}
 		model.addAttribute("user", new User());
 		return "login";
@@ -86,17 +86,11 @@ public class UserController {
 	public String register(Model model, HttpSession session) {
 		User validUser = (User) session.getAttribute("validUser");
 		if(validUser != null && validUser.getUserId() != null){
-			return "home";
+			return validUser.getUserType() + "-home";
 		}
 		model.addAttribute("user", new User());
 		return "registration";
-	}
-	
-	@RequestMapping(value="/home.ac", method = RequestMethod.GET)
-	public String home(Model model) {		
-		model.addAttribute("user", new User());
-		return "home";
-	}
+	}	
 	
 	@RequestMapping(value="/loginSubmit.ac", method = RequestMethod.POST)
 	public String loginSubmit(@ModelAttribute("user") User user, BindingResult errors, HttpSession session) {
@@ -105,7 +99,7 @@ public class UserController {
 			User validUser = userDao.getValidUser(user);
 			if(validUser != null){
 				session.setAttribute("validUser", validUser);
-				return "home";
+				return validUser.getUserType() + "-home";
 			}
 		} catch (DaoException e) {
 			e.printStackTrace();

@@ -6,6 +6,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Register to MSCE</title>
+<link href="pages/assets/img/favicon.png" rel="shortcut icon" type="image/x-icon">
 <!-- BOOTSTRAP STYLES-->
 <link href="pages/assets/css/bootstrap.css" rel="stylesheet" />
 <!-- FONTAWESOME STYLES-->
@@ -87,8 +88,9 @@
 								<span class="input-group-addon">Registering As...</span>
 								<form:select path="userType">
 									<form:option value="-1">--SELECT--</form:option>
-									<form:option value="u">Normal User</form:option>
-									<form:option value="o">Sensor Provider</form:option>
+									<form:option value="admin">Admin User</form:option>
+									<form:option value="user">Normal User</form:option>
+									<form:option value="provider">Sensor Provider</form:option>
 								</form:select>
 							</div>
 								<input type="submit" value="Register Me" class="btn btn-success ">
