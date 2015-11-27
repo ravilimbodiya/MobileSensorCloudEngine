@@ -6,18 +6,17 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Free Bootstrap Admin Template : Binary Admin</title>
+<link rel="shortcut icon" type="image/png" href="pages/assets/img/favicon.png"/>
 <!-- BOOTSTRAP STYLES-->
 <link href="pages/assets/css/bootstrap.css" rel="stylesheet" />
 <!-- FONTAWESOME STYLES-->
 <link href="pages/assets/css/font-awesome.css" rel="stylesheet" />
 <!-- MORRIS CHART STYLES-->
-<link href="pages/assets/js/morris/morris-0.4.3.min.css"
-	rel="stylesheet" />
+<link href="pages/assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
 <!-- CUSTOM STYLES-->
 <link href="pages/assets/css/custom.css" rel="stylesheet" />
 <!-- GOOGLE FONTS-->
-<link href='http://fonts.googleapis.com/css?family=Open+Sans'
-	rel='stylesheet' type='text/css' />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
 <body>
 	<div id="wrapper">
@@ -157,9 +156,7 @@
 								</p>
 							</div>
 						</div>
-					</div>
-
-
+					</div>					
 					<div class="col-md-3 col-sm-12 col-xs-12">
 						<div class="panel back-dash">
 							<i class="fa fa-dashboard fa-3x"></i><strong> &nbsp;
@@ -168,8 +165,7 @@
 								adipiscing sit ametsit amet elit ftr. Lorem ipsum dolor sit
 								amet, consectetur adipiscing elit.</p>
 						</div>
-
-					</div>
+					</div>					
 					<div class="col-md-3 col-sm-12 col-xs-12 ">
 						<div class="panel ">
 							<div class="main-temp-back">
@@ -184,7 +180,6 @@
 									</div>
 								</div>
 							</div>
-
 						</div>
 						<div class="panel panel-back noti-box">
 							<span class="icon-box bg-color-green set-icon"> <i
@@ -195,14 +190,10 @@
 								<p class="text-muted">Looking Good</p>
 							</div>
 						</div>
-
 					</div>
-
 				</div>
 				<!-- /. ROW  -->
 				<div class="row">
-
-
 					<div class="col-md-9 col-sm-12 col-xs-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">Bar Chart Example</div>
@@ -231,7 +222,6 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
 				<!-- /. ROW  -->
 				<div class="row">
@@ -247,82 +237,33 @@
 								<i class="fa fa-rocket fa-5x"></i> Lorem ipsum dolor sit amet
 								sit sit, consectetur adipiscing elitsit sit gthn ipsum dolor sit
 								amet ipsum dolor sit amet
-
 							</div>
 						</div>
 					</div>
 					<div class="col-md-9 col-sm-12 col-xs-12">
-
 						<div class="panel panel-default">
 							<div class="panel-heading">Responsive Table Example</div>
 							<div class="panel-body">
 								<div class="table-responsive">
-									<table class="table table-striped table-bordered table-hover">
+									<table id="users" class="table table-striped table-bordered table-hover">
 										<thead>
 											<tr>
 												<th>#</th>
 												<th>First Name</th>
 												<th>Last Name</th>
-												<th>Username</th>
+												<th>User Name</th>
 												<th>User No.</th>
 											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>1</td>
-												<td>Mark</td>
-												<td>Otto</td>
-												<td>@mdo</td>
-												<td>100090</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>Jacob</td>
-												<td>Thornton</td>
-												<td>@fat</td>
-												<td>100090</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>Larry</td>
-												<td>the Bird</td>
-												<td>@twitter</td>
-												<td>100090</td>
-											</tr>
-											<tr>
-												<td>1</td>
-												<td>Mark</td>
-												<td>Otto</td>
-												<td>@mdo</td>
-												<td>100090</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>Jacob</td>
-												<td>Thornton</td>
-												<td>@fat</td>
-												<td>100090</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>Larry</td>
-												<td>the Bird</td>
-												<td>@twitter</td>
-												<td>100090</td>
-											</tr>
-
-										</tbody>
+										</thead>										
 									</table>
 								</div>
 							</div>
 						</div>
-
 					</div>
 				</div>
 				<!-- /. ROW  -->
 				<div class="row">
 					<div class="col-md-6 col-sm-12 col-xs-12">
-
 						<div
 							class="chat-panel panel panel-default chat-boder chat-panel-head">
 							<div class="panel-heading">
@@ -349,7 +290,6 @@
 									</ul>
 								</div>
 							</div>
-
 							<div class="panel-body">
 								<ul class="chat-box">
 									<li class="left clearfix"><span class="chat-img pull-left">
@@ -384,12 +324,10 @@
 											class="img-circle" />
 									</span>
 										<div class="chat-body clearfix">
-
 											<strong>Jack Sparrow</strong> <small
 												class="pull-right text-muted"> <i
 												class="fa fa-clock-o fa-fw"></i>14 mins ago
 											</small>
-
 											<p>Lorem ipsum dolor sit amet, consectetur adipiscing
 												elit. Curabitur bibendum ornare dolor, quis ullamcorper
 												ligula sodales.</p>
@@ -437,7 +375,6 @@
 										</div></li>
 								</ul>
 							</div>
-
 							<div class="panel-footer">
 								<div class="input-group">
 									<input id="btn-input" type="text" class="form-control input-sm"
@@ -448,9 +385,7 @@
 									</span>
 								</div>
 							</div>
-
 						</div>
-
 					</div>
 					<div class="col-md-6 col-sm-12 col-xs-12">
 						<div class="panel panel-default">
@@ -464,14 +399,12 @@
 									class="label label-danger">Danger</span>
 							</div>
 						</div>
-
 						<div class="panel panel-default">
 							<div class="panel-heading">Donut Chart Example</div>
 							<div class="panel-body">
 								<div id="morris-donut-chart"></div>
 							</div>
 						</div>
-
 					</div>
 				</div>
 				<!-- /. ROW  -->
@@ -491,6 +424,23 @@
 	<!-- MORRIS CHART SCRIPTS -->
 	<script src="pages/assets/js/morris/raphael-2.1.0.min.js"></script>
 	<script src="pages/assets/js/morris/morris.js"></script>
+	<!-- DATA TABLE SCRIPTS -->
+    <script src="pages/assets/js/dataTables/jquery.dataTables.js"></script>
+    <script src="pages/assets/js/dataTables/dataTables.bootstrap.js"></script>
+    <script>
+            $(document).ready(function () {
+            	$('#users').DataTable({
+                    "ajax": "users.ac",
+                    "columns": [
+                        { "data": "userId" },
+                        { "data": "firstName" },
+                        { "data": "lastName" },
+                        { "data": "userName" },
+                        { "data": "userId" }
+                    ]
+                });
+            });
+    </script>
 	<!-- CUSTOM SCRIPTS -->
 	<script src="pages/assets/js/custom.js"></script>
 
