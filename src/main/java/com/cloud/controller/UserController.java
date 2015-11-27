@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -72,8 +71,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/login.ac", method = RequestMethod.GET)
-	public String login() {		
-		
+	public String login(Model model) {
+		model.addAttribute("user", new User());
 		return "login";
 	}
 	
@@ -84,16 +83,9 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/loginSubmit.ac", method = RequestMethod.POST)
-	public ResponseEntity<User> loginSubmit(@RequestParam("userName") String userName, @RequestParam("password") String password) {		
-		User user1 = null;
-		System.out.println("username -- > "+userName);
-		/*try {
-			System.out.println("password -----  "+user.getPassword());
-			user1 = userDao.getUser(user.getEmail(), user.getPassword());
-		} catch (DaoException e) {
-			e.printStackTrace();
-		}*/
-		return new ResponseEntity<User>(user1, HttpStatus.CREATED);
+	public String loginSubmit(@ModelAttribute("user") User user, BindingResult errors, HttpSession session) {
+		System.out.println("username -- > "+ user.getUserName());		
+		return "home";
 	}
 	
 	@RequestMapping(value="/registrationSubmit.ac", method = RequestMethod.POST)
