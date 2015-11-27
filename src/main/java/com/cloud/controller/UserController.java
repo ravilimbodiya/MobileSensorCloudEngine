@@ -4,6 +4,7 @@
 package com.cloud.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -47,8 +48,8 @@ public class UserController {
 		binder.registerCustomEditor(Date.class, cde);
 	}
 	
-	@RequestMapping(value = "{userName}", method = RequestMethod.GET)
-	public @ResponseBody User getUser(@PathVariable String userName) {		
+	@RequestMapping(value = "/user.ac", method = RequestMethod.GET)
+	public @ResponseBody User getUser(@RequestParam String userName) {		
 		User user = null;
 		try {
 			user = userDao.findByUserName(userName);
@@ -57,17 +58,18 @@ public class UserController {
 		}
 		return user;
 	}
-	
 
-	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody List<User> getUsers() {		
+	@RequestMapping(value = "/users.ac", method = RequestMethod.GET)
+	public @ResponseBody HashMap<String, List<User>> getUsers() {
+		HashMap<String, List<User>> userData = new HashMap<String, List<User>>();
 		List<User> users = null;
 		try {
 			users = userDao.findAll();
+			userData.put("data", users);
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}
-		return users;
+		return userData;
 	}
 	
 	@RequestMapping(value="/login.ac", method = RequestMethod.GET)
@@ -88,6 +90,12 @@ public class UserController {
 		}
 		model.addAttribute("user", new User());
 		return "registration";
+	}
+	
+	@RequestMapping(value="/home.ac", method = RequestMethod.GET)
+	public String home(Model model) {		
+		model.addAttribute("user", new User());
+		return "home";
 	}
 	
 	@RequestMapping(value="/loginSubmit.ac", method = RequestMethod.POST)
@@ -128,14 +136,14 @@ public class UserController {
 		return "login";
 	}
 	
-	@RequestMapping(value = "{id}", method = RequestMethod.PUT)
-	public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody User user) {
+	@RequestMapping(value = "/users.ac", method = RequestMethod.PUT)
+	public ResponseEntity<User> updateUser(@RequestParam String userName, @RequestBody User user) {
 		System.out.println("user updated.");
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<User> deleteUser(@PathVariable String id) {
+	@RequestMapping(value = "/users.ac", method = RequestMethod.DELETE)
+	public ResponseEntity<User> deleteUser(@RequestParam String userName) {
 		System.out.println("user deleted.");
 		return new ResponseEntity<User>(new User(), HttpStatus.NO_CONTENT);
 	}
