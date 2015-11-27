@@ -6,6 +6,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Home</title>
+<link href="pages/assets/img/favicon.png" rel="shortcut icon" type="image/x-icon">
 <!-- BOOTSTRAP STYLES-->
 <link href="pages/assets/css/bootstrap.css" rel="stylesheet" />
 <!-- FONTAWESOME STYLES-->
@@ -58,7 +59,7 @@
 				<li><a href="login.html"><i class="fa fa-bolt fa-3x"></i>
 						Login</a></li>
 				<li><a href="registeration.html"><i
-						class="fa fa-laptop fa-3x"></i> Registeration</a></li>
+						class="fa fa-laptop fa-3x"></i> Registration</a></li>
 				<li><a href="#"><i class="fa fa-sitemap fa-3x"></i>
 						Multi-Level Dropdown<span class="fa arrow"></span></a>
 					<ul class="nav nav-second-level">
@@ -82,7 +83,7 @@
 			<div id="page-inner">
 				<div class="row">
 					<div class="col-md-12">
-						<h2>Admin Dashboard</h2>
+						<h2>Sensor Provider Dashboard</h2>
 						<h5>Welcome Jhon Deo , Love to see you back.</h5>
 					</div>
 				</div>
@@ -250,8 +251,8 @@
 												<th>#</th>
 												<th>First Name</th>
 												<th>Last Name</th>
-												<th>User Name</th>
-												<th>User No.</th>
+												<th>Email</th>
+												<th>Phone No.</th>
 											</tr>
 										</thead>										
 									</table>
@@ -434,15 +435,13 @@
                         { "data": "userId" },
                         { "data": "firstName" },
                         { "data": "lastName" },
-                        { "data": "userName" },
-                        { "data": "userId" }
+                        { "data": "email" },
+                        { "data": "phoneNum" }
                     ]
                 });
             });
     </script>
 	<!-- CUSTOM SCRIPTS -->
 	<script src="pages/assets/js/custom.js"></script>
-
-
 </body>
 </html>
