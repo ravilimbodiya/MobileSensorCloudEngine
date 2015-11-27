@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.HttpStatus;
@@ -17,11 +19,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloud.dao.UserDao;
-import com.cloud.bo.BoException;
-import com.cloud.bo.UserBoImpl;
 import com.cloud.entity.User;
 import com.cloud.exception.DaoException;
 
@@ -67,7 +68,18 @@ public class UserController {
 		return users;
 	}
 	
-	
+	@RequestMapping(value="/login", method = RequestMethod.POST)
+	public ResponseEntity<User> login(@RequestParam("userName") String userName, @RequestParam("password") String password) {		
+		User user1 = null;
+		System.out.println("username -- > "+userName);
+		/*try {
+			System.out.println("password -----  "+user.getPassword());
+			user1 = userDao.getUser(user.getEmail(), user.getPassword());
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}*/
+		return new ResponseEntity<User>(user1, HttpStatus.CREATED);
+	}
 	
 	@RequestMapping(value="/save", method = RequestMethod.POST)
 	public ResponseEntity<User> createUser(@RequestBody User user) {

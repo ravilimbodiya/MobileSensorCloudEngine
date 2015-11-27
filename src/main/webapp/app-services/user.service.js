@@ -11,7 +11,7 @@
 
         service.GetAll = GetAll;
         service.GetById = GetById;
-        service.GetByUsername = GetByUsername;
+        service.userLogin = userLogin;
         service.Create = Create;
         service.Update = Update;
         service.Delete = Delete;
@@ -26,8 +26,8 @@
             return $http.get('rest/users/' + id).then(handleSuccess, handleError('Error getting user by id'));
         }
 
-        function GetByUsername(userName) {
-            return $http.get('rest/users/' + userName).then(handleSuccess, handleError('Error getting user by userName'));
+        function userLogin(userName, password) {
+            return $http.post('/MobileSensorCloudEngine/rest/users/login').then(handleSuccess, handleError('Error getting user by userName'));
         }
 
         function Create(user) {

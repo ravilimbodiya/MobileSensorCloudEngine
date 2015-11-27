@@ -9,6 +9,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.cloud.entity.User;
+import com.cloud.exception.DaoException;
 
 /**
  * @author Ravi
@@ -42,5 +43,11 @@ public class UserDaoImpl implements UserDao {
 	public List<User> findAll(){
 		List<User> list = (List<User>) hibernateTemplate.find("from User");
 		return list;
+	}
+
+	@Override
+	public User getUser(String userName, String password) throws DaoException {
+		User user = (User) hibernateTemplate.find("from User where email=? and password=?",userName, password);
+		return user;
 	}
 }
