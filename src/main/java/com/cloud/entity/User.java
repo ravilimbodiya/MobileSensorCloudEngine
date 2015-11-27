@@ -6,7 +6,6 @@ public class User {
 
 
 	private Integer userId;
-	private String userName;
 	private String firstName;
 	private String lastName;
 	private String phoneNum;
@@ -24,14 +23,6 @@ public class User {
 
 	public void setUserId(Integer userId) {
 		this.userId = userId;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 
 	public String getFirstName() {
@@ -84,7 +75,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [userName=" + userName + ", firstName=" + firstName + ", lastName=" + lastName + ", phoneNum="
+		return "User [firstName=" + firstName + ", lastName=" + lastName + ", phoneNum="
 				+ phoneNum + ", email=" + email + ", userType=" + userType + "]";
 	}
 

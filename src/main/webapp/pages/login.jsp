@@ -55,7 +55,7 @@
 	                      	<br />
 	                          <div class="form-group input-group">
 	                          	<span class="input-group-addon"><i class="fa fa-tag"  ></i></span>
-	                              <form:input type="text" class="form-control" path="userName" placeholder="Your Username" />
+	                              <form:input type="text" class="form-control" path="email" placeholder="Your Email" />
 	                          </div>
 	                          <div class="form-group input-group">
 	                          	<span class="input-group-addon"><i class="fa fa-lock"  ></i></span>

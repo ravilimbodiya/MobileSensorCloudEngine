@@ -71,21 +71,45 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/login.ac", method = RequestMethod.GET)
-	public String login(Model model) {
+	public String login(Model model, HttpSession session) {
+		User validUser = (User) session.getAttribute("validUser");
+		if(validUser != null && validUser.getUserId() != null){
+			return "home";
+		}
 		model.addAttribute("user", new User());
 		return "login";
 	}
 	
 	@RequestMapping(value="/registration.ac", method = RequestMethod.GET)
-	public String register(Model model) {		
+	public String register(Model model, HttpSession session) {
+		User validUser = (User) session.getAttribute("validUser");
+		if(validUser != null && validUser.getUserId() != null){
+			return "home";
+		}
 		model.addAttribute("user", new User());
 		return "registration";
 	}
 	
 	@RequestMapping(value="/loginSubmit.ac", method = RequestMethod.POST)
 	public String loginSubmit(@ModelAttribute("user") User user, BindingResult errors, HttpSession session) {
-		System.out.println("username -- > "+ user.getUserName());		
-		return "home";
+		System.out.println("username -- > "+ user.getEmail());
+		try {
+			User validUser = userDao.getValidUser(user);
+			if(validUser != null){
+				session.setAttribute("validUser", validUser);
+				return "home";
+			}
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return "login";
+	}
+	
+	@RequestMapping(value="/logout.ac", method = RequestMethod.POST)
+	public String logout(@ModelAttribute("user") User user, BindingResult errors, HttpSession session) {
+		System.out.println("logging out -- > "+ user.getEmail());
+		session.invalidate();
+		return "login";
 	}
 	
 	@RequestMapping(value="/registrationSubmit.ac", method = RequestMethod.POST)
@@ -101,7 +125,7 @@ public class UserController {
 			e.printStackTrace();
 		}
 		
-		return "home";
+		return "login";
 	}
 	
 	@RequestMapping(value = "{id}", method = RequestMethod.PUT)

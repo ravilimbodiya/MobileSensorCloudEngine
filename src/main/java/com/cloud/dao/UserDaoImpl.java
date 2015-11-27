@@ -46,8 +46,11 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User getUser(String userName, String password) throws DaoException {
-		User user = (User) hibernateTemplate.find("from User where email=? and password=?",userName, password);
-		return user;
+	public User getValidUser(User user) throws DaoException {
+		List<User> users = (List<User>) hibernateTemplate.find("from User where email=? and password=?",user.getEmail(), user.getPassword());
+		if(users.size() > 0){
+			return users.get(0);
+		}
+		return null;
 	}
 }

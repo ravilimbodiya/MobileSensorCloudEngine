@@ -24,7 +24,7 @@ public interface UserDao {
 	
 	public List<User> findAll() throws DaoException;
 	
-	public User getUser(String userName, String password) throws DaoException;
+	public User getValidUser(User user) throws DaoException;
 	
 
 }

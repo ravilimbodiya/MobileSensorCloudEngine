@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Free Bootstrap Admin Template : Binary Admin</title>
+<title>Home</title>
 <!-- BOOTSTRAP STYLES-->
 <link href="pages/assets/css/bootstrap.css" rel="stylesheet" />
 <!-- FONTAWESOME STYLES-->
@@ -30,11 +30,11 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="index.html">Binary admin</a>
+			<a class="navbar-brand" href="index.jsp">MSCE</a>
 		</div>
 		<div
 			style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;">
-			Last access : 30 May 2014 &nbsp; <a href="login.ac"
+			Last access : 30 May 2014 &nbsp; <a href="logout.ac"
 				class="btn btn-danger square-btn-adjust">Logout</a>
 		</div>
 		</nav>

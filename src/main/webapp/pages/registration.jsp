@@ -66,10 +66,7 @@
 								<span class="input-group-addon"><i class="fa fa-tag"></i></span>
 								<form:input path="lastName" class="form-control" placeholder="Last Name" />
 							</div>
-							<div class="form-group input-group">
-								<span class="input-group-addon">@</span>
-								<form:input path="userName" class="form-control" placeholder="User Name" />
-							</div>
+							
 							<div class="form-group input-group">
 								<span class="input-group-addon"><i class="fa fa-lock"></i></span>
 								<form:password path="" class="form-control" placeholder="Enter Password" />

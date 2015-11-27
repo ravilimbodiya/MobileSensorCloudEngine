@@ -8,9 +8,6 @@
 			<column name="user_id" />
 			<generator class="identity" />
 		</id>
-		<property name="userName" type="string">
-			<column name="user_name"/>
-		</property>
 		<property name="firstName" type="string">
 			<column name="first_name"/>
 		</property>
