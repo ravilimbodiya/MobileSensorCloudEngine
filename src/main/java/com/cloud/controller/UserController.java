@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,11 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +35,6 @@ import com.cloud.exception.DaoException;
  * Controls user requests and responses.
  */
 @Controller
-@RequestMapping("/users")
 public class UserController {
 	
 	@Autowired
@@ -68,8 +71,20 @@ public class UserController {
 		return users;
 	}
 	
-	@RequestMapping(value="/login", method = RequestMethod.POST)
-	public ResponseEntity<User> login(@RequestParam("userName") String userName, @RequestParam("password") String password) {		
+	@RequestMapping(value="/login.ac", method = RequestMethod.GET)
+	public String login() {		
+		
+		return "login";
+	}
+	
+	@RequestMapping(value="/registration.ac", method = RequestMethod.GET)
+	public String register(Model model) {		
+		model.addAttribute("user", new User());
+		return "registration";
+	}
+	
+	@RequestMapping(value="/loginSubmit.ac", method = RequestMethod.POST)
+	public ResponseEntity<User> loginSubmit(@RequestParam("userName") String userName, @RequestParam("password") String password) {		
 		User user1 = null;
 		System.out.println("username -- > "+userName);
 		/*try {
@@ -81,8 +96,12 @@ public class UserController {
 		return new ResponseEntity<User>(user1, HttpStatus.CREATED);
 	}
 	
-	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public ResponseEntity<User> createUser(@RequestBody User user) {
+	@RequestMapping(value="/registrationSubmit.ac", method = RequestMethod.POST)
+	public String createUser(@ModelAttribute("user") User user, BindingResult errors, HttpSession session) {
+		if(errors.hasErrors()){
+			return "registration";
+		}
+		
 		System.out.println("user created."+ user.getEmail());
 		try {
 			userDao.save(user);
@@ -90,7 +109,7 @@ public class UserController {
 			e.printStackTrace();
 		}
 		
-		return new ResponseEntity<User>(user, HttpStatus.CREATED);
+		return "home";
 	}
 	
 	@RequestMapping(value = "{id}", method = RequestMethod.PUT)
