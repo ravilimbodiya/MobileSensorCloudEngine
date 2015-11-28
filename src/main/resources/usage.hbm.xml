@@ -5,7 +5,7 @@
 <hibernate-mapping>
 	<class name="com.cloud.entity.Usage" table="usage">
 		<composite-id>
-            <key-many-to-one name="userId" class="com.cloud.entity.User" column="user_id"/>
+            <key-property name="userId" type="integer" column="user_id"/>
             <key-property name="virtualSensorId" type="integer" column="virtual_sensor_id"/>
         </composite-id> 
 		<property name="allocationDate" type="date"></property>
