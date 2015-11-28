@@ -19,15 +19,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cloud.dao.UsageDao;
 import com.cloud.dao.UserDao;
+import com.cloud.dao.VirtualSensorDao;
+import com.cloud.entity.Usage;
 import com.cloud.entity.User;
+import com.cloud.entity.VirtualSensor;
 import com.cloud.exception.DaoException;
 
 /**
@@ -39,6 +42,12 @@ public class UserController {
 	
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	private VirtualSensorDao sensorDao;
+	
+	@Autowired
+	private UsageDao usageDao;
 	
 	@InitBinder
 	public void init(WebDataBinder binder){
@@ -155,5 +164,23 @@ public class UserController {
 	public ResponseEntity<User> deleteUser(@RequestParam String userName) {
 		System.out.println("user deleted.");
 		return new ResponseEntity<User>(new User(), HttpStatus.NO_CONTENT);
+	}
+	
+	@RequestMapping(value = "/sensors.ac", method = RequestMethod.GET)
+	public @ResponseBody List<VirtualSensor> getSensors(@RequestParam int userId) {		
+		List<VirtualSensor> sensors = null;
+		try {
+			List<Usage> usages = usageDao.findByUserId(userId);
+			for (Usage usage: usages) {
+				sensors = sensorDao.findBySensorId(usage.getVirtualSensorId());
+				for (VirtualSensor sensor: sensors) {
+					sensor.setUsage(usage.getAmount());
+					sensor.setBilling(usage.getBilling());
+				}
+			}
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return sensors;
 	}
 }

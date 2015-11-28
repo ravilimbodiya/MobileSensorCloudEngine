@@ -21,6 +21,7 @@ public class Usage implements Serializable{
 	private Date allocationDate;
 	private Date releaseDate;
 	private Double amount;
+	private Double billing;
 	
 	@Override
 	public String toString() {
@@ -66,6 +67,14 @@ public class Usage implements Serializable{
 
 	public void setAmount(Double amount) {
 		this.amount = amount;
+	}
+	
+	public Double getBilling() {
+		return billing;
+	}
+
+	public void setBilling(Double billing) {
+		this.billing = billing;
 	}
 
 	/**
