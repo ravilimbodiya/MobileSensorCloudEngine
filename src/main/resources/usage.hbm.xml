@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.cloud.entity.Usage" table="usage">
+	<class name="com.cloud.entity.Usage" table="usage_data">
 		<composite-id>
             <key-many-to-one name="userId" class="com.cloud.entity.User" column="user_id"/>
             <key-property name="virtualSensorId" type="integer" column="virtual_sensor_id"/>
@@ -11,6 +11,7 @@
 		<property name="allocationDate" type="date"></property>
 		<property name="releaseDate" type="date"></property>
 		<property name="amount" type="double" not-null="true"></property>
+		<property name="billing" type="double" not-null="true"></property>
 		
 	</class>
 </hibernate-mapping>
