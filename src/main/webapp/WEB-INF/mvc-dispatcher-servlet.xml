@@ -33,4 +33,12 @@
 	<bean id="userDao" class="com.cloud.dao.UserDaoImpl">
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
+	
+	<bean id="sensorDao" class="com.cloud.dao.VirtualSensorDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+	
+	<bean id="usageDao" class="com.cloud.dao.UsageDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
 </beans>

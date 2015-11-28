@@ -24,7 +24,8 @@ public class VirtualSensor {
 	private Date removalDateTime;
 	private String status;
 	private Double totalEarning;
-	
+	private Double usage;
+	private Double billing;
 	
 	/**
 	 * 
@@ -160,6 +161,14 @@ public class VirtualSensor {
 
 	public void setTotalEarning(Double totalEarning) {
 		this.totalEarning = totalEarning;
+	}
+	
+	public void setUsage(Double usage) {
+		this.usage = usage;
+	}
+	
+	public void setBilling(Double billing) {
+		this.billing = billing;
 	}
 
 
