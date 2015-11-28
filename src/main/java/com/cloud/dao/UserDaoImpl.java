@@ -40,8 +40,8 @@ public class UserDaoImpl implements UserDao {
 		return (User)list.get(0);
 	}
 	
-	public List<User> findAll(){
-		List<User> list = (List<User>) hibernateTemplate.find("from User");
+	public List<User> findAllUsers(){
+		List<User> list = (List<User>) hibernateTemplate.find("from User where userType='user'");
 		return list;
 	}
 
@@ -52,5 +52,11 @@ public class UserDaoImpl implements UserDao {
 			return users.get(0);
 		}
 		return null;
+	}
+
+	@Override
+	public List<User> findAllProviders() throws DaoException {
+		List<User> list = (List<User>) hibernateTemplate.find("from User where userType='provider'");
+		return list;
 	}
 }

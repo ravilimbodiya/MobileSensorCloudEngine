@@ -60,12 +60,27 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/users.ac", method = RequestMethod.GET)
-	public @ResponseBody HashMap<String, List<User>> getUsers() {
+	public @ResponseBody HashMap<String, List<User>> getUsers(Model model) {
 		HashMap<String, List<User>> userData = new HashMap<String, List<User>>();
 		List<User> users = null;
 		try {
-			users = userDao.findAll();
+			users = userDao.findAllUsers();
 			userData.put("data", users);
+			model.addAttribute("numOfUsers", users.size());
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return userData;
+	}
+	
+	@RequestMapping(value = "/providers.ac", method = RequestMethod.GET)
+	public @ResponseBody HashMap<String, List<User>> getProviders(Model model) {
+		HashMap<String, List<User>> userData = new HashMap<String, List<User>>();
+		List<User> users = null;
+		try {
+			users = userDao.findAllProviders();
+			userData.put("data", users);
+			model.addAttribute("numOfProviders", users.size());
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}
@@ -107,7 +122,7 @@ public class UserController {
 		return "login";
 	}
 	
-	@RequestMapping(value="/logout.ac", method = RequestMethod.POST)
+	@RequestMapping(value="/logout.ac", method = RequestMethod.GET)
 	public String logout(@ModelAttribute("user") User user, BindingResult errors, HttpSession session) {
 		System.out.println("logging out -- > "+ user.getEmail());
 		session.invalidate();

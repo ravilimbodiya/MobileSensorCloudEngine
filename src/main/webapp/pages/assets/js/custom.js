@@ -78,13 +78,13 @@
             Morris.Donut({
                 element: 'morris-donut-chart',
                 data: [{
-                    label: "Download Sales",
+                    label: "Active Users",
                     value: 12
                 }, {
-                    label: "In-Store Sales",
+                    label: "Active UV Sensors",
                     value: 30
                 }, {
-                    label: "Mail-Order Sales",
+                    label: "NOT IN USE Sensors",
                     value: 20
                 }],
                 resize: true

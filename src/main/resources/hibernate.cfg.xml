@@ -7,7 +7,7 @@
 	<session-factory>
 		
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/cloudDb?CREATE_DATABASE_IF_NOT_EXISTS=true</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/cloudDb?createDatabseIfNotExist=true</property>
 		<property name="hibernate.connection.username">root</property>
 		
 		<property name="hibernate.connection.password">Welcom@123</property>
@@ -20,6 +20,7 @@
 		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
 
 		<mapping resource="user.hbm.xml" />
-		
+		<mapping resource="virtualSensor.hbm.xml" />
+		<mapping resource="usage.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

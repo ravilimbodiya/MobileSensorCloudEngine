@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<c:set var="validUser" value="${session.validUser}" scope="page" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -84,7 +86,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h2>Admin Dashboard</h2>
-						<h5>Welcome Jhon Deo , Love to see you back.</h5>
+						<h5>Welcome ${validUser.firstName} ${validUser.lastName} , Love to see you back.</h5>
 					</div>
 				</div>
 				<!-- /. ROW  -->
@@ -242,10 +244,47 @@
 					</div>
 					<div class="col-md-9 col-sm-12 col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">Responsive Table Example</div>
+							<div class="panel-heading">All Users</div>
 							<div class="panel-body">
 								<div class="table-responsive">
 									<table id="users" class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<th>#</th>
+												<th>First Name</th>
+												<th>Last Name</th>
+												<th>Email</th>
+												<th>Phone No.</th>
+											</tr>
+										</thead>										
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3 col-sm-12 col-xs-12">
+						<div
+							class="panel panel-primary text-center no-boder bg-color-green">
+							<div class="panel-body">
+								<i class="fa fa-comments-o fa-5x"></i>
+								<h4>200 New Comments</h4>
+								<h4>See All Comments</h4>
+							</div>
+							<div class="panel-footer back-footer-green">
+								<i class="fa fa-rocket fa-5x"></i> Lorem ipsum dolor sit amet
+								sit sit, consectetur adipiscing elitsit sit gthn ipsum dolor sit
+								amet ipsum dolor sit amet
+							</div>
+						</div>
+					</div>
+					<div class="col-md-9 col-sm-12 col-xs-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">All Sensor Providers</div>
+							<div class="panel-body">
+								<div class="table-responsive">
+									<table id="providers" class="table table-striped table-bordered table-hover">
 										<thead>
 											<tr>
 												<th>#</th>
@@ -400,9 +439,9 @@
 							</div>
 						</div>
 						<div class="panel panel-default">
-							<div class="panel-heading">Donut Chart Example</div>
+							<div class="panel-heading">Donut Chart Example -- ${userList.email}</div>
 							<div class="panel-body">
-								<div id="morris-donut-chart"></div>
+								<div id="morris-donut-chart1"></div>
 							</div>
 						</div>
 					</div>
@@ -439,6 +478,37 @@
                         { "data": "phoneNum" }
                     ]
                 });
+            });
+            
+            
+            
+            $(document).ready(function () {
+            	$('#providers').DataTable({
+                    "ajax": "providers.ac",
+                    "columns": [
+                        { "data": "userId" },
+                        { "data": "firstName" },
+                        { "data": "lastName" },
+                        { "data": "email" },
+                        { "data": "phoneNum" }
+                    ]
+                });
+            });
+            
+            
+            Morris.Donut({
+                "element": 'morris-donut-chart1',
+                "data": [{
+                    "label": "Active Users",
+                    "value": "50"
+                }, {
+                    "label": "Active UV Sensors",
+                    "value": "30"
+                }, {
+                    "label": "NOT IN USE Sensors",
+                    "value": "20"
+                }],
+                resize: true
             });
     </script>
 	<!-- CUSTOM SCRIPTS -->

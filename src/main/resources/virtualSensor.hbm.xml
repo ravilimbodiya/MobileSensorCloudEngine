@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.cloud.entity.VirtualSensor" table="virtual_sensors">
+		<id name="virtualSensorId" type="integer">
+			<generator class="identity" />
+		</id>
+		<property name="dimensions" type="string"></property>
+		<property name="signalSpeed" type="double"></property>
+		<property name="lowPins" type="string"></property>
+		<property name="highPins" type="string"></property>
+		<property name="groundPins" type="string"></property>
+		<property name="outputSignal" type="string"></property>
+		<property name="operatingRangeFrom" type="integer"></property>
+		<property name="operatingRangeTo" type="integer"></property>
+		<property name="installationDateTime" type="date"></property>
+		<property name="removalDateTime" type="date"></property>
+		<property name="status" type="string"></property>
+		<property name="totalEarning" type="double"></property>
+	</class>
+</hibernate-mapping>
+

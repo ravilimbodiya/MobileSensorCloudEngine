@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.cloud.entity.Usage" table="usage">
+		<composite-id>
+            <key-many-to-one name="userId" class="com.cloud.entity.User" column="user_id"/>
+            <key-property name="virtualSensorId" type="integer" column="virtual_sensor_id"/>
+        </composite-id> 
+		<property name="allocationDate" type="date"></property>
+		<property name="releaseDate" type="date"></property>
+		<property name="amount" type="double" not-null="true"></property>
+		
+	</class>
+</hibernate-mapping>
+

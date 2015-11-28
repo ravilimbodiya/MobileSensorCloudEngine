@@ -22,7 +22,9 @@ public interface UserDao {
 	
 	public User findByUserName(String userName) throws DaoException;
 	
-	public List<User> findAll() throws DaoException;
+	public List<User> findAllUsers() throws DaoException;
+	
+	public List<User> findAllProviders() throws DaoException;
 	
 	public User getValidUser(User user) throws DaoException;
 	
