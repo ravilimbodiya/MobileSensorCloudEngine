@@ -15,14 +15,25 @@
     var mainApp = {
 
         main_fun: function () {       	
-        	$('#users').DataTable({
-                "ajax": "users.ac",
+        	$('#sensors').DataTable({
+                "ajax": "sensors.ac",
                 "columns": [
-                    { "data": "userId" },
-                    { "data": "firstName" },
-                    { "data": "lastName" },
-                    { "data": "email" },
-                    { "data": "phoneNum" }
+                    { "data": "virtualSensorId" },
+                    { "data": "dimensions" },
+                    { "data": "signalSpeed" },
+                    { "data": "numOfPins" },
+                    { "data": "outputSignal" },
+                    { "data": "operatingRangeFrom" },
+                    { "data": "operatingRangeTo" },
+                    { "data": "installationDateTime" },
+                    { "data": "removalDateTime" },
+                    { "data": "status" },
+                    { "data": "totalEarning" },
+                    { "data": "usage" },
+                    { "data": "billing" },
+                    { "data": "latitude" },
+                    { "data": "longitude" },
+                    { "data": "sensorCity" },
                 ]
             });
         	

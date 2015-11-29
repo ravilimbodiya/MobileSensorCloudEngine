@@ -12,11 +12,11 @@ import java.util.Date;
 public class VirtualSensor {
 
 	private Integer virtualSensorId;
+	private User user;
 	private String dimensions;
 	private Double signalSpeed;
-	private String lowPins;
-	private String highPins;
-	private String groundPins;
+	private String signalType;
+	private Integer numOfPins;
 	private String outputSignal;
 	private Integer operatingRangeFrom;
 	private Integer operatingRangeTo;
@@ -24,9 +24,40 @@ public class VirtualSensor {
 	private Date removalDateTime;
 	private String status;
 	private Double totalEarning;
-	private Double usage;
-	private Double billing;
+	private Double latitude;
+	private Double longitude;
+	private String sensorCity;
 	
+	public Double getLatitude() {
+		return latitude;
+	}
+
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
+	}
+
+
+	public String getSensorCity() {
+		return sensorCity;
+	}
+
+
+	public void setSensorCity(String sensorCity) {
+		this.sensorCity = sensorCity;
+	}
+
+
 	/**
 	 * 
 	 */
@@ -41,6 +72,15 @@ public class VirtualSensor {
 
 	public void setVirtualSensorId(Integer virtualSensorId) {
 		this.virtualSensorId = virtualSensorId;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 
@@ -64,33 +104,24 @@ public class VirtualSensor {
 	}
 
 
-	public String getLowPins() {
-		return lowPins;
+
+	public String getSignalType() {
+		return signalType;
 	}
 
 
-	public void setLowPins(String lowPins) {
-		this.lowPins = lowPins;
+	public void setSignalType(String signalType) {
+		this.signalType = signalType;
 	}
 
 
-	public String getHighPins() {
-		return highPins;
+	public Integer getNumOfPins() {
+		return numOfPins;
 	}
 
 
-	public void setHighPins(String highPins) {
-		this.highPins = highPins;
-	}
-
-
-	public String getGroundPins() {
-		return groundPins;
-	}
-
-
-	public void setGroundPins(String groundPins) {
-		this.groundPins = groundPins;
+	public void setNumOfPins(Integer numOfPins) {
+		this.numOfPins = numOfPins;
 	}
 
 
@@ -162,24 +193,15 @@ public class VirtualSensor {
 	public void setTotalEarning(Double totalEarning) {
 		this.totalEarning = totalEarning;
 	}
-	
-	public void setUsage(Double usage) {
-		this.usage = usage;
-	}
-	
-	public void setBilling(Double billing) {
-		this.billing = billing;
-	}
-
 
 	@Override
 	public String toString() {
-		return "VirtualSensor [virtualSensorId=" + virtualSensorId + ", dimensions=" + dimensions + ", signalSpeed="
-				+ signalSpeed + ", lowPins=" + lowPins + ", highPins=" + highPins + ", groundPins=" + groundPins
-				+ ", outputSignal=" + outputSignal 
-				+ ", operatingRangeFrom=" + operatingRangeFrom + ", operatingRangeTo=" + operatingRangeTo
-				+ ", installationDateTime=" + installationDateTime + ", removalDateTime=" + removalDateTime
-				+ ", status=" + status + ", totalEarning=" + totalEarning + "]";
+		return "VirtualSensor [virtualSensorId=" + virtualSensorId + ", user=" + user + ", dimensions=" + dimensions
+				+ ", signalSpeed=" + signalSpeed + ", signalType=" + signalType + ", numOfPins=" + numOfPins
+				+ ", outputSignal=" + outputSignal + ", operatingRangeFrom=" + operatingRangeFrom
+				+ ", operatingRangeTo=" + operatingRangeTo + ", installationDateTime=" + installationDateTime
+				+ ", removalDateTime=" + removalDateTime + ", status=" + status + ", totalEarning=" + totalEarning
+				+ ", latitude=" + latitude + ", longitude=" + longitude + ", sensorCity=" + sensorCity + "]";
 	}
 
 	

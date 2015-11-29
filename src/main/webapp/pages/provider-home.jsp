@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	
+	<c:set var="validUser" value="${session.validUser}" scope="page" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -25,7 +28,7 @@
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
 				data-target=".sidebar-collapse">
-				<span class="sr-only">Toggle navigation</span> <span
+				<span class="sr-only">MSCE</span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
@@ -44,37 +47,19 @@
 				<li class="text-center"><img
 					src="pages/assets/img/find_user.png"
 					class="user-image img-responsive" /></li>
-				<li><a class="active-menu" href="index.html"><i
+				<li><a class="active-menu" href="#" id="provider_dashboard"><i
 						class="fa fa-dashboard fa-3x"></i> Dashboard</a></li>
-				<li><a href="ui.html"><i class="fa fa-desktop fa-3x"></i>
-						UI Elements</a></li>
-				<li><a href="tab-panel.html"><i class="fa fa-qrcode fa-3x"></i>
-						Tabs & Panels</a></li>
-				<li><a href="chart.html"><i class="fa fa-bar-chart-o fa-3x"></i>
-						Morris Charts</a></li>
-				<li><a href="table.html"><i class="fa fa-table fa-3x"></i>
-						Table Examples</a></li>
-				<li><a href="form.html"><i class="fa fa-edit fa-3x"></i>
-						Forms </a></li>
-				<li><a href="login.html"><i class="fa fa-bolt fa-3x"></i>
-						Login</a></li>
-				<li><a href="registeration.html"><i
-						class="fa fa-laptop fa-3x"></i> Registration</a></li>
-				<li><a href="#"><i class="fa fa-sitemap fa-3x"></i>
-						Multi-Level Dropdown<span class="fa arrow"></span></a>
-					<ul class="nav nav-second-level">
-						<li><a href="#">Second Level Link</a></li>
-						<li><a href="#">Second Level Link</a></li>
-						<li><a href="#">Second Level Link<span class="fa arrow"></span></a>
-							<ul class="nav nav-third-level">
-								<li><a href="#">Third Level Link</a></li>
-								<li><a href="#">Third Level Link</a></li>
-								<li><a href="#">Third Level Link</a></li>
-
-							</ul></li>
-					</ul></li>
-				<li><a href="blank.html"><i class="fa fa-square-o fa-3x"></i>
-						Blank Page</a></li>
+				<li><a href="#" id="addSensor" ><i class="fa fa-desktop fa-3x"></i>
+						Add a Sensor</a></li>
+				<li><a href="#" id="removeSensor"><i class="fa fa-qrcode fa-3x"></i>
+						RemoveSensor</a></li>
+				<li><a href="#" id="usage"><i class="fa fa-bar-chart-o fa-3x"></i>
+						Usage</a></li>
+				<li><a href="#" id="billing"><i class="fa fa-table fa-3x"></i>
+						Billing</a>
+				
+				</li>
+				
 			</ul>
 		</div>
 		</nav>
@@ -84,12 +69,12 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h2>Sensor Provider Dashboard</h2>
-						<h5>Welcome Jhon Deo , Love to see you back.</h5>
+						<h5>Welcome ${validUser.firstName} ${validUser.lastName}, Love to see you back.</h5>
 					</div>
 				</div>
 				<!-- /. ROW  -->
 				<hr />
-				<div class="row">
+				<div class="row" id="summarySection">
 					<div class="col-md-3 col-sm-6 col-xs-6">
 						<div class="panel panel-back noti-box">
 							<span class="icon-box bg-color-red set-icon"> <i
@@ -136,8 +121,12 @@
 					</div>
 				</div>
 				<!-- /. ROW  -->
-				<hr />
-				<div class="row">
+				
+				<%-- <div class="alert alert-success">
+                    ${errMsg}
+                </div>
+				<hr /> --%>
+				<div class="row" id="section2">
 					<div class="col-md-6 col-sm-12 col-xs-12">
 						<div class="panel panel-back noti-box">
 							<span class="icon-box bg-color-blue"> <i
@@ -193,7 +182,7 @@
 					</div>
 				</div>
 				<!-- /. ROW  -->
-				<div class="row">
+				<div class="row" id="section3">
 					<div class="col-md-9 col-sm-12 col-xs-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">Bar Chart Example</div>
@@ -224,7 +213,7 @@
 					</div>
 				</div>
 				<!-- /. ROW  -->
-				<div class="row">
+				<div class="row" id="section4">
 					<div class="col-md-3 col-sm-12 col-xs-12">
 						<div
 							class="panel panel-primary text-center no-boder bg-color-green">
@@ -242,19 +231,31 @@
 					</div>
 					<div class="col-md-9 col-sm-12 col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">Responsive Table Example</div>
+							<div class="panel-heading">Your Sensors</div>
 							<div class="panel-body">
 								<div class="table-responsive">
-									<table id="users" class="table table-striped table-bordered table-hover">
+									<table id="virtual_sensors"
+										class="table table-striped table-bordered table-hover">
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>First Name</th>
-												<th>Last Name</th>
-												<th>Email</th>
-												<th>Phone No.</th>
+												<th>User Id</th>
+												<th>Dimensions</th>
+												<th>Signal Speed</th>
+												<th>Signal Type</th>
+												<th>No. of Pins</th>
+												<th>Output Signal</th>
+												<th>Operating Range From</th>
+												<th>Operating Range To</th>
+												<th>Installation Date & Time</th>
+												<th>Removal Date & Time</th>
+												<th>Status</th>
+												<th>Total Earning</th>
+												<th>Latitude</th>
+												<th>Longitude</th>
+												<th>City</th>
 											</tr>
-										</thead>										
+										</thead>
 									</table>
 								</div>
 							</div>
@@ -262,7 +263,7 @@
 					</div>
 				</div>
 				<!-- /. ROW  -->
-				<div class="row">
+				<div class="row" id="section5">
 					<div class="col-md-6 col-sm-12 col-xs-12">
 						<div
 							class="chat-panel panel panel-default chat-boder chat-panel-head">
@@ -408,7 +409,10 @@
 					</div>
 				</div>
 				<!-- /. ROW  -->
-			</div>
+				
+				<div class="row" id="addSensorSection">
+				</div>
+				
 			<!-- /. PAGE INNER  -->
 		</div>
 		<!-- /. PAGE WRAPPER  -->
@@ -428,18 +432,78 @@
     <script src="pages/assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="pages/assets/js/dataTables/dataTables.bootstrap.js"></script>
     <script>
-            $(document).ready(function () {
-            	$('#users').DataTable({
-                    "ajax": "users.ac",
-                    "columns": [
-                        { "data": "userId" },
-                        { "data": "firstName" },
-                        { "data": "lastName" },
-                        { "data": "email" },
-                        { "data": "phoneNum" }
-                    ]
-                });
+            
+
+            // Add Sensor Form ajax call
+            $(document).ready(function(){
+            $("#addSensor").click(function(){
+                $.ajax({url: "addSensor.ac", success: function(result){
+                	$("#section2").fadeOut("slow");
+                	$("#section3").fadeOut("slow");
+                	$("#section3").fadeOut("slow");
+                	$("#section4").fadeOut("slow");
+                	$("#section5").fadeOut("slow");
+                	$("#provider_dashboard").removeClass("active-menu");
+                	$("#addSensor").addClass("active-menu");
+                    $("#addSensorSection").html(result);
+                }});
             });
+            });
+            
+         // Remove Sensor ajax call
+            $(document).ready(function(){
+            $("#removeSensor").click(function(){
+                $.ajax({url: "removeSensor.ac", success: function(result){
+                	$("#section2").fadeOut("slow");
+                	$("#section3").fadeOut("slow");
+                	$("#section3").fadeOut("slow");
+                	$("#section4").fadeOut("slow");
+                	$("#section5").fadeOut("slow");
+                	$("#provider_dashboard").removeClass("active-menu");
+                	$("#removeSensor").addClass("active-menu");
+                    $("#addSensorSection").html(result);
+                }});
+            });
+            });
+         
+            $(document).ready(function() {
+        		$('#virtual_sensors').DataTable({
+        			"ajax" : "removeSensor.ac",
+        			"columns" : [ {
+        				"data" : "virtualSensorId"
+        			}, {
+        				"data" : "user.userId"
+        			}, {
+        				"data" : "dimensions"
+        			}, {
+        				"data" : "signalSpeed"
+        			}, {
+        				"data" : "signalType"
+        			}, {
+        				"data" : "numOfPins"
+        			}, {
+        				"data" : "outputSignal"
+        			}, {
+        				"data" : "operatingRangeFrom"
+        			}, {
+        				"data" : "operatingRangeTo"
+        			}, {
+        				"data" : "installationDateTime"
+        			}, {
+        				"data" : "removalDateTime"
+        			}, {
+        				"data" : "status"
+        			}, {
+        				"data" : "totalEarning"
+        			}, {
+        				"data" : "latitude"
+        			}, {
+        				"data" : "longitude"
+        			}, {
+        				"data" : "sensorCity"
+        			} ]
+        		});
+        	});
     </script>
 	<!-- CUSTOM SCRIPTS -->
 	<script src="pages/assets/js/custom.js"></script>

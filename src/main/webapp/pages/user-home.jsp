@@ -55,7 +55,7 @@
 						<a href="blank.html"><i class="fa fa-square-o fa-3x"></i>Usage</a>
 					</li>
 					<li>
-						<a href="blank.html"><i class="fa fa-square-o fa-3x"></i>Biling</a>
+						<a href="blank.html"><i class="fa fa-square-o fa-3x"></i>Billing</a>
 					</li>				
 				</ul>
 			</div>
@@ -80,14 +80,25 @@
 							<div class="panel-heading">My Sensors</div>
 							<div class="panel-body">
 								<div class="table-responsive">
-									<table id="users" class="table table-striped table-bordered table-hover">
+									<table id="sensors" class="table table-striped table-bordered table-hover">
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>First Name</th>
-												<th>Last Name</th>
-												<th>Email</th>
-												<th>Phone No.</th>
+												<th>Dimensions</th>
+												<th>Signal Speed</th>
+												<th>No. of Pins</th>
+												<th>Output Signal</th>
+												<th>Operating Range From</th>
+												<th>Operating Range To</th>
+												<th>Installation Date & Time</th>
+												<th>Removal Date & Time</th>
+												<th>Status</th>
+												<th>Total Earning</th>
+												<th>Usage</th>
+												<th>Billing</th>
+												<th>Latitude</th>
+												<th>Longitude</th>
+												<th>City</th>
 											</tr>
 										</thead>										
 									</table>

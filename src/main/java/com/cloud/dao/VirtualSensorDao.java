@@ -16,4 +16,8 @@ public interface VirtualSensorDao {
 	
 	public List<VirtualSensor> findBySensorId(int sensorId) throws DaoException;
 	
+	public void save(VirtualSensor virtualSensor) throws DaoException;
+
+	public List<VirtualSensor> getAllSensorByUserId(Integer userId) throws DaoException;
+	
 }

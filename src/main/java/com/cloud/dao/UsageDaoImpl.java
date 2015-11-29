@@ -5,6 +5,7 @@ package com.cloud.dao;
 
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.cloud.entity.Usage;
@@ -24,8 +25,13 @@ public class UsageDaoImpl implements UsageDao {
 	
 	@Override
 	public List<Usage> findByUserId(int userId) throws DaoException {
-		List<Usage> list = (List<Usage>) hibernateTemplate.find("from Usage where userId=?",userId);
-		return list;
+		try {
+			List<Usage> list = (List<Usage>) hibernateTemplate.find("from Usage where userId=?",userId);
+			return list;
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			throw new DaoException(e);
+		}
 	}
 	
 }
