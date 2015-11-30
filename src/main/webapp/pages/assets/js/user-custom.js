@@ -138,7 +138,7 @@
 
     function initializeSensorMap() {
       var mapOptions = {
-        zoom: 2,
+        zoom: 4,
         center: {lat: -33.865427, lng: 151.196123},
         mapTypeId: google.maps.MapTypeId.TERRAIN
       };

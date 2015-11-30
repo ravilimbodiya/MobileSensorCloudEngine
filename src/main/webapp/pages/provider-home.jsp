@@ -49,13 +49,13 @@
 					class="user-image img-responsive" /></li>
 				<li><a class="active-menu" href="#" id="provider_dashboard"><i
 						class="fa fa-dashboard fa-3x"></i> Dashboard</a></li>
-				<li><a href="#" id="addSensor" ><i class="fa fa-desktop fa-3x"></i>
+				<li><a href="#" id="addSensor" ><i class="fa fa-plus fa-3x"></i>
 						Add a Sensor</a></li>
-				<li><a href="#" id="removeSensor"><i class="fa fa-qrcode fa-3x"></i>
+				<li><a href="#" id="removeSensor"><i class="fa fa-remove fa-3x"></i>
 						RemoveSensor</a></li>
 				<li><a href="#" id="usage"><i class="fa fa-bar-chart-o fa-3x"></i>
 						Usage</a></li>
-				<li><a href="#" id="billing"><i class="fa fa-table fa-3x"></i>
+				<li><a href="#" id="billing"><i class="fa fa-usd fa-3x"></i>
 						Billing</a>
 				
 				</li>
@@ -74,48 +74,48 @@
 				</div>
 				<!-- /. ROW  -->
 				<hr />
-				<div class="row" id="summarySection">
+				<div class="row" id="section1">
 					<div class="col-md-3 col-sm-6 col-xs-6">
 						<div class="panel panel-back noti-box">
 							<span class="icon-box bg-color-red set-icon"> <i
-								class="fa fa-envelope-o"></i>
+								class="fa fa-crosshairs"></i>
 							</span>
 							<div class="text-box">
-								<p class="main-text">120 New</p>
-								<p class="text-muted">Messages</p>
+								<p class="main-text">12</p>
+								<marquee class="text-muted">Sensors You Have</marquee>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6 col-xs-6">
 						<div class="panel panel-back noti-box">
 							<span class="icon-box bg-color-green set-icon"> <i
-								class="fa fa-bars"></i>
+								class="fa fa-info-circle"></i>
 							</span>
 							<div class="text-box">
-								<p class="main-text">30 Tasks</p>
-								<p class="text-muted">Remaining</p>
+								<p class="main-text">30</p>
+								<marquee class="text-muted">Users Using Your Sensors</marquee>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6 col-xs-6">
 						<div class="panel panel-back noti-box">
 							<span class="icon-box bg-color-blue set-icon"> <i
-								class="fa fa-bell-o"></i>
+								class="fa fa-usd"></i>
 							</span>
 							<div class="text-box">
-								<p class="main-text">240 New</p>
-								<p class="text-muted">Notifications</p>
+								<p class="main-text">240</p>
+								<marquee class="text-muted">Total Earnings</marquee>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-3 col-sm-6 col-xs-6">
 						<div class="panel panel-back noti-box">
 							<span class="icon-box bg-color-brown set-icon"> <i
-								class="fa fa-rocket"></i>
+								class="fa fa-warning"></i>
 							</span>
 							<div class="text-box">
-								<p class="main-text">3 Orders</p>
-								<p class="text-muted">Pending</p>
+								<p class="main-text">3</p>
+								<marquee class="text-muted">Sensors are not working properly</marquee>
 							</div>
 						</div>
 					</div>
@@ -127,35 +127,8 @@
                 </div>
 				<hr /> --%>
 				<div class="row" id="section2">
-					<div class="col-md-6 col-sm-12 col-xs-12">
-						<div class="panel panel-back noti-box">
-							<span class="icon-box bg-color-blue"> <i
-								class="fa fa-warning"></i>
-							</span>
-							<div class="text-box">
-								<p class="main-text">52 Important Issues to Fix</p>
-								<p class="text-muted">Please fix these issues to work smooth</p>
-								<p class="text-muted">Time Left: 30 mins</p>
-								<hr />
-								<p class="text-muted">
-									<span class="text-muted color-bottom-txt"><i
-										class="fa fa-edit"></i> Lorem ipsum dolor sit amet,
-										consectetur adipiscing elit gthn. Lorem ipsum dolor sit amet,
-										consectetur adipiscing elit gthn. </span>
-								</p>
-							</div>
-						</div>
-					</div>					
-					<div class="col-md-3 col-sm-12 col-xs-12">
-						<div class="panel back-dash">
-							<i class="fa fa-dashboard fa-3x"></i><strong> &nbsp;
-								SPEED</strong>
-							<p class="text-muted">Lorem ipsum dolor sit amet, consectetur
-								adipiscing sit ametsit amet elit ftr. Lorem ipsum dolor sit
-								amet, consectetur adipiscing elit.</p>
-						</div>
-					</div>					
-					<div class="col-md-3 col-sm-12 col-xs-12 ">
+					
+					<div class="col-sm-12 col-xs-12 ">
 						<div class="panel ">
 							<div class="main-temp-back">
 								<div class="panel-body">
@@ -170,15 +143,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="panel panel-back noti-box">
-							<span class="icon-box bg-color-green set-icon"> <i
-								class="fa fa-desktop"></i>
-							</span>
-							<div class="text-box">
-								<p class="main-text">Display</p>
-								<p class="text-muted">Looking Good</p>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 				<!-- /. ROW  -->
@@ -214,22 +179,8 @@
 				</div>
 				<!-- /. ROW  -->
 				<div class="row" id="section4">
-					<div class="col-md-3 col-sm-12 col-xs-12">
-						<div
-							class="panel panel-primary text-center no-boder bg-color-green">
-							<div class="panel-body">
-								<i class="fa fa-comments-o fa-5x"></i>
-								<h4>200 New Comments</h4>
-								<h4>See All Comments</h4>
-							</div>
-							<div class="panel-footer back-footer-green">
-								<i class="fa fa-rocket fa-5x"></i> Lorem ipsum dolor sit amet
-								sit sit, consectetur adipiscing elitsit sit gthn ipsum dolor sit
-								amet ipsum dolor sit amet
-							</div>
-						</div>
-					</div>
-					<div class="col-md-9 col-sm-12 col-xs-12">
+					
+					<div class="col-md-12 col-sm-12 col-xs-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">Your Sensors</div>
 							<div class="panel-body">
@@ -265,141 +216,9 @@
 				<!-- /. ROW  -->
 				<div class="row" id="section5">
 					<div class="col-md-6 col-sm-12 col-xs-12">
-						<div
-							class="chat-panel panel panel-default chat-boder chat-panel-head">
-							<div class="panel-heading">
-								<i class="fa fa-comments fa-fw"></i> Chat Box
-								<div class="btn-group pull-right">
-									<button type="button"
-										class="btn btn-default btn-xs dropdown-toggle"
-										data-toggle="dropdown">
-										<i class="fa fa-chevron-down"></i>
-									</button>
-									<ul class="dropdown-menu slidedown">
-										<li><a href="#"> <i class="fa fa-refresh fa-fw"></i>Refresh
-										</a></li>
-										<li><a href="#"> <i class="fa fa-check-circle fa-fw"></i>Available
-										</a></li>
-										<li><a href="#"> <i class="fa fa-times fa-fw"></i>Busy
-										</a></li>
-										<li><a href="#"> <i class="fa fa-clock-o fa-fw"></i>Away
-										</a></li>
-										<li class="divider"></li>
-										<li><a href="#"> <i class="fa fa-sign-out fa-fw"></i>Sign
-												Out
-										</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="panel-body">
-								<ul class="chat-box">
-									<li class="left clearfix"><span class="chat-img pull-left">
-											<img src="pages/assets/img/1.png" alt="User"
-											class="img-circle" />
-									</span>
-										<div class="chat-body">
-											<strong>Jack Sparrow</strong> <small
-												class="pull-right text-muted"> <i
-												class="fa fa-clock-o fa-fw"></i>12 mins ago
-											</small>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-												elit. Curabitur bibendum ornare dolor, quis ullamcorper
-												ligula sodales.</p>
-										</div></li>
-									<li class="right clearfix"><span
-										class="chat-img pull-right"> <img
-											src="pages/assets/img/2.png" alt="User" class="img-circle" />
-									</span>
-										<div class="chat-body clearfix">
-
-											<small class=" text-muted"> <i
-												class="fa fa-clock-o fa-fw"></i>13 mins ago
-											</small> <strong class="pull-right">Jhonson Deed</strong>
-
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-												elit. Curabitur bibendum ornare dolor, quis ullamcorper
-												ligula sodales.</p>
-										</div></li>
-									<li class="left clearfix"><span class="chat-img pull-left">
-											<img src="pages/assets/img/3.png" alt="User"
-											class="img-circle" />
-									</span>
-										<div class="chat-body clearfix">
-											<strong>Jack Sparrow</strong> <small
-												class="pull-right text-muted"> <i
-												class="fa fa-clock-o fa-fw"></i>14 mins ago
-											</small>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-												elit. Curabitur bibendum ornare dolor, quis ullamcorper
-												ligula sodales.</p>
-										</div></li>
-									<li class="right clearfix"><span
-										class="chat-img pull-right"> <img
-											src="pages/assets/img/4.png" alt="User" class="img-circle" />
-									</span>
-										<div class="chat-body clearfix">
-
-											<small class=" text-muted"> <i
-												class="fa fa-clock-o fa-fw"></i>15 mins ago
-											</small> <strong class="pull-right">Jhonson Deed</strong>
-
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-												elit. Curabitur bibendum ornare dolor, quis ullamcorper
-												ligula sodales.</p>
-										</div></li>
-									<li class="left clearfix"><span class="chat-img pull-left">
-											<img src="pages/assets/img/1.png" alt="User"
-											class="img-circle" />
-									</span>
-										<div class="chat-body">
-											<strong>Jack Sparrow</strong> <small
-												class="pull-right text-muted"> <i
-												class="fa fa-clock-o fa-fw"></i>12 mins ago
-											</small>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-												elit. Curabitur bibendum ornare dolor, quis ullamcorper
-												ligula sodales.</p>
-										</div></li>
-									<li class="right clearfix"><span
-										class="chat-img pull-right"> <img
-											src="pages/assets/img/2.png" alt="User" class="img-circle" />
-									</span>
-										<div class="chat-body clearfix">
-
-											<small class=" text-muted"> <i
-												class="fa fa-clock-o fa-fw"></i>13 mins ago
-											</small> <strong class="pull-right">Jhonson Deed</strong>
-
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-												elit. Curabitur bibendum ornare dolor, quis ullamcorper
-												ligula sodales.</p>
-										</div></li>
-								</ul>
-							</div>
-							<div class="panel-footer">
-								<div class="input-group">
-									<input id="btn-input" type="text" class="form-control input-sm"
-										placeholder="Type your message to send..." /> <span
-										class="input-group-btn">
-										<button class="btn btn-warning btn-sm" id="btn-chat">
-											Send</button>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
+					</div>	
 					<div class="col-md-6 col-sm-12 col-xs-12">
-						<div class="panel panel-default">
-							<div class="panel-heading">Label Examples</div>
-							<div class="panel-body">
-								<span class="label label-default">Default</span> <span
-									class="label label-primary">Primary</span> <span
-									class="label label-success">Success</span> <span
-									class="label label-info">Info</span> <span
-									class="label label-warning">Warning</span> <span
-									class="label label-danger">Danger</span>
-							</div>
-						</div>
+						
 						<div class="panel panel-default">
 							<div class="panel-heading">Donut Chart Example</div>
 							<div class="panel-body">
@@ -412,6 +231,43 @@
 				
 				<div class="row" id="addSensorSection">
 				</div>
+				<div class="row" id="removeSensorSection" style="display:none;">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="panel panel-default">
+							<div class="panel-heading">Your Sensors</div>
+							<div class="panel-body">
+								<div class="table-responsive">
+									<table id="remove_virtual_sensors"
+										class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<th>#</th>
+												<th>User Id</th>
+												<th>Dimensions</th>
+												<th>Signal Speed</th>
+												<th>Signal Type</th>
+												<th>No. of Pins</th>
+												<th>Output Signal</th>
+												<th>Operating Range From</th>
+												<th>Operating Range To</th>
+												<th>Installation Date & Time</th>
+												<th>Removal Date & Time</th>
+												<th>Status</th>
+												<th>Total Earning</th>
+												<th>Latitude</th>
+												<th>Longitude</th>
+												<th>City</th>
+												<th>Remove</th>
+											</tr>
+										</thead>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
 				
 			<!-- /. PAGE INNER  -->
 		</div>
@@ -432,7 +288,19 @@
     <script src="pages/assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="pages/assets/js/dataTables/dataTables.bootstrap.js"></script>
     <script>
-            
+		    // Dashboard content display
+		    $(document).ready(function(){
+		    $("#provider_dashboard").click(function(){
+		        
+		        	$("#section2").fadeIn("slow");
+		        	$("#section3").fadeIn("slow");
+		        	$("#section4").fadeIn("slow");
+		        	$("#section5").fadeIn("slow");
+		        	$("#provider_dashboard").addClass("active-menu");
+		        	$("#addSensor").removeClass("active-menu");
+		        	$("#removeSensor").removeClass("active-menu");
+		    });
+		    });
 
             // Add Sensor Form ajax call
             $(document).ready(function(){
@@ -440,10 +308,10 @@
                 $.ajax({url: "addSensor.ac", success: function(result){
                 	$("#section2").fadeOut("slow");
                 	$("#section3").fadeOut("slow");
-                	$("#section3").fadeOut("slow");
                 	$("#section4").fadeOut("slow");
                 	$("#section5").fadeOut("slow");
                 	$("#provider_dashboard").removeClass("active-menu");
+                	$("#removeSensor").removeClass("active-menu");
                 	$("#addSensor").addClass("active-menu");
                     $("#addSensorSection").html(result);
                 }});
@@ -453,19 +321,63 @@
          // Remove Sensor ajax call
             $(document).ready(function(){
             $("#removeSensor").click(function(){
-                $.ajax({url: "removeSensor.ac", success: function(result){
-                	$("#section2").fadeOut("slow");
-                	$("#section3").fadeOut("slow");
-                	$("#section3").fadeOut("slow");
-                	$("#section4").fadeOut("slow");
-                	$("#section5").fadeOut("slow");
-                	$("#provider_dashboard").removeClass("active-menu");
-                	$("#removeSensor").addClass("active-menu");
-                    $("#addSensorSection").html(result);
-                }});
+            	$('#remove_virtual_sensors').DataTable({
+        			"ajax" : "removeSensor.ac",
+        			"columns" : [ {
+        				"data" : "virtualSensorId"
+        			}, {
+        				"data" : "user.userId"
+        			}, {
+        				"data" : "dimensions"
+        			}, {
+        				"data" : "signalSpeed"
+        			}, {
+        				"data" : "signalType"
+        			}, {
+        				"data" : "numOfPins"
+        			}, {
+        				"data" : "outputSignal"
+        			}, {
+        				"data" : "operatingRangeFrom"
+        			}, {
+        				"data" : "operatingRangeTo"
+        			}, {
+        				"data" : "installationDateTime"
+        			}, {
+        				"data" : "removalDateTime"
+        			}, {
+        				"data" : "status"
+        			}, {
+        				"data" : "totalEarning"
+        			}, {
+        				"data" : "latitude"
+        			}, {
+        				"data" : "longitude"
+        			}, {
+        				"data" : "sensorCity"
+        			} , {
+	                    "targets": -1,
+	                    "data": null,
+	                    "defaultContent": "<a href='#' id='removeButton' onclick=''>Remove</a>"
+	                }
+        			]
+	            	
+        		});
+            	
+            	$("#section2").fadeOut("slow");
+            	$("#section3").fadeOut("slow");
+            	$("#section4").fadeOut("slow");
+            	$("#section5").fadeOut("slow");
+            	$("#addSensorSection").fadeOut("slow");
+            	$("#provider_dashboard").removeClass("active-menu");
+            	$("#addSensor").removeClass("active-menu");
+            	$("#removeSensor").addClass("active-menu");
+            	$("#removeSensorSection").fadeIn("slow");
+            	
             });
             });
          
+           
             $(document).ready(function() {
         		$('#virtual_sensors').DataTable({
         			"ajax" : "removeSensor.ac",

@@ -3,10 +3,10 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.cloud.entity.Usage" table="usage_data">
+	<class name="com.cloud.entity.Usage" table="usage">
 		<composite-id>
-            <key-property name="userId" type="integer" column="user_id"/>
-            <key-property name="virtualSensorId" type="integer" column="virtual_sensor_id"/>
+            <key-property name="user" type="integer" column="user_id"/>
+            <key-property name="virtualSensor" type="integer" column="virtual_sensor_id"/>
         </composite-id> 
 		<property name="allocationDate" type="date"></property>
 		<property name="releaseDate" type="date"></property>

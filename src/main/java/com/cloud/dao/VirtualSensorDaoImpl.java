@@ -5,9 +5,11 @@ package com.cloud.dao;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
+import com.cloud.entity.User;
 import com.cloud.entity.VirtualSensor;
 import com.cloud.exception.DaoException;
 
@@ -45,10 +47,21 @@ public class VirtualSensorDaoImpl implements VirtualSensorDao {
 	}
 
 	@Override
-	public List<VirtualSensor> getAllSensorByUserId(Integer userId) throws DaoException {
+	public List<VirtualSensor> getAllSensorByUserId(User validUser) throws DaoException {
 		try {
-			List<VirtualSensor> allVirtualSensors = (List<VirtualSensor>) hibernateTemplate.find("from VirtualSensor where user.userId = ?", userId);
+			List<VirtualSensor> allVirtualSensors = (List<VirtualSensor>) hibernateTemplate.find("from VirtualSensor where user_id = ?", validUser.getUserId());
 			return allVirtualSensors;
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			throw new DaoException(e);
+		}
+	}
+
+	@Override
+	public List<String> getAllSensorsCity() throws DaoException {
+		try {
+			List<String> cities = (List<String>) hibernateTemplate.find("select distinct sensorCity from VirtualSensor");
+			return cities;
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 			throw new DaoException(e);

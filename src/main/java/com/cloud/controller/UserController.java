@@ -150,7 +150,7 @@ public class UserController {
 		try {
 			List<Usage> usages = usageDao.findByUserId(userId);
 			for (Usage usage: usages) {
-				sensors = sensorDao.findBySensorId(usage.getVirtualSensorId());
+				sensors = sensorDao.findBySensorId(usage.getVirtualSensor().getVirtualSensorId());
 				for (VirtualSensor sensor: sensors) {
 					//sensor.setUsage(usage.getAmount());
 					//sensor.setBilling(usage.getBilling());
@@ -160,5 +160,18 @@ public class UserController {
 			e.printStackTrace();
 		}
 		return sensors;
+	}
+	
+	@RequestMapping(value="/reqSensor.ac", method = RequestMethod.POST)
+	public String reqSensor(HttpSession session, Model model) {
+		
+		try {
+			User validUser = (User) session.getAttribute("validUser");
+			List<String> cities = sensorDao.getAllSensorsCity();
+			model.addAttribute("cityList", cities);
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return "reqSensorForm";
 	}
 }

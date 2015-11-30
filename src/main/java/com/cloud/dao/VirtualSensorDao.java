@@ -5,6 +5,7 @@ package com.cloud.dao;
 
 import java.util.List;
 
+import com.cloud.entity.User;
 import com.cloud.entity.VirtualSensor;
 import com.cloud.exception.DaoException;
 
@@ -18,6 +19,8 @@ public interface VirtualSensorDao {
 	
 	public void save(VirtualSensor virtualSensor) throws DaoException;
 
-	public List<VirtualSensor> getAllSensorByUserId(Integer userId) throws DaoException;
+	public List<VirtualSensor> getAllSensorByUserId(User validUser) throws DaoException;
+	
+	public List<String> getAllSensorsCity() throws DaoException;
 	
 }

@@ -70,7 +70,7 @@ public class SensorProviderController {
 		HashMap<String, List<VirtualSensor>> sensorsData = new HashMap<String, List<VirtualSensor>>();
 		try {
 			User validUser = (User) session.getAttribute("validUser");
-			List<VirtualSensor> allVirtualSensors = sensorDao.getAllSensorByUserId(validUser.getUserId());
+			List<VirtualSensor> allVirtualSensors = sensorDao.getAllSensorByUserId(validUser);
 			sensorsData.put("data", allVirtualSensors);
 			model.addAttribute("numOfSensors", allVirtualSensors.size());
 		} catch (DaoException e) {

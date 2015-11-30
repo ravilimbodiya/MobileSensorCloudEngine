@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<c:set var="validUser" value="${session.validUser}" scope="page" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -23,7 +25,7 @@
 		<nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-					<span class="sr-only">Toggle navigation</span> 
+					<span class="sr-only">MSCE</span> 
 					<span class="icon-bar"></span> <span class="icon-bar"></span> 
 					<span class="icon-bar"></span>
 				</button>
@@ -43,19 +45,19 @@
 						<img src="pages/assets/img/find_user.png" class="user-image img-responsive" />
 					</li>
 					<li>
-						<a class="active-menu" href="index.html"><i class="fa fa-dashboard fa-3x"></i>Dashboard</a>
+						<a class="active-menu" href="#" id="user_dashboard"><i class="fa fa-dashboard fa-3x"></i>Dashboard</a>
 					</li>
 					<li>
-						<a href="blank.html"><i class="fa fa-square-o fa-3x"></i>Request Sensor</a>
+						<a href="#" id="reqSensor"><i class="fa fa-upload fa-3x"></i>Request Sensor</a>
 					</li>
 					<li>
-						<a href="blank.html"><i class="fa fa-square-o fa-3x"></i>Manage Sensor</a>
+						<a href="#" id="manageSensor"><i class="fa fa-table fa-3x"></i>Manage Sensor</a>
 					</li>
 					<li>
-						<a href="blank.html"><i class="fa fa-square-o fa-3x"></i>Usage</a>
+						<a href="#" id="usage"><i class="fa fa-bar-chart-o fa-3x"></i>Usage</a>
 					</li>
 					<li>
-						<a href="blank.html"><i class="fa fa-square-o fa-3x"></i>Billing</a>
+						<a href="#" id="billing"><i class="fa fa-usd fa-3x"></i>Billing</a>
 					</li>				
 				</ul>
 			</div>
@@ -66,15 +68,13 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h2>User Dashboard</h2>
-						<%@ page import="com.cloud.entity.User" %>
-						<% User validUser = (User) session.getAttribute("validUser"); %>
-						<h5>Welcome <%= validUser.getFirstName() %> <%= validUser.getLastName() %>, Love to see you back.</h5>
+						<h5>Welcome ${validUser.firstName} ${validUser.lastName}, Love to see you back.</h5>
 					</div>
 				</div>				
 				<!-- /. ROW  -->
 				<hr />
 				<!-- /. ROW  -->
-				<div class="row">					
+				<div class="row" id="section1">					
 					<div class="col-md-12 col-sm-12 col-xs-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">My Sensors</div>
@@ -93,11 +93,6 @@
 												<th>Installation Date & Time</th>
 												<th>Removal Date & Time</th>
 												<th>Status</th>
-												<th>Total Earning</th>
-												<th>Usage</th>
-												<th>Billing</th>
-												<th>Latitude</th>
-												<th>Longitude</th>
 												<th>City</th>
 											</tr>
 										</thead>										
@@ -108,7 +103,7 @@
 					</div>					
 				</div>
 				
-				<div class="row">
+				<div class="row" id="section2">
 					<div class="col-md-8 col-sm-12 col-xs-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">Sensor Location</div>
@@ -127,7 +122,7 @@
 					</div>					
 				</div>		
 				
-				<div class="row">
+				<div class="row"  id="section3">
 					<div class="col-md-6 col-sm-12 col-xs-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">Sensor Usage</div>
@@ -144,7 +139,11 @@
 							</div>
 						</div>
 					</div>					
-				</div>								
+				</div>	
+				<div id="reqSensorSection">
+				
+				</div>
+											
 			</div>		
 			<!-- /. PAGE INNER  -->
 		</div>
@@ -165,6 +164,25 @@
     <script src="pages/assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="pages/assets/js/dataTables/dataTables.bootstrap.js"></script>        
 	<!-- CUSTOM SCRIPTS -->
+	
+	<script>
+		 
+            // Add Sensor Form ajax call
+            $(document).ready(function(){
+            $("#reqSensor").click(function(){
+                $.ajax({url: "reqSensor.ac", method: "post", success: function(result){
+                	$("#section1").fadeOut("slow");
+                	$("#section2").fadeOut("slow");
+                	$("#section3").fadeOut("slow");
+                	$("#user_dashboard").removeClass("active-menu");
+                	$("#reqSensor").addClass("active-menu");
+                	$("#manageSensor").removeClass("active-menu");
+                    $("#reqSensorSection").html(result);
+                }});
+            });
+            });
+          
+    </script>
 	<script src="pages/assets/js/user-custom.js"></script>
 	<!-- GOOGLE MAP -->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_7yQeLqT_tn8Ln8IixcYhjuHhDbg7o1I" type="text/javascript"></script>		
