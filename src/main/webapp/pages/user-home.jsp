@@ -92,6 +92,7 @@
 												<th>Allocation Date</th>
 												<th>Release Date</th>
 												<th>Amount (In USD)</th>
+												<th>Remove</th>
 											</tr>
 										</thead>										
 									</table>
@@ -175,6 +176,7 @@
         	$("#user_dashboard").addClass("active-menu");
         	$("#reqSensor").removeClass("active-menu");
         	$("#manageSensor").removeClass("active-menu");
+        	$("#reqSensorSection").fadeOut("slow");
     });
     });
             // Add Sensor Form ajax call
@@ -206,7 +208,11 @@
         				"data" : "releaseDate"
         			}, {
         				"data" : "amount"
-        			}
+        			}, {
+	                    "targets": -1,
+	                    "data": null,
+	                    "defaultContent": "<a href='#' id='deactivateSensor' onclick='deactivate(this.parentNode);'>Deactivate</a>"
+	                }
         			]
 	            	
         		});
@@ -253,6 +259,11 @@
                 resize: true
             });
             });
+         
+         
+         function deactivate(content){
+        	 console.log(content);
+         }
     </script>
 	<script src="pages/assets/js/user-custom.js"></script>
 	<!-- GOOGLE MAP -->

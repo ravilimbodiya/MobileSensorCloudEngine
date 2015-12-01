@@ -102,8 +102,7 @@ public class UserController {
 		try {
 			User validUser = userDao.getValidUser(user);
 			if(validUser != null){
-				validUser.setLastLogin(new Date());
-				userDao.save(validUser);
+				
 				session.setAttribute("validUser", validUser);
 				if(validUser.getUserType().equals("provider")){
 					model.addAttribute("virtualSensor", new VirtualSensor());
