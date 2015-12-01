@@ -22,5 +22,6 @@
 		<mapping resource="user.hbm.xml" />
 		<mapping resource="virtualSensor.hbm.xml" />
 		<mapping resource="usage.hbm.xml" />
+		<mapping resource="virtualSensorController.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

@@ -13,6 +13,7 @@ public class VirtualSensor {
 
 	private Integer virtualSensorId;
 	private User user;
+	private VirtualSensorController vsController;
 	private String dimensions;
 	private Double signalSpeed;
 	private String signalType;
@@ -103,6 +104,16 @@ public class VirtualSensor {
 		this.signalSpeed = signalSpeed;
 	}
 
+
+
+	public VirtualSensorController getVsController() {
+		return vsController;
+	}
+
+
+	public void setVsController(VirtualSensorController vsController) {
+		this.vsController = vsController;
+	}
 
 
 	public String getSignalType() {
@@ -196,12 +207,13 @@ public class VirtualSensor {
 
 	@Override
 	public String toString() {
-		return "VirtualSensor [virtualSensorId=" + virtualSensorId + ", user=" + user + ", dimensions=" + dimensions
-				+ ", signalSpeed=" + signalSpeed + ", signalType=" + signalType + ", numOfPins=" + numOfPins
-				+ ", outputSignal=" + outputSignal + ", operatingRangeFrom=" + operatingRangeFrom
-				+ ", operatingRangeTo=" + operatingRangeTo + ", installationDateTime=" + installationDateTime
-				+ ", removalDateTime=" + removalDateTime + ", status=" + status + ", totalEarning=" + totalEarning
-				+ ", latitude=" + latitude + ", longitude=" + longitude + ", sensorCity=" + sensorCity + "]";
+		return "VirtualSensor [virtualSensorId=" + virtualSensorId + ", user=" + user + ", vsController=" + vsController
+				+ ", dimensions=" + dimensions + ", signalSpeed=" + signalSpeed + ", signalType=" + signalType
+				+ ", numOfPins=" + numOfPins + ", outputSignal=" + outputSignal + ", operatingRangeFrom="
+				+ operatingRangeFrom + ", operatingRangeTo=" + operatingRangeTo + ", installationDateTime="
+				+ installationDateTime + ", removalDateTime=" + removalDateTime + ", status=" + status
+				+ ", totalEarning=" + totalEarning + ", latitude=" + latitude + ", longitude=" + longitude
+				+ ", sensorCity=" + sensorCity + "]";
 	}
 
 	
