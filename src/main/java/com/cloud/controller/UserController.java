@@ -109,7 +109,7 @@ public class UserController {
 				}
 				// Loading virtual sensor controllers manually for the first time when you run this application
 				// and then comment this method call.
-				//loadVsControllersToDatabase();
+				// loadVsControllersToDatabase();
 				return validUser.getUserType() + "-home";
 			}
 		} catch (DaoException e) {

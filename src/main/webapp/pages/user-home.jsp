@@ -126,7 +126,7 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">Sensor Usage</div>
 							<div class="panel-body">
-								<div id="user-usage-chart"></div>
+								<div id="morris-usage-chart"></div>
 							</div>
 						</div>
 					</div>
@@ -163,108 +163,6 @@
     <script src="pages/assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="pages/assets/js/dataTables/dataTables.bootstrap.js"></script>        
 	<!-- CUSTOM SCRIPTS -->
-	
-	<script>
-		 
-	 // Dashboard content display
-    $(document).ready(function(){
-    $("#user_dashboard").click(function(){
-        
-        	$("#section1").fadeIn("slow");
-        	$("#section2").fadeIn("slow");
-        	$("#section3").fadeIn("slow");
-        	$("#user_dashboard").addClass("active-menu");
-        	$("#reqSensor").removeClass("active-menu");
-        	$("#manageSensor").removeClass("active-menu");
-        	$("#reqSensorSection").fadeOut("slow");
-    });
-    });
-            // Add Sensor Form ajax call
-            $(document).ready(function(){
-            $("#reqSensor").click(function(){
-                $.ajax({url: "reqSensor.ac", method: "post", success: function(result){
-                	$("#msg").fadeOut("slow");
-                	$("#section1").fadeOut("slow");
-                	$("#section2").fadeOut("slow");
-                	$("#section3").fadeOut("slow");
-                	$("#user_dashboard").removeClass("active-menu");
-                	$("#reqSensor").addClass("active-menu");
-                	$("#manageSensor").removeClass("active-menu");
-                    $("#reqSensorSection").html(result);
-                }});
-            });
-            });
-            
-            
-         // User Sensor ajax call
-            $(document).ready(function(){
-            	$('#user_sensors').DataTable({
-        			"ajax" : "getUserSensors.ac",
-        			"columns" : [ {
-        				"data" : "virtualSensorId"
-        			}, {
-        				"data" : "allocationDate"
-        			}, {
-        				"data" : "releaseDate"
-        			}, {
-        				"data" : "amount"
-        			}, {
-	                    "targets": -1,
-	                    "data": null,
-	                    "defaultContent": "<a href='#' id='deactivateSensor' onclick='deactivate(this.parentNode);'>Deactivate</a>"
-	                }
-        			]
-	            	
-        		});
-            	
-            });
-          
-         // User Usage ajax call
-            $(document).ready(function(){
-            Morris.Bar({
-                element: 'user-usage-chart',
-                data: [{
-                    y: '2006',
-                    a: 100,
-                    b: 90
-                }, {
-                    y: '2007',
-                    a: 75,
-                    b: 65
-                }, {
-                    y: '2008',
-                    a: 50,
-                    b: 40
-                }, {
-                    y: '2009',
-                    a: 75,
-                    b: 65
-                }, {
-                    y: '2010',
-                    a: 50,
-                    b: 40
-                }, {
-                    y: '2011',
-                    a: 75,
-                    b: 65
-                }, {
-                    y: '2012',
-                    a: 100,
-                    b: 90
-                }],
-                xkey: 'y',
-                ykeys: ['a', 'b'],
-                labels: ['Series A', 'Series B'],
-                hideHover: 'auto',
-                resize: true
-            });
-            });
-         
-         
-         function deactivate(content){
-        	 console.log(content);
-         }
-    </script>
 	<script src="pages/assets/js/user-custom.js"></script>
 	<!-- GOOGLE MAP -->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_7yQeLqT_tn8Ln8IixcYhjuHhDbg7o1I" type="text/javascript"></script>		
