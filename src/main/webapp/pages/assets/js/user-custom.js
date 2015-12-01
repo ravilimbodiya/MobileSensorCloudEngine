@@ -26,7 +26,11 @@
 	    				"data" : "releaseDate"
 	    			}, {
 	    				"data" : "amount"
-	    			}
+	    			}, {
+	                    "targets": -1,
+	                    "data": null,
+	                    "defaultContent": "<a href='#' id='deactivateSensor' onclick=''>Deactivate</a>"
+	                }
     			]            	
     		});
         	
