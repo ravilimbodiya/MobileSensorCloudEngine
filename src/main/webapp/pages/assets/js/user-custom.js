@@ -15,27 +15,44 @@
     var mainApp = {
 
         main_fun: function () {       	
-        	$('#sensors').DataTable({
-                "ajax": "sensors.ac",
-                "columns": [
-                    { "data": "virtualSensorId" },
-                    { "data": "dimensions" },
-                    { "data": "signalSpeed" },
-                    { "data": "numOfPins" },
-                    { "data": "outputSignal" },
-                    { "data": "operatingRangeFrom" },
-                    { "data": "operatingRangeTo" },
-                    { "data": "installationDateTime" },
-                    { "data": "removalDateTime" },
-                    { "data": "status" },
-                    { "data": "totalEarning" },
-                    { "data": "usage" },
-                    { "data": "billing" },
-                    { "data": "latitude" },
-                    { "data": "longitude" },
-                    { "data": "sensorCity" },
-                ]
-            });
+        	$('#user_sensors').DataTable({
+    			"ajax" : "getUserSensors.ac",
+    			"columns" : [ 
+    			    {
+	    				"data" : "virtualSensorId"
+	    			}, {
+	    				"data" : "allocationDate"
+	    			}, {
+	    				"data" : "releaseDate"
+	    			}, {
+	    				"data" : "amount"
+	    			}
+    			]            	
+    		});
+        	
+        	$("#user_dashboard").click(function() {                
+            	$("#section1").fadeIn("slow");
+            	$("#section2").fadeIn("slow");
+            	$("#section3").fadeIn("slow");
+            	$("#user_dashboard").addClass("active-menu");
+            	$("#reqSensor").removeClass("active-menu");
+            	$("#manageSensor").removeClass("active-menu");
+        	});
+        	
+        	$("#reqSensor").click(function(){
+                $.ajax({url: "reqSensor.ac", method: "post", success: 
+                	function(result) {
+		            	$("#msg").fadeOut("slow");
+		            	$("#section1").fadeOut("slow");
+		            	$("#section2").fadeOut("slow");
+		            	$("#section3").fadeOut("slow");
+		            	$("#user_dashboard").removeClass("active-menu");
+		            	$("#reqSensor").addClass("active-menu");
+		            	$("#manageSensor").removeClass("active-menu");
+		                $("#reqSensorSection").html(result);
+                	}
+                });
+        	});
         	
         	Morris.Bar({
                 element: 'morris-usage-chart',
@@ -74,6 +91,7 @@
                 hideHover: 'auto',
                 resize: true
             });
+        	
         	Morris.Bar({
                 element: 'morris-billing-chart',
                 data: [{
