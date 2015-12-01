@@ -9,19 +9,23 @@ import java.util.Set;
  * @author Ravi
  *
  */
-public class VirtualSensorController {
+public class VirtualSensorController implements Comparable<VirtualSensorController> {
 
 	private Integer vsControllerId;
 	private String vsControllerName;
 	private Double cpuUtilization;
 	private Double memoryAvailable;
-	private Set<VirtualSensor> vsSet;
 	
 	@Override
 	public String toString() {
 		return "VirtualSensorController [vsControllerId=" + vsControllerId + ", vsControllerName=" + vsControllerName
-				+ ", cpuUtilization=" + cpuUtilization + ", memoryAvailable=" + memoryAvailable + ", vsSet=" + vsSet
-				+ "]";
+				+ ", cpuUtilization=" + cpuUtilization + ", memoryAvailable=" + memoryAvailable + "]";
+	}
+	public VirtualSensorController(String vsControllerName, Double cpuUtilization, Double memoryAvailable) {
+		super();
+		this.vsControllerName = vsControllerName;
+		this.cpuUtilization = cpuUtilization;
+		this.memoryAvailable = memoryAvailable;
 	}
 	public Integer getVsControllerId() {
 		return vsControllerId;
@@ -47,16 +51,15 @@ public class VirtualSensorController {
 	public void setMemoryAvailable(Double memoryAvailable) {
 		this.memoryAvailable = memoryAvailable;
 	}
-	public Set<VirtualSensor> getVsSet() {
-		return vsSet;
-	}
-	public void setVsSet(Set<VirtualSensor> vsSet) {
-		this.vsSet = vsSet;
-	}
+
 	/**
 	 * 
 	 */
 	public VirtualSensorController() {
+	}
+	@Override
+	public int compareTo(VirtualSensorController o) {
+		return this.getCpuUtilization().compareTo(o.getCpuUtilization());
 	}
 
 }

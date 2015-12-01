@@ -25,7 +25,7 @@ public class UserDaoImpl implements UserDao {
 
 	public void save(User user) throws DaoException{
 		try {
-			hibernateTemplate.save(user);
+			hibernateTemplate.saveOrUpdate(user);
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 			throw new DaoException(e);

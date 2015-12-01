@@ -10,7 +10,7 @@
 		</id>
         <property name="userId" type="integer" column="user_id"/>
         <property name="virtualSensorId" type="integer" column="virtual_sensor_id"/>
-         
+        <property name="vscId" type="integer" column="vsc_id"/>
 		<property name="allocationDate" column="allocation_date" type="timestamp"></property>
 		<property name="releaseDate" column="release_date" type="timestamp"></property>
 		<property name="amount" column="amount" type="double" not-null="true"></property>

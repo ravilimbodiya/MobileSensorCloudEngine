@@ -3,6 +3,9 @@
  */
 package com.cloud.controller;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +35,7 @@ import com.cloud.dao.VirtualSensorDao;
 import com.cloud.entity.Usage;
 import com.cloud.entity.User;
 import com.cloud.entity.VirtualSensor;
+import com.cloud.entity.VirtualSensorController;
 import com.cloud.exception.DaoException;
 
 /**
@@ -98,16 +102,35 @@ public class UserController {
 		try {
 			User validUser = userDao.getValidUser(user);
 			if(validUser != null){
+				validUser.setLastLogin(new Date());
+				userDao.save(validUser);
 				session.setAttribute("validUser", validUser);
 				if(validUser.getUserType().equals("provider")){
 					model.addAttribute("virtualSensor", new VirtualSensor());
 				}
+				// Loading virtual sensor controllers manually for the first time when you run this application
+				// and then comment this method call.
+				//loadVsControllersToDatabase();
 				return validUser.getUserType() + "-home";
 			}
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}
 		return "login";
+	}
+
+	private void loadVsControllersToDatabase() {
+		List<VirtualSensorController> list = new ArrayList<VirtualSensorController>();
+		list.add(new VirtualSensorController("VSC1", 50.0, 100.0));
+		list.add(new VirtualSensorController("VSC2", 20.0, 100.0));
+		list.add(new VirtualSensorController("VSC3", 90.0, 100.0));
+		list.add(new VirtualSensorController("VSC4", 10.0, 100.0));
+		list.add(new VirtualSensorController("VSC5", 40.0, 100.0));
+		try {
+			sensorDao.addVsControllers(list);
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@RequestMapping(value="/logout.ac", method = RequestMethod.GET)
@@ -125,6 +148,7 @@ public class UserController {
 		
 		System.out.println("user created."+ user.getEmail());
 		try {
+			user.setLastLogin(new Date());
 			userDao.save(user);
 		} catch (DaoException e) {
 			e.printStackTrace();
@@ -184,19 +208,72 @@ public class UserController {
 			List<VirtualSensor> virtualSensorsOfCity = sensorDao.getSensorsByCity(reqCity);
 			Random rand = new Random();
 			VirtualSensor vs = virtualSensorsOfCity.get(rand.nextInt(virtualSensorsOfCity.size()));
+			
+			// Attaching this sensor to controller based on some algorithm for further management.
+			// Getting lowest load VSC
+			VirtualSensorController vsc = getLowestLoadVsc();
+			System.out.println("VSC - > "+vsc.getVsControllerId());
 			Usage usage = new Usage();
 			usage.setUserId(validUser.getUserId());
 			usage.setVirtualSensorId(vs.getVirtualSensorId());
+			usage.setVscId(vsc.getVsControllerId());
 			usage.setAllocationDate(new Date());
 			usage.setAmount(0.0);
 			usage.setBilling(0.0);
 			usage.setReleaseDate(null);
 			
 			usageDao.save(usage);
+			
+			// update controller cpu utilization and memory.
+			Double currentCpu = vsc.getCpuUtilization();
+			Double currentMemory = vsc.getMemoryAvailable();
+			vsc.setCpuUtilization(currentCpu+12.0);
+			vsc.setMemoryAvailable(currentMemory+10.0);
+			sensorDao.updateVscResources(vsc);
+			
 			model.addAttribute("errMsg", "Congratulations! You have got your Sensor.");
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}
 		return "user-home";
+	}
+
+	private VirtualSensorController getLowestLoadVsc() {
+		try {
+			List<VirtualSensorController> allVsc = sensorDao.getAllVsc();
+			Collections.sort(allVsc);
+			return allVsc.get(0);
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	@RequestMapping(value = "/getUserSensors.ac", method = RequestMethod.GET)
+	public @ResponseBody HashMap<String, List<Usage>> getUserSensors(Model model, HttpSession session) {
+		HashMap<String, List<Usage>> sensorsData = new HashMap<String, List<Usage>>();
+		try {
+			User validUser = (User) session.getAttribute("validUser");
+			List<Usage> userSensors = usageDao.getUsageByUserId(validUser);
+			int diff = 0;
+			for (Usage usage : userSensors) {
+				if(usage.getReleaseDate() == null){
+					Date todayDate = new Date();
+					diff=(int) ((todayDate.getTime() - usage.getAllocationDate().getTime())/(60*60 * 1000));
+				} else {
+					diff=(int) ((usage.getReleaseDate().getTime() - usage.getAllocationDate().getTime())/(60*60 * 1000));
+				}
+				usage.setBilling((double) diff);
+				Double amt = (double) (diff * 5);
+				usage.setAmount(amt);
+				usageDao.updateAmountAndBillingHours(usage);
+			}
+			List<Usage> userSensorsUpdated = usageDao.getUsageByUserId(validUser);
+			sensorsData.put("data", userSensorsUpdated);
+			model.addAttribute("numOfUserSensors", userSensorsUpdated.size());
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return sensorsData;
 	}
 }

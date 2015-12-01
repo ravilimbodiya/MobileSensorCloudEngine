@@ -11,6 +11,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.cloud.entity.User;
 import com.cloud.entity.VirtualSensor;
+import com.cloud.entity.VirtualSensorController;
 import com.cloud.exception.DaoException;
 
 /**
@@ -73,6 +74,39 @@ public class VirtualSensorDaoImpl implements VirtualSensorDao {
 		try {
 			List<VirtualSensor> sensors = (List<VirtualSensor>) hibernateTemplate.find("from VirtualSensor where sensorCity=?", reqCity);
 			return sensors;
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			throw new DaoException(e);
+		}
+	}
+
+	@Override
+	public void addVsControllers(List<VirtualSensorController> vsControllers) throws DaoException {
+		try {
+			for (VirtualSensorController virtualSensorController : vsControllers) {
+				hibernateTemplate.save(virtualSensorController);
+			}
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			throw new DaoException(e);
+		}
+	}
+
+	@Override
+	public List<VirtualSensorController> getAllVsc() throws DaoException {
+		try {
+			List<VirtualSensorController> vscList = (List<VirtualSensorController>) hibernateTemplate.find("from VirtualSensorController");
+			return vscList;
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			throw new DaoException(e);
+		}
+	}
+
+	@Override
+	public void updateVscResources(VirtualSensorController vsc) throws DaoException {
+		try {
+			hibernateTemplate.saveOrUpdate(vsc);
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 			throw new DaoException(e);

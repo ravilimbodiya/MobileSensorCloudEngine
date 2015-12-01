@@ -17,6 +17,7 @@ public class Usage{
 	private Integer usageId;
 	private Integer virtualSensorId;
 	private Integer userId;
+	private Integer vscId;
 	private Date allocationDate;
 	private Date releaseDate;
 	private Double amount;
@@ -51,8 +52,8 @@ public class Usage{
 
 	@Override
 	public String toString() {
-		return "Usage [usageId=" + usageId + ", virtualSensorId=" + virtualSensorId + ", userId=" + userId
-				+ ", allocationDate=" + allocationDate + ", releaseDate=" + releaseDate + ", amount=" + amount
+		return "Usage [usageId=" + usageId + ", virtualSensorId=" + virtualSensorId + ", userId=" + userId + ", vscId="
+				+ vscId + ", allocationDate=" + allocationDate + ", releaseDate=" + releaseDate + ", amount=" + amount
 				+ ", billing=" + billing + "]";
 	}
 
@@ -106,6 +107,16 @@ public class Usage{
 	 * 
 	 */
 	public Usage() {
+	}
+
+
+	public Integer getVscId() {
+		return vscId;
+	}
+
+
+	public void setVscId(Integer vscId) {
+		this.vscId = vscId;
 	}
 
 }

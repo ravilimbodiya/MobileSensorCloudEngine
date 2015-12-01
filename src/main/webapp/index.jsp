@@ -36,16 +36,111 @@
 		<!-- /. NAV SIDE  -->
 		<div id="page-wrapper" style="margin:0px;">
 			<div id="page-inner">
-				<div class="row">
-					<div class="col-md-12">
-						<h2>MSCE Description</h2>
-						<h5>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.</h5>
+				<div class="jumbotron" style="background-color: #8702a8;">
+					<center><h2 style="color: #fff;">UV Radiation Mobile Sensor Cloud</h2></center>
+				</div>
+				
+		<div class = "">
+		   
+			<div class = "carousel slide" data-ride = "carousel" id = "carousel-pane">
+				<ol class = "carousel-indicators">
+					<li data-target= "#carousel-pane" data-slide-to="0" class = "active"></li>
+					<li data-target= "#carousel-pane" data-slide-to="1"></li>
+				</ol>
+
+				<div class = "carousel-inner">
+					<div class = "item active">
+						<img src = "pages/assets/img/home1.png" style="height:200px; width: 100%;"/>
+						<div class = "carousel-caption">
+							<h3> KILLER RADIATION <small>UV might kill You!</small> </h3>
+							<p>UV sensors intended for measurements of solar ultra-violet radiation of interest to plant sensor owner and 
+people involved in environmental monitoring.</p>
+						</div>
+					</div>
+					<div class = "item">
+						<img src = "pages/assets/img/home2.jpg" style="height:200px; width: 100%;"/>
+						<div class = "carousel-caption">
+							<font color= #fff><h3> KILLER RADIATION <small>UV might kill You!</small> </h3></font>
+							<font color= #fff><p>UV sensors intended for measurements of solar ultra-violet radiation of interest to plant sensor owner and 
+people involved in environmental monitoring.</p></font>
+						</div>
+					</div>
+				</div>					
+			</div>
+
+		</div>
+		
+		
+		<!--div class  = "container">
+			<div class = "row">
+				<div class = "col-lg-9 col-lg-offset-2">
+					<div class = "panel panel-default">
+						<div class = "panel-body">
+							<div class = "page-header">
+							<center><h3> KILLER RADIATION <small>UV might kill You!</small> </h3></center>
+						</div>
+						
+							<p>UV sensors intended for measurements of solar ultra-violet radiation of interest to plant sensor owner and 
+people involved in environmental monitoring.</p>
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>-->
+						
+				</
 				<!-- /. ROW  -->
 				<hr />
-				<div class="panel ">
-					<div class="main-temp-back">
+				
+				
+				<div class ="services">
+                     <center><h2 style="color: #8702a8;"> Cloud Infrastructure Services We Offer</h2></center>
+                </div>
+					
+					
+					<div class="panel ">
+					
+						<div class="panel-body">
+							<div class="row" >
+								<div class= "col-md-4">
+									<div class = "panel-header">
+										<div class = "main-temp-back" style="background-color: #fff;">
+											<img style="width: 130px; height: 100px;" src="pages/assets/img/home11.png"/>	<h3 style="color: #8702a8;">Cloud Management</h3>
+										</div>
+									</div>
+									<center><a><p>Manage Sensors</p></a></center>
+									<center><a><p>Register for Sensors</p></a></center>
+									<center><a><p>Configure Sensors</p></a></center>
+								</div>
+								
+								<div class= "col-md-4">
+									<div class = "panel-header">
+										<div class = "main-temp-back" style="background-color: #fff;">
+											<img style="width: 130px; height: 100px;" src="pages/assets/img/home22.png"/><h3 style="color: #8702a8;">Cloud Monitoring</h3>
+										</div>
+									</div>
+									<center><a><p>Check Usage</p></a></center>
+									<center><a><p>Check Bill</p></a></center>
+								    <center><a><p>Send Alerts</p></a></center>
+									
+								</div>
+								<div class= "col-md-4">
+									<div class = "panel-header">
+										<div class = "main-temp-back" style="background-color: #fff;">
+											<img style="width: 130px; height: 100px;" src="pages/assets/img/home33.png"/><h3 style="color: #8702a8;">Data Collection & Controlling</h3>
+										</div>
+									</div>
+									<center><a><p>Senor Data Storage</p></a></center>
+									<center><a><p>Sensor On-demand availability</p></a></center>
+								    <center><a><p></p></a></br></center>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+                    </hr>
+                    <div class="panel ">
+					<div class = "main-temp-back">
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-xs-6">
@@ -57,6 +152,7 @@
 							</div>
 						</div>
 					</div>
+				</div>  
 				</div>
 				<!-- /. ROW  -->
 				<hr />

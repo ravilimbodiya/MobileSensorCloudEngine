@@ -33,7 +33,7 @@
 			</div>
 			<div
 				style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;">
-				Last access : 30 May 2014 &nbsp; <a href="logout.ac"
+				Last access : ${validUser.lastLogin} &nbsp; <a href="logout.ac"
 					class="btn btn-danger square-btn-adjust">Logout</a>
 			</div>
 		</nav>
@@ -73,7 +73,7 @@
 				</div>				
 				<!-- /. ROW  -->
 				<c:if test="${requestScope.errMsg != '' && requestScope.errMsg != null}">
-					<div class="alert alert-success">
+					<div class="alert alert-success" id="msg">
                     	${errMsg}
                 	</div>
                 </c:if>
@@ -85,20 +85,13 @@
 							<div class="panel-heading">My Sensors</div>
 							<div class="panel-body">
 								<div class="table-responsive">
-									<table id="sensors" class="table table-striped table-bordered table-hover">
+									<table id="user_sensors" class="table table-striped table-bordered table-hover">
 										<thead>
 											<tr>
-												<th>#</th>
-												<th>Dimensions</th>
-												<th>Signal Speed</th>
-												<th>No. of Pins</th>
-												<th>Output Signal</th>
-												<th>Operating Range From</th>
-												<th>Operating Range To</th>
-												<th>Installation Date & Time</th>
-												<th>Removal Date & Time</th>
-												<th>Status</th>
-												<th>City</th>
+												<th>Sensor Id</th>
+												<th>Allocation Date</th>
+												<th>Release Date</th>
+												<th>Amount (In USD)</th>
 											</tr>
 										</thead>										
 									</table>
@@ -132,7 +125,7 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">Sensor Usage</div>
 							<div class="panel-body">
-								<div id="morris-usage-chart"></div>
+								<div id="user-usage-chart"></div>
 							</div>
 						</div>
 					</div>
@@ -172,10 +165,23 @@
 	
 	<script>
 		 
+	 // Dashboard content display
+    $(document).ready(function(){
+    $("#user_dashboard").click(function(){
+        
+        	$("#section1").fadeIn("slow");
+        	$("#section2").fadeIn("slow");
+        	$("#section3").fadeIn("slow");
+        	$("#user_dashboard").addClass("active-menu");
+        	$("#reqSensor").removeClass("active-menu");
+        	$("#manageSensor").removeClass("active-menu");
+    });
+    });
             // Add Sensor Form ajax call
             $(document).ready(function(){
             $("#reqSensor").click(function(){
                 $.ajax({url: "reqSensor.ac", method: "post", success: function(result){
+                	$("#msg").fadeOut("slow");
                 	$("#section1").fadeOut("slow");
                 	$("#section2").fadeOut("slow");
                 	$("#section3").fadeOut("slow");
@@ -186,7 +192,67 @@
                 }});
             });
             });
+            
+            
+         // User Sensor ajax call
+            $(document).ready(function(){
+            	$('#user_sensors').DataTable({
+        			"ajax" : "getUserSensors.ac",
+        			"columns" : [ {
+        				"data" : "virtualSensorId"
+        			}, {
+        				"data" : "allocationDate"
+        			}, {
+        				"data" : "releaseDate"
+        			}, {
+        				"data" : "amount"
+        			}
+        			]
+	            	
+        		});
+            	
+            });
           
+         // User Usage ajax call
+            $(document).ready(function(){
+            Morris.Bar({
+                element: 'user-usage-chart',
+                data: [{
+                    y: '2006',
+                    a: 100,
+                    b: 90
+                }, {
+                    y: '2007',
+                    a: 75,
+                    b: 65
+                }, {
+                    y: '2008',
+                    a: 50,
+                    b: 40
+                }, {
+                    y: '2009',
+                    a: 75,
+                    b: 65
+                }, {
+                    y: '2010',
+                    a: 50,
+                    b: 40
+                }, {
+                    y: '2011',
+                    a: 75,
+                    b: 65
+                }, {
+                    y: '2012',
+                    a: 100,
+                    b: 90
+                }],
+                xkey: 'y',
+                ykeys: ['a', 'b'],
+                labels: ['Series A', 'Series B'],
+                hideHover: 'auto',
+                resize: true
+            });
+            });
     </script>
 	<script src="pages/assets/js/user-custom.js"></script>
 	<!-- GOOGLE MAP -->

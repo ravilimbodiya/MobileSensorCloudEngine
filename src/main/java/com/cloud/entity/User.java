@@ -12,6 +12,8 @@ public class User {
 	private String email;
 	private String password;
 	private String userType;
+	private Date lastLogin;
+
 
 	public User() {
 		
@@ -73,10 +75,19 @@ public class User {
 		this.userType = userType;
 	}
 
+	public Date getLastLogin() {
+		return lastLogin;
+	}
+
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
+	}
+
 	@Override
 	public String toString() {
-		return "User [firstName=" + firstName + ", lastName=" + lastName + ", phoneNum="
-				+ phoneNum + ", email=" + email + ", userType=" + userType + "]";
+		return "User [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", phoneNum="
+				+ phoneNum + ", email=" + email + ", password=" + password + ", userType=" + userType + ", lastLogin="
+				+ lastLogin + "]";
 	}
 
 	
