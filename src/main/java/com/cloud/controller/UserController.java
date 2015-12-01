@@ -275,4 +275,16 @@ public class UserController {
 		}
 		return sensorsData;
 	}
+	
+	@RequestMapping(value="/deactivateSensor.ac", method = RequestMethod.GET)
+	public String deactivateSensor(HttpSession session, Model model, @RequestParam Integer usageId) {
+		
+		try {
+			usageDao.deactivateSensorByUsageId(usageId);
+			model.addAttribute("errMsg", "Sensor deactivated successfully.");
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return "user-home";
+	}
 }

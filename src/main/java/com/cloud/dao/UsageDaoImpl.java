@@ -64,5 +64,15 @@ public class UsageDaoImpl implements UsageDao {
 			throw new DaoException(e);
 		}
 	}
+
+	@Override
+	public void deactivateSensorByUsageId(Integer usageId) throws DaoException {
+		try {
+			hibernateTemplate.delete("from Usage where usageId=?", usageId);
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			throw new DaoException(e);
+		}
+	}
 	
 }
