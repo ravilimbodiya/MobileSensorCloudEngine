@@ -15,7 +15,7 @@
     var mainApp = {
 
         main_fun: function () {       	
-        	$('#user_sensors').DataTable({
+        	var sensorTable = $('#user_sensors').DataTable({
     			"ajax" : "getUserSensors.ac",
     			"columns" : [ 
     			    {
@@ -29,10 +29,19 @@
 	    			}, {
 	                    "targets": -1,
 	                    "data": null,
-	                    "defaultContent": "<a href='#' id='deactivateSensor' onclick=''>Deactivate</a>"
+	                    "defaultContent": "<button>Deactivate</button>"
 	                }
     			]            	
     		});
+        	
+        	$('#user_sensors tbody').on( 'click', 'button', function () {
+                var data = sensorTable.row( $(this).parents('tr') ).data();
+                $.ajax({url: "deactiveSensor.ac?usageId=" + data.usageId, method: "get", success: 
+                	function(result) {
+		            	
+                	}
+                });
+            } );
         	
         	$("#user_dashboard").click(function() {                
             	$("#section1").fadeIn("slow");
