@@ -14,6 +14,8 @@ import com.cloud.exception.DaoException;
  */
 public interface UsageDao {
 	
-	public List<Usage> findByUserId(int userId) throws DaoException;	
+	public List<Usage> findByUserId(int userId) throws DaoException;
+	
+	public void save(Usage usage) throws DaoException;
 
 }

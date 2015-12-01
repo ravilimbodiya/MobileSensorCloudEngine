@@ -22,5 +22,8 @@ public interface VirtualSensorDao {
 	public List<VirtualSensor> getAllSensorByUserId(User validUser) throws DaoException;
 	
 	public List<String> getAllSensorsCity() throws DaoException;
+
+	public List<VirtualSensor> getSensorsByCity(String reqCity)throws DaoException;
+
 	
 }

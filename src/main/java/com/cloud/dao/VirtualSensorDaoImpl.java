@@ -68,4 +68,15 @@ public class VirtualSensorDaoImpl implements VirtualSensorDao {
 		}
 	}
 
+	@Override
+	public List<VirtualSensor> getSensorsByCity(String reqCity) throws DaoException {
+		try {
+			List<VirtualSensor> sensors = (List<VirtualSensor>) hibernateTemplate.find("from VirtualSensor where sensorCity=?", reqCity);
+			return sensors;
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			throw new DaoException(e);
+		}
+	}
+
 }

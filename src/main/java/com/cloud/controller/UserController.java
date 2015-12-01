@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -150,7 +151,7 @@ public class UserController {
 		try {
 			List<Usage> usages = usageDao.findByUserId(userId);
 			for (Usage usage: usages) {
-				sensors = sensorDao.findBySensorId(usage.getVirtualSensor().getVirtualSensorId());
+				sensors = sensorDao.findBySensorId(usage.getVirtualSensorId());
 				for (VirtualSensor sensor: sensors) {
 					//sensor.setUsage(usage.getAmount());
 					//sensor.setBilling(usage.getBilling());
@@ -173,5 +174,29 @@ public class UserController {
 			e.printStackTrace();
 		}
 		return "reqSensorForm";
+	}
+	
+	@RequestMapping(value="/reqSensorSubmit.ac", method = RequestMethod.POST)
+	public String reqSensorSubmit(HttpSession session, Model model, @RequestParam String reqCity) {
+		
+		try {
+			User validUser = (User) session.getAttribute("validUser");
+			List<VirtualSensor> virtualSensorsOfCity = sensorDao.getSensorsByCity(reqCity);
+			Random rand = new Random();
+			VirtualSensor vs = virtualSensorsOfCity.get(rand.nextInt(virtualSensorsOfCity.size()));
+			Usage usage = new Usage();
+			usage.setUserId(validUser.getUserId());
+			usage.setVirtualSensorId(vs.getVirtualSensorId());
+			usage.setAllocationDate(new Date());
+			usage.setAmount(0.0);
+			usage.setBilling(0.0);
+			usage.setReleaseDate(null);
+			
+			usageDao.save(usage);
+			model.addAttribute("errMsg", "Congratulations! You have got your Sensor.");
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return "user-home";
 	}
 }

@@ -33,5 +33,15 @@ public class UsageDaoImpl implements UsageDao {
 			throw new DaoException(e);
 		}
 	}
+
+	@Override
+	public void save(Usage usage) throws DaoException {
+		try {
+			hibernateTemplate.saveOrUpdate(usage);
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			throw new DaoException(e);
+		}
+	}
 	
 }

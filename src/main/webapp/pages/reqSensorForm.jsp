@@ -28,7 +28,7 @@
 						</td>
 						<td>
 							<div class="form-group">
-								<select class="form-control">
+								<select class="form-control" name="reqCity" id="reqCity">
 									<option value="-1">--SELECT--</option>
 									<c:forEach items="${cityList }" var="city">
 										<option value="${city}">${city}</option>

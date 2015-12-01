@@ -72,6 +72,11 @@
 					</div>
 				</div>				
 				<!-- /. ROW  -->
+				<c:if test="${requestScope.errMsg != '' && requestScope.errMsg != null}">
+					<div class="alert alert-success">
+                    	${errMsg}
+                	</div>
+                </c:if>
 				<hr />
 				<!-- /. ROW  -->
 				<div class="row" id="section1">					

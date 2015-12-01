@@ -3,54 +3,37 @@
  */
 package com.cloud.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author Ravi
  *
  */
-public class Usage implements Serializable{
+public class Usage{
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	private VirtualSensor virtualSensor;
-	private User user;
+	private Integer usageId;
+	private Integer virtualSensorId;
+	private Integer userId;
 	private Date allocationDate;
 	private Date releaseDate;
 	private Double amount;
 	private Double billing;
 	
 	
-	@Override
-	public String toString() {
-		return "Usage [virtualSensor=" + virtualSensor + ", user=" + user + ", allocationDate=" + allocationDate
-				+ ", releaseDate=" + releaseDate + ", amount=" + amount + ", billing=" + billing + "]";
+	public Integer getUsageId() {
+		return usageId;
 	}
 
 
-	public VirtualSensor getVirtualSensor() {
-		return virtualSensor;
+	public void setUsageId(Integer usageId) {
+		this.usageId = usageId;
 	}
 
 
-	public void setVirtualSensor(VirtualSensor virtualSensor) {
-		this.virtualSensor = virtualSensor;
-	}
-
-
-	public User getUser() {
-		return user;
-	}
-
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-
+	
 	public Date getAllocationDate() {
 		return allocationDate;
 	}
@@ -63,6 +46,34 @@ public class Usage implements Serializable{
 
 	public Date getReleaseDate() {
 		return releaseDate;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Usage [usageId=" + usageId + ", virtualSensorId=" + virtualSensorId + ", userId=" + userId
+				+ ", allocationDate=" + allocationDate + ", releaseDate=" + releaseDate + ", amount=" + amount
+				+ ", billing=" + billing + "]";
+	}
+
+
+	public Integer getVirtualSensorId() {
+		return virtualSensorId;
+	}
+
+
+	public void setVirtualSensorId(Integer virtualSensorId) {
+		this.virtualSensorId = virtualSensorId;
+	}
+
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 

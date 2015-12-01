@@ -3,15 +3,18 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.cloud.entity.Usage" table="usage">
-		<composite-id>
-            <key-property name="user" type="integer" column="user_id"/>
-            <key-property name="virtualSensor" type="integer" column="virtual_sensor_id"/>
-        </composite-id> 
-		<property name="allocationDate" type="date"></property>
-		<property name="releaseDate" type="date"></property>
-		<property name="amount" type="double" not-null="true"></property>
-		<property name="billing" type="double" not-null="true"></property>
+	<class name="com.cloud.entity.Usage" table="usage_data">
+		<id name="usageId" type="integer">
+			<column name="usage_id" />
+			<generator class="identity" />
+		</id>
+        <property name="userId" type="integer" column="user_id"/>
+        <property name="virtualSensorId" type="integer" column="virtual_sensor_id"/>
+         
+		<property name="allocationDate" column="allocation_date" type="timestamp"></property>
+		<property name="releaseDate" column="release_date" type="timestamp"></property>
+		<property name="amount" column="amount" type="double" not-null="true"></property>
+		<property name="billing" column="billing" type="double" not-null="true"></property>
 		
 	</class>
 </hibernate-mapping>
