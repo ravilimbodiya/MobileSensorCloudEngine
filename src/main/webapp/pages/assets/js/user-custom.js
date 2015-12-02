@@ -68,81 +68,83 @@
                 });
         	});
         	
-        	Morris.Bar({
+        	var usageData = [
+	        	{
+	                x: 1,
+	                y: 100
+	            }, {
+	                x: 2,
+	                y: 75
+	            }, {
+	                x: 3,
+	                y: 50
+	            }, {
+	                x: 3,
+	                y: 75
+	            }, {
+	                x: 4,
+	                y: 50
+	            }, {
+	                x: 5,
+	                y: 75
+	            }, {
+	                x: 6,
+	                y: 100
+	            }
+	        ];
+        	
+        	var usageChart = Morris.Bar({
                 element: 'morris-usage-chart',
-                data: [{
-                    y: '2006',
-                    a: 100,
-                    b: 90
-                }, {
-                    y: '2007',
-                    a: 75,
-                    b: 65
-                }, {
-                    y: '2008',
-                    a: 50,
-                    b: 40
-                }, {
-                    y: '2009',
-                    a: 75,
-                    b: 65
-                }, {
-                    y: '2010',
-                    a: 50,
-                    b: 40
-                }, {
-                    y: '2011',
-                    a: 75,
-                    b: 65
-                }, {
-                    y: '2012',
-                    a: 100,
-                    b: 90
-                }],
-                xkey: 'y',
-                ykeys: ['a', 'b'],
-                labels: ['Series A', 'Series B'],
+                xkey: 'x',
+                ykeys: ['y'],
+                labels: ['Usage'],
                 hideHover: 'auto',
-                resize: true
+                resize: true,
+                hoverCallback: function (index, options, content, row) {
+            	  return "Sensor Id: " + row.x + " Usage: " + row.y + " Hours";
+            	}
             });
         	
-        	Morris.Bar({
-                element: 'morris-billing-chart',
-                data: [{
-                    y: '2006',
-                    a: 100,
-                    b: 90
-                }, {
-                    y: '2007',
-                    a: 75,
-                    b: 65
-                }, {
-                    y: '2008',
-                    a: 50,
-                    b: 40
-                }, {
-                    y: '2009',
-                    a: 75,
-                    b: 65
-                }, {
-                    y: '2010',
-                    a: 50,
-                    b: 40
-                }, {
-                    y: '2011',
-                    a: 75,
-                    b: 65
-                }, {
-                    y: '2012',
-                    a: 100,
-                    b: 90
-                }],
-                xkey: 'y',
-                ykeys: ['a', 'b'],
-                labels: ['Series A', 'Series B'],
+        	usageChart.setData(usageData);
+        	
+        	var billingData = [
+	        	{
+	                x: 1,
+	                y: 75
+	            }, {
+	                x: 2,
+	                y: 85
+	            }, {
+	                x: 3,
+	                y: 50
+	            }, {
+	                x: 3,
+	                y: 75
+	            }, {
+	                x: 4,
+	                y: 80
+	            }, {
+	                x: 5,
+	                y: 75
+	            }, {
+	                x: 6,
+	                y: 80
+	            }
+	        ];
+        	
+        	var billingChart = Morris.Bar({
+                element: 'morris-billing-chart',                
+                xkey: 'x',
+                ykeys: ['y'],
+                labels: ['Billing'],
                 hideHover: 'auto',
-                resize: true
+                resize: true,
+                hoverCallback: function (index, options, content, row) {
+              	  return "Sensor Id: " + row.x + " Billing: $" + row.y;
+              	}
             });
+        	
+        	billingChart.setData(billingData);
            
         	Morris.Donut({
                 element: 'morris-sensor-chart',
