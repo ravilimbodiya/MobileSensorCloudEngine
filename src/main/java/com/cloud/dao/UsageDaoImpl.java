@@ -66,9 +66,44 @@ public class UsageDaoImpl implements UsageDao {
 	}
 
 	@Override
-	public void deactivateSensorByUsageId(Integer usageId) throws DaoException {
+	public void deactivateSensorByUsageId(Usage usage) throws DaoException {
 		try {
-			hibernateTemplate.delete("from Usage where usageId=?", usageId);
+			hibernateTemplate.delete(usage);
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			throw new DaoException(e);
+		}
+	}
+
+	@Override
+	public Usage getByUsageId(Integer usageId) throws DaoException {
+		try {
+			return hibernateTemplate.get(Usage.class, usageId);
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			throw new DaoException(e);
+		}
+	}
+
+	@Override
+	public boolean findUsageByUserIdVSensorId(Integer userId, Integer vsId) throws DaoException {
+		try {
+			List<Usage> usageObj = hibernateTemplate.find("from Usage where userId=? and virtualSensorId=?", userId, vsId);
+			if(usageObj.size() == 0){
+				return true;
+			}
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			throw new DaoException(e);
+		}
+		return false;
+	}
+
+	@Override
+	public List<Usage> getAllUsageByUserId(Integer userId) throws DaoException {
+		try {
+			List<Usage> usageObj = hibernateTemplate.find("from Usage where userId=?", userId);
+			return usageObj;
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 			throw new DaoException(e);

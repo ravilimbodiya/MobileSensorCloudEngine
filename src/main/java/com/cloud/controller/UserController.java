@@ -212,24 +212,25 @@ public class UserController {
 			// Getting lowest load VSC
 			VirtualSensorController vsc = getLowestLoadVsc();
 			System.out.println("VSC - > "+vsc.getVsControllerId());
-			Usage usage = new Usage();
-			usage.setUserId(validUser.getUserId());
-			usage.setVirtualSensorId(vs.getVirtualSensorId());
-			usage.setVscId(vsc.getVsControllerId());
-			usage.setAllocationDate(new Date());
-			usage.setAmount(0.0);
-			usage.setBilling(0.0);
-			usage.setReleaseDate(null);
 			
-			usageDao.save(usage);
-			
-			// update controller cpu utilization and memory.
-			Double currentCpu = vsc.getCpuUtilization();
-			Double currentMemory = vsc.getMemoryAvailable();
-			vsc.setCpuUtilization(currentCpu+12.0);
-			vsc.setMemoryAvailable(currentMemory+10.0);
-			sensorDao.updateVscResources(vsc);
-			
+			if(usageDao.findUsageByUserIdVSensorId(validUser.getUserId(), vs.getVirtualSensorId())){
+				Usage usage = new Usage();
+				usage.setUserId(validUser.getUserId());
+				usage.setVirtualSensorId(vs.getVirtualSensorId());
+				usage.setVscId(vsc.getVsControllerId());
+				usage.setAllocationDate(new Date());
+				usage.setAmount(0.0);
+				usage.setBilling(0.0);
+				usage.setReleaseDate(null);
+				
+				usageDao.save(usage);
+				// update controller cpu utilization and memory.
+				Double currentCpu = vsc.getCpuUtilization();
+				Double currentMemory = vsc.getMemoryAvailable();
+				vsc.setCpuUtilization(currentCpu+12.0);
+				vsc.setMemoryAvailable(currentMemory+10.0);
+				sensorDao.updateVscResources(vsc);
+			}
 			model.addAttribute("errMsg", "Congratulations! You have got your Sensor.");
 		} catch (DaoException e) {
 			e.printStackTrace();
@@ -280,11 +281,28 @@ public class UserController {
 	public String deactivateSensor(HttpSession session, Model model, @RequestParam Integer usageId) {
 		
 		try {
-			usageDao.deactivateSensorByUsageId(usageId);
+			Usage usage = usageDao.getByUsageId(usageId);
+			usageDao.deactivateSensorByUsageId(usage);
 			model.addAttribute("errMsg", "Sensor deactivated successfully.");
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}
 		return "user-home";
+	}
+	
+	
+	@RequestMapping(value = "/getAllUserUsage.ac", method = RequestMethod.GET)
+	public @ResponseBody HashMap<String, List<Usage>> getAllserUsage(Model model, HttpSession session) {
+		HashMap<String, List<Usage>> sensorsData = new HashMap<String, List<Usage>>();
+		try {
+			User validUser = (User) session.getAttribute("validUser");
+			List<Usage> userSensors = usageDao.getUsageByUserId(validUser);
+			
+			sensorsData.put("data", userSensors);
+			model.addAttribute("numOfUserSensors", userSensors.size());
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return sensorsData;
 	}
 }

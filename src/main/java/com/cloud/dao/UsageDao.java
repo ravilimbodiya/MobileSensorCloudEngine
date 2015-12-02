@@ -23,6 +23,12 @@ public interface UsageDao {
 	
 	public void updateAmountAndBillingHours(Usage usage) throws DaoException;
 	
-	public void deactivateSensorByUsageId(Integer usageId) throws DaoException;
+	public Usage getByUsageId(Integer usageId) throws DaoException;
+
+	public void deactivateSensorByUsageId(Usage usage) throws DaoException;
+	
+	public boolean findUsageByUserIdVSensorId(Integer userId, Integer vsId) throws DaoException;
+	
+	public List<Usage> getAllUsageByUserId(Integer userId) throws DaoException;
 
 }

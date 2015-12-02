@@ -35,10 +35,11 @@
     		});
         	
         	$('#user_sensors tbody').on( 'click', 'button', function () {
-                var data = sensorTable.row( $(this).parents('tr') ).data();
-                $.ajax({url: "deactiveSensor.ac?usageId=" + data.usageId, method: "get", success: 
+        		var row = sensorTable.row( $(this).parents('tr'));
+                var data = row.data();
+                $.ajax({url: "deactivateSensor.ac?usageId=" + data.usageId, method: "get", success: 
                 	function(result) {
-		            	
+		            	row.remove().draw();
                 	}
                 });
             } );
