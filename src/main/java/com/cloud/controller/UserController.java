@@ -116,6 +116,7 @@ public class UserController {
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}
+		model.addAttribute("errMsg", "Error Occured. Please try again.");
 		return "login";
 	}
 
@@ -141,7 +142,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/registrationSubmit.ac", method = RequestMethod.POST)
-	public String createUser(@ModelAttribute("user") User user, BindingResult errors, HttpSession session) {
+	public String createUser(@ModelAttribute("user") User user, BindingResult errors, HttpSession session, Model model) {
 		if(errors.hasErrors()){
 			return "registration";
 		}
@@ -153,7 +154,7 @@ public class UserController {
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}
-		
+		model.addAttribute("errMsg", "Registration Successful. Please login.");
 		return "login";
 	}
 	

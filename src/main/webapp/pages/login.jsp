@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>    
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-    
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -23,7 +23,7 @@
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target=".sidebar-collapse">
-					<span class="sr-only">Toggle navigation</span> <span
+					<span class="sr-only">MSCE</span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
@@ -37,6 +37,12 @@
 			</div>
 		</nav>
     <div class="container">
+    <c:if test="${requestScope.errMsg != '' && requestScope.errMsg != null}">
+					<div class="alert alert-success" id="msg">
+                    	${errMsg}
+                	</div>
+                </c:if>
+				<hr />
         <div class="row text-center ">
             <div class="col-md-12">
                 <br /><br />

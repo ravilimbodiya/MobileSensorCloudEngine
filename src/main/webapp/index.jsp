@@ -144,10 +144,10 @@ people involved in environmental monitoring.</p>
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-xs-6">
-									<i class="fa fa-cloud fa-3x"></i> Newyork City
+									<i class="fa fa-cloud fa-3x"></i> Your City UV Index
 								</div>
 								<div class="col-xs-6">
-									<div class="text-temp">10°</div>
+									<div class="text-temp">4</div>
 								</div>
 							</div>
 						</div>
