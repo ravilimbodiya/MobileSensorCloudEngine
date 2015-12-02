@@ -29,12 +29,18 @@
 	    			}, {
 	                    "targets": -1,
 	                    "data": null,
-	                    "defaultContent": "<button>Deactivate</button>"
+	                    "defaultContent": "<button id='reading' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#myModal'>Sensor Reading</button>"
+	                }, {
+	                    "targets": -1,
+	                    "data": null,
+	                    "defaultContent": "<button id='deactivate' class='btn btn-danger btn-sm'>Deactivate</button>"
 	                }
     			]            	
     		});
         	
-        	$('#user_sensors tbody').on( 'click', 'button', function () {
+        	
+        	
+        	$('#user_sensors tbody').on( 'click', '#deactivate', function () {
         		var row = sensorTable.row( $(this).parents('tr'));
                 var data = row.data();
                 $.ajax({url: "deactivateSensor.ac?usageId=" + data.usageId, method: "get", success: 
@@ -48,6 +54,7 @@
             	$("#section1").fadeIn("slow");
             	$("#section2").fadeIn("slow");
             	$("#section3").fadeIn("slow");
+            	$("#reqSensorSection").fadeOut("slow");
             	$("#user_dashboard").addClass("active-menu");
             	$("#reqSensor").removeClass("active-menu");
             	$("#manageSensor").removeClass("active-menu");
@@ -60,6 +67,7 @@
 		            	$("#section1").fadeOut("slow");
 		            	$("#section2").fadeOut("slow");
 		            	$("#section3").fadeOut("slow");
+		            	$("#reqSensorSection").fadeIn("slow");
 		            	$("#user_dashboard").removeClass("active-menu");
 		            	$("#reqSensor").addClass("active-menu");
 		            	$("#manageSensor").removeClass("active-menu");
@@ -105,7 +113,7 @@
             	}
             });
         	
-        	usageChart.setData(usageData);
+        	// usageChart.setData(usageData);
         	
         	var billingData = [
 	        	{
@@ -144,7 +152,21 @@
               	}
             });
         	
-        	billingChart.setData(billingData);
+        	// billingChart.setData(billingData);
+        	
+        	$.ajax({url: "getAllUserUsage.ac?userId=" + userId, method: "get", success: 
+            	function(result) {
+        			var usageData = [];
+        			var billingData = [];
+        			var data = result.data;
+	            	for (var i=0; i<data.length; i++) {
+	            		usageData.push({'x':data[i].virtualSensorId, 'y':data[i].billing});
+	            		billingData.push({'x':data[i].virtualSensorId, 'y':data[i].amount});
+	            	}
+	            	billingChart.setData(billingData);
+	            	usageChart.setData(usageData);
+            	}
+            });
            
         	Morris.Donut({
                 element: 'morris-sensor-chart',

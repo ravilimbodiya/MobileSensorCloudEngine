@@ -108,8 +108,9 @@ public class UserController {
 					model.addAttribute("virtualSensor", new VirtualSensor());
 				}
 				// Loading virtual sensor controllers manually for the first time when you run this application
-				// and then comment this method call.
-				// loadVsControllersToDatabase();
+				if(sensorDao.getAllVsc().size() == 0){
+					loadVsControllersToDatabase();
+				}
 				return validUser.getUserType() + "-home";
 			}
 		} catch (DaoException e) {

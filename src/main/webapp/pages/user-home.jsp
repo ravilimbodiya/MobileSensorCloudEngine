@@ -50,7 +50,7 @@
 					<li>
 						<a href="#" id="reqSensor"><i class="fa fa-upload fa-3x"></i>Request Sensor</a>
 					</li>
-					<li>
+					<!-- <li>
 						<a href="#" id="manageSensor"><i class="fa fa-table fa-3x"></i>Manage Sensor</a>
 					</li>
 					<li>
@@ -58,7 +58,7 @@
 					</li>
 					<li>
 						<a href="#" id="billing"><i class="fa fa-usd fa-3x"></i>Billing</a>
-					</li>				
+					</li>	 -->			
 				</ul>
 			</div>
 		</nav>
@@ -92,6 +92,7 @@
 												<th>Allocation Date</th>
 												<th>Release Date</th>
 												<th>Amount (In USD)</th>
+												<th>View UV Index</th>
 												<th>Remove</th>
 											</tr>
 										</thead>										
@@ -142,6 +143,31 @@
 				<div id="reqSensorSection">
 				
 				</div>
+				
+				
+                        
+                        <div class="panel-body">
+                            
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel">UV Radiation in your area</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            UV Index in requested City: 3 which is below Danger.
+                                            <br>You are Safe.
+                                            <br>Thank You!
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   
 											
 			</div>		
 			<!-- /. PAGE INNER  -->
@@ -163,6 +189,9 @@
     <script src="pages/assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="pages/assets/js/dataTables/dataTables.bootstrap.js"></script>        
 	<!-- CUSTOM SCRIPTS -->
+	<script type="text/javascript">    
+        var userId = '${validUser.userId}';        
+	</script>
 	<script src="pages/assets/js/user-custom.js"></script>
 	<!-- GOOGLE MAP -->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_7yQeLqT_tn8Ln8IixcYhjuHhDbg7o1I" type="text/javascript"></script>		
