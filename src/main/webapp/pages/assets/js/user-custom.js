@@ -21,9 +21,12 @@
     			    {
 	    				"data" : "virtualSensorId"
 	    			}, {
-	    				"data" : "allocationDate"
+	    				"data" : "allocationDate",
+	    				"render": function ( data, type, row ) {
+	                    	return new Date(row.allocationDate).toUTCString();
+	                	}
 	    			}, {
-	    				"data" : "releaseDate"
+	    				"data" : "releaseDate"	    				
 	    			}, {
 	    				"data" : "amount"
 	    			}, {
