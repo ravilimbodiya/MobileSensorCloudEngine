@@ -37,15 +37,13 @@
 			</div>
 		</nav>
     <div class="container">
-    <c:if test="${requestScope.errMsg != '' && requestScope.errMsg != null}">
-					<div class="alert alert-success" id="msg">
-                    	${errMsg}
-                	</div>
-                </c:if>
-				<hr />
         <div class="row text-center ">
             <div class="col-md-12">
-                <br /><br />
+                <br /><c:if test="${requestScope.errMsg != '' && requestScope.errMsg != null}">
+					<div class="alert alert-danger" id="msg">
+                    	${errMsg}
+                	</div>
+                </c:if><br />
                 <h2> MSCE : Login</h2>               
                 <h5>( Login to access UV sensor data )</h5>
                 <br />
@@ -61,7 +59,7 @@
 	                    <form:form role="form" action="loginSubmit.ac" commandName="user" method="post">
 	                      	<br />
 	                          <div class="form-group input-group">
-	                          	<span class="input-group-addon"><i class="fa fa-tag"  ></i></span>
+	                          	<span class="input-group-addon"><i class="fa fa-at"  ></i></span>
 	                              <form:input type="text" class="form-control" path="email" placeholder="Your Email" />
 	                          </div>
 	                          <div class="form-group input-group">

@@ -23,7 +23,7 @@
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target=".sidebar-collapse">
-					<span class="sr-only">Toggle navigation</span> <span
+					<span class="sr-only">MSCE</span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
@@ -58,37 +58,42 @@
 					<div class="panel-body">
 						<form:form commandName="user" method="post" action="registrationSubmit.ac">
 							<br />
+							<form:errors path="firstName" cssClass="alert-danger form-control"/>
 							<div class="form-group input-group">
 								<span class="input-group-addon"><i
 									class="fa fa-circle-o-notch"></i></span>
 								<form:input path="firstName" class="form-control" placeholder="First Name" />
 							</div>
+							<form:errors path="lastName" cssClass="form-control alert-danger"/>
 							<div class="form-group input-group">
 								<span class="input-group-addon"><i class="fa fa-tag"></i></span>
 								<form:input path="lastName" class="form-control" placeholder="Last Name" />
 							</div>
-							
+							<form:errors path="password" cssClass="form-control alert-danger"/>
 							<div class="form-group input-group">
 								<span class="input-group-addon"><i class="fa fa-lock"></i></span>
 								<form:password path="" class="form-control" placeholder="Enter Password" />
 							</div>
+							<form:errors path="password" cssClass="form-control alert-danger"/>
 							<div class="form-group input-group">
 								<span class="input-group-addon"><i class="fa fa-lock"></i></span>
 								<form:password path="password" class="form-control" placeholder="Retype Password" />
 							</div>
+							<form:errors path="email" cssClass="form-control alert-danger"/>
 							<div class="form-group input-group">
 								<span class="input-group-addon">@</span>
 								<form:input path="email" class="form-control" placeholder="Your Email" />
 							</div>
+							<form:errors path="phoneNum" cssClass="form-control alert-danger"/>
 							<div class="form-group input-group">
 								<span class="input-group-addon">@</span>
 								<form:input path="phoneNum" class="form-control" placeholder="Your Contact Number" />
-							</div>							
+							</div>						
+							<form:errors path="userType" cssClass="form-control alert-danger"/>
 							<div class="form-group input-group">
 								<span class="input-group-addon">Registering As...</span>
-								<form:select path="userType">
-									<form:option value="-1">--SELECT--</form:option>
-									<form:option value="admin">Admin User</form:option>
+								<form:select path="userType" class="form-control">
+									<form:option value="">--SELECT--</form:option>
 									<form:option value="user">Normal User</form:option>
 									<form:option value="provider">Sensor Provider</form:option>
 								</form:select>

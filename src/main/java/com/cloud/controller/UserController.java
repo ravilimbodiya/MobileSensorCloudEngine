@@ -37,6 +37,7 @@ import com.cloud.entity.User;
 import com.cloud.entity.VirtualSensor;
 import com.cloud.entity.VirtualSensorController;
 import com.cloud.exception.DaoException;
+import com.cloud.validator.RegistrationValidator;
 
 /**
  * @author Ravi
@@ -143,6 +144,7 @@ public class UserController {
 	
 	@RequestMapping(value="/registrationSubmit.ac", method = RequestMethod.POST)
 	public String createUser(@ModelAttribute("user") User user, BindingResult errors, HttpSession session, Model model) {
+		new RegistrationValidator().validate(user, errors);
 		if(errors.hasErrors()){
 			return "registration";
 		}
