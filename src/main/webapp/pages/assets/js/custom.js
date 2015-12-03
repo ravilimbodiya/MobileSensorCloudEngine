@@ -37,37 +37,37 @@
             Morris.Bar({
                 element: 'morris-bar-chart',
                 data: [{
-                    y: '2006',
+                    y: 1,
                     a: 100,
                     b: 90
                 }, {
-                    y: '2007',
+                    y: 2,
                     a: 75,
                     b: 65
                 }, {
-                    y: '2008',
+                    y: 3,
                     a: 50,
                     b: 40
                 }, {
-                    y: '2009',
+                    y: 4,
                     a: 75,
                     b: 65
                 }, {
-                    y: '2010',
+                    y: 5,
                     a: 50,
                     b: 40
                 }, {
-                    y: '2011',
+                    y: 6,
                     a: 75,
                     b: 65
                 }, {
-                    y: '2012',
+                    y: 7,
                     a: 100,
                     b: 90
                 }],
                 xkey: 'y',
                 ykeys: ['a', 'b'],
-                labels: ['Series A', 'Series B'],
+                labels: ['Usage', 'Billing'],
                 hideHover: 'auto',
                 resize: true
             });
