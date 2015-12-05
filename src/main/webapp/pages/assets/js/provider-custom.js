@@ -96,6 +96,7 @@
                     var data = row.data();
                     $.ajax({url: "removeSensorSubmit.ac?vsId=" + data.virtualSensorId, method: "get", success: 
                     	function(result) {
+                    	alert($(this).html());
     		            	row.remove().draw();
                     	}
                     });
