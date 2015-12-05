@@ -36,6 +36,7 @@
 		        	$("#section3").fadeIn("slow");
 		        	$("#section4").fadeIn("slow");
 		        	$("#section5").fadeIn("slow");
+		        	$("#removeSensor").fadeOut("slow");
 		        	$("#provider_dashboard").addClass("active-menu");
 		        	$("#addSensor").removeClass("active-menu");
 		        	$("#removeSensor").removeClass("active-menu");
@@ -118,13 +119,40 @@
         			}, {
         				"data" : "installationDateTime"
         			}, {
-        				"data" : "removalDateTime"
+        				"data" : "removalDateTime",
+        				"defaultContent" : "Not removed"
         			}, {
         				"data" : "status"
         			}, {
         				"data" : "sensorCity"
         			} ]
         		});
+        		
+        		
+        		
+        		var usageChart = Morris.Bar({
+                    element: 'morris-bar-chart',
+                    xkey: 'y',
+                    ykeys: ['a', 'b'],
+                    labels: ['Usage', 'Billing'],
+                    hideHover: 'auto',
+                    resize: true,
+                    hoverCallback: function (index, options, content, row) {
+                    	return "Sensor ID: " + row.y + ", Usage Hours: " + row.a + ", Bill: $" + row.b;
+                    }
+                });
+        		
+        		$.ajax({url: "getThisProviderUsage.ac", method: "get", success: 
+                	function(result) {
+            			var usageChartData = [];
+            			var data = result.data;
+    	            	for (var i=0; i<data.length; i++) {
+    	            		usageChartData.push({'y':data[i].virtualSensorId, 'a':data[i].billing, 'b':data[i].amount});
+    	            	}
+    	            	usageChart.setData(usageChartData);
+                	}
+                });
+        		
      
         },
 

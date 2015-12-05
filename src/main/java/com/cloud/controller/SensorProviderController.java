@@ -97,4 +97,12 @@ public class SensorProviderController {
 		return "provider-home";
 	}
 
+	@RequestMapping(value = "/getThisProviderUsage.ac", method = RequestMethod.GET)
+	public @ResponseBody HashMap<String, List<Usage>> getThisProviderUsage(Model model, HttpSession session) {
+		HashMap<String, List<Usage>> sensorsData = new HashMap<String, List<Usage>>();
+		List<Usage> thisProviderUsageList = (List<Usage>) session.getAttribute("thisProviderUsageList");
+		sensorsData.put("data", thisProviderUsageList);
+		return sensorsData;
+	}
+	
 }

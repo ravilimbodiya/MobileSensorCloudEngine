@@ -4,6 +4,7 @@
 package com.cloud.dao;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -114,16 +115,16 @@ public class UsageDaoImpl implements UsageDao {
 	}
 
 	@Override
-	public Double getProviderTotalEarning(List<VirtualSensor> thisProviderVS) throws DaoException {
+	public List<Usage> getProviderTotalEarning(List<VirtualSensor> thisProviderVS) throws DaoException {
 		try {
-			Double totalAmount = 0.0;
+			List<Usage> usageList = new ArrayList<Usage>();
 			for (VirtualSensor virtualSensor : thisProviderVS) {
 				List<Usage> amtList = hibernateTemplate.find("from Usage where virtualSensorId = ?", virtualSensor.getVirtualSensorId());
-				for (Usage us : amtList) {
-					totalAmount = totalAmount + us.getAmount();
+				for (Usage usage : amtList) {
+					usageList.add(usage);
 				}
 			}
-			return totalAmount;
+			return usageList;
 		} catch (DataAccessException e) {
 			e.printStackTrace();
 			throw new DaoException(e);

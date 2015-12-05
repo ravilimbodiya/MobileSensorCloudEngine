@@ -119,7 +119,12 @@ public class UserController {
 					session.setAttribute("thisProvideTotalUsers", totalUsers);
 					
 					// Getting total earning for this provider.
-					Double totalEarning = usageDao.getProviderTotalEarning(allVirtualSensors);
+					Double totalEarning = 0.0;
+					List<Usage> usageList = usageDao.getProviderTotalEarning(allVirtualSensors);
+					for (Usage usage : usageList) {
+						totalEarning += usage.getAmount();
+					}
+					session.setAttribute("thisProviderUsageList", usageList);
 					session.setAttribute("thisProviderTotalEarning", totalEarning);
 				}
 				// Loading virtual sensor controllers manually for the first time when you run this application

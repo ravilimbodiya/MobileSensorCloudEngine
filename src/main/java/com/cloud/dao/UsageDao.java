@@ -32,7 +32,7 @@ public interface UsageDao {
 	
 	public List<Usage> getAllUsageByUserId(Integer userId) throws DaoException;
 	
-	public Double getProviderTotalEarning(List<VirtualSensor> thisProviderVS) throws DaoException;
+	public List<Usage> getProviderTotalEarning(List<VirtualSensor> thisProviderVS) throws DaoException;
 	
 	public int getAllUsersUsingThisProvidersSensor(List<VirtualSensor> thisProviderVS) throws DaoException;
 	

@@ -158,7 +158,7 @@
 				<div class="row" id="section3">
 					<div class="col-md-12 col-sm-12 col-xs-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">Sensor Billing & Usage</div>
+							<div class="panel-heading">Your Sensors Usage & Billing</div>
 							<div class="panel-body">
 								<div id="morris-bar-chart"></div>
 							</div>
@@ -196,7 +196,7 @@
 				</div>
 				<!-- /. ROW  -->
 				<div class="row" id="section5">
-					<div class="col-md-6 col-sm-12 col-xs-12">
+					<!-- <div class="col-md-6 col-sm-12 col-xs-12">
 					</div>	
 					<div class="col-md-6 col-sm-12 col-xs-12">
 						
@@ -206,7 +206,7 @@
 								<div id="morris-donut-chart"></div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 				<!-- /. ROW  -->
 				
@@ -223,7 +223,7 @@
 										<thead>
 											<tr>
 												<th>Sensor ID</th>
-												<th>Installation Date & Time</th>
+												<th>Installation Date</th>
 												<th>Status</th>
 												<th>City</th>
 												<th>Remove</th>
