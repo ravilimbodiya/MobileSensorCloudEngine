@@ -3,6 +3,7 @@
  */
 package com.cloud.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,11 +16,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloud.dao.UsageDao;
 import com.cloud.dao.UserDao;
 import com.cloud.dao.VirtualSensorDao;
+import com.cloud.entity.Usage;
 import com.cloud.entity.User;
 import com.cloud.entity.VirtualSensor;
 import com.cloud.exception.DaoException;
@@ -56,6 +59,7 @@ public class SensorProviderController {
 		try {
 			User validUser = (User) session.getAttribute("validUser");
 			virtualSensor.setUser(validUser);
+			virtualSensor.setStatus("Activated");
 			sensorDao.save(virtualSensor);
 		} catch (DaoException e) {
 			e.printStackTrace();
@@ -68,15 +72,29 @@ public class SensorProviderController {
 	@RequestMapping(value = "/removeSensor.ac", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, List<VirtualSensor>> removeSensor(Model model, HttpSession session) {
 		HashMap<String, List<VirtualSensor>> sensorsData = new HashMap<String, List<VirtualSensor>>();
+		List<VirtualSensor> allVirtualSensors = (List<VirtualSensor>) session.getAttribute("allSensorsForThisUser");
+		sensorsData.put("data", allVirtualSensors);
+		return sensorsData;
+	}
+	
+	
+	@RequestMapping(value="/removeSensorSubmit.ac", method = RequestMethod.GET)
+	public String removeSensor(HttpSession session, Model model, @RequestParam Integer vsId) {
+		
 		try {
-			User validUser = (User) session.getAttribute("validUser");
-			List<VirtualSensor> allVirtualSensors = sensorDao.getAllSensorByUserId(validUser);
-			sensorsData.put("data", allVirtualSensors);
-			model.addAttribute("numOfSensors", allVirtualSensors.size());
+			List<VirtualSensor> vsList = sensorDao.findBySensorId(vsId);
+			if(vsList.size() != 0){
+				VirtualSensor vs = vsList.get(0);
+				vs.setRemovalDateTime(new Date());
+				vs.setStatus("Deactivated");
+				sensorDao.updateVirtualSensor(vs);
+				usageDao.updateByVSId(vs.getVirtualSensorId());
+			}
+			model.addAttribute("errMsg", "Sensor removed successfully.");
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}
-		return sensorsData;
+		return "provider-home";
 	}
 
 }

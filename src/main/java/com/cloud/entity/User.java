@@ -1,5 +1,6 @@
 package com.cloud.entity;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class User {
@@ -12,7 +13,7 @@ public class User {
 	private String email;
 	private String password;
 	private String userType;
-	private Date lastLogin;
+	private Timestamp lastLogin;
 
 
 	public User() {
@@ -75,11 +76,11 @@ public class User {
 		this.userType = userType;
 	}
 
-	public Date getLastLogin() {
+	public Timestamp getLastLogin() {
 		return lastLogin;
 	}
 
-	public void setLastLogin(Date lastLogin) {
+	public void setLastLogin(Timestamp lastLogin) {
 		this.lastLogin = lastLogin;
 	}
 

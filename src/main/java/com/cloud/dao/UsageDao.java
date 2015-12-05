@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.cloud.entity.Usage;
 import com.cloud.entity.User;
+import com.cloud.entity.VirtualSensor;
 import com.cloud.exception.DaoException;
 
 /**
@@ -30,5 +31,11 @@ public interface UsageDao {
 	public boolean findUsageByUserIdVSensorId(Integer userId, Integer vsId) throws DaoException;
 	
 	public List<Usage> getAllUsageByUserId(Integer userId) throws DaoException;
+	
+	public Double getProviderTotalEarning(List<VirtualSensor> thisProviderVS) throws DaoException;
+	
+	public int getAllUsersUsingThisProvidersSensor(List<VirtualSensor> thisProviderVS) throws DaoException;
+	
+	public void updateByVSId(Integer vsId) throws DaoException;
 
 }

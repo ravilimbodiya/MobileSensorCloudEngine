@@ -31,4 +31,6 @@ public interface VirtualSensorDao {
 	public List<VirtualSensorController> getAllVsc() throws DaoException;
 	
 	public void updateVscResources(VirtualSensorController vsc) throws DaoException;
+	
+	public void updateVirtualSensor(VirtualSensor vs) throws DaoException;
 }

@@ -113,4 +113,14 @@ public class VirtualSensorDaoImpl implements VirtualSensorDao {
 		}
 	}
 
+	@Override
+	public void updateVirtualSensor(VirtualSensor vs) throws DaoException {
+		try {
+			hibernateTemplate.update(vs);
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			throw new DaoException(e);
+		}
+	}
+
 }

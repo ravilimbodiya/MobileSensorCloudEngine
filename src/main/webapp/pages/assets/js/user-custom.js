@@ -14,7 +14,22 @@
     "use strict";
     var mainApp = {
 
-        main_fun: function () {       	
+        main_fun: function () {   
+        	
+        	 $('#main-menu').metisMenu();
+
+             /*====================================
+               LOAD APPROPRIATE MENU BAR
+            ======================================*/
+             $(window).bind("load resize", function () {
+                 if ($(this).width() < 768) {
+                     $('div.sidebar-collapse').addClass('collapse')
+                 } else {
+                     $('div.sidebar-collapse').removeClass('collapse')
+                 }
+             });
+        	
+        	
         	var sensorTable = $('#user_sensors').DataTable({
     			"ajax" : "getUserSensors.ac",
     			"columns" : [ 
@@ -23,10 +38,20 @@
 	    			}, {
 	    				"data" : "allocationDate",
 	    				"render": function ( data, type, row ) {
-	                    	return new Date(row.allocationDate).toUTCString();
+	    					var datetime = new Date(row.allocationDate).toLocaleDateString()+" "+new Date(row.allocationDate).toLocaleTimeString()
+	                    	return datetime;
 	                	}
 	    			}, {
-	    				"data" : "releaseDate"	    				
+	    				"data" : "releaseDate", 
+	    				"defaultContent": "<label style='color:#3c763d;'>Activated</label>",
+	    				"render": function ( data, type, row ) {
+	    					if(row.releaseDate == null){
+	    						return "<label style='color:#3c763d;'>Activated</label>";
+	    					} else {
+	    						var datetime = new Date(row.releaseDate).toLocaleDateString()+" "+new Date(row.releaseDate).toLocaleTimeString()
+		                    	return datetime;
+	    					}
+	    				}
 	    			}, {
 	    				"data" : "amount"
 	    			}, {
@@ -53,7 +78,8 @@
                 });
             } );
         	
-        	$("#user_dashboard").click(function() {                
+        	$("#user_dashboard").click(function() { 
+        		$("#section0").fadeIn("slow");
             	$("#section1").fadeIn("slow");
             	$("#section2").fadeIn("slow");
             	$("#section3").fadeIn("slow");
@@ -67,6 +93,7 @@
                 $.ajax({url: "reqSensor.ac", method: "post", success: 
                 	function(result) {
 		            	$("#msg").fadeOut("slow");
+		            	$("#section0").fadeOut("slow");
 		            	$("#section1").fadeOut("slow");
 		            	$("#section2").fadeOut("slow");
 		            	$("#section3").fadeOut("slow");
@@ -108,7 +135,7 @@
                 element: 'morris-usage-chart',
                 xkey: 'x',
                 ykeys: ['y'],
-                labels: ['Usage'],
+                labels: ['Usage','Hours'],
                 hideHover: 'auto',
                 resize: true,
                 hoverCallback: function (index, options, content, row) {

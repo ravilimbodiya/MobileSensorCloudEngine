@@ -3,6 +3,7 @@
  */
 package com.cloud.entity;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -18,8 +19,8 @@ public class Usage{
 	private Integer virtualSensorId;
 	private Integer userId;
 	private Integer vscId;
-	private Date allocationDate;
-	private Date releaseDate;
+	private Timestamp allocationDate;
+	private Timestamp releaseDate;
 	private Double amount;
 	private Double billing;
 	
@@ -35,17 +36,17 @@ public class Usage{
 
 
 	
-	public Date getAllocationDate() {
+	public Timestamp getAllocationDate() {
 		return allocationDate;
 	}
 
 
-	public void setAllocationDate(Date allocationDate) {
+	public void setAllocationDate(Timestamp allocationDate) {
 		this.allocationDate = allocationDate;
 	}
 
 
-	public Date getReleaseDate() {
+	public Timestamp getReleaseDate() {
 		return releaseDate;
 	}
 
@@ -78,7 +79,7 @@ public class Usage{
 	}
 
 
-	public void setReleaseDate(Date releaseDate) {
+	public void setReleaseDate(Timestamp releaseDate) {
 		this.releaseDate = releaseDate;
 	}
 

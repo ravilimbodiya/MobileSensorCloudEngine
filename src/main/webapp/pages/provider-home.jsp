@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 	
 	<c:set var="validUser" value="${session.validUser}" scope="page" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -36,7 +37,7 @@
 		</div>
 		<div
 			style="color: white; padding: 15px 50px 5px 50px; float: right; font-size: 16px;">
-			Last access : 30 May 2014 &nbsp; <a href="logout.ac"
+			Last access : <fmt:formatDate value="${validUser.lastLogin}" pattern="MM/dd/yyyy hh:mm:ss a"/> &nbsp; <a href="logout.ac"
 				class="btn btn-danger square-btn-adjust">Logout</a>
 		</div>
 		</nav>
@@ -49,10 +50,17 @@
 					class="user-image img-responsive" /></li>
 				<li><a class="active-menu" href="#" id="provider_dashboard"><i
 						class="fa fa-dashboard fa-3x"></i> Dashboard</a></li>
-				<li><a href="#" id="addSensor" ><i class="fa fa-plus fa-3x"></i>
-						Add a Sensor</a></li>
-				<li><a href="#" id="removeSensor"><i class="fa fa-remove fa-3x"></i>
-						RemoveSensor</a></li>
+				<li>
+                        <a href="#"><i class="fa fa-sitemap fa-3x"></i>Sensor Management<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="#" id="addSensor" ><i class="fa fa-plus fa-3x"></i>Add a Sensor</a>
+                            </li>
+                            <li>
+                                <a href="#" id="removeSensor"><i class="fa fa-remove fa-3x"></i>Remove Sensor</a>
+                            </li>
+                        </ul>
+                      </li> 
 				<li><a href="#" id="usage"><i class="fa fa-bar-chart-o fa-3x"></i>
 						Usage</a></li>
 				<li><a href="#" id="billing"><i class="fa fa-usd fa-3x"></i>
@@ -73,7 +81,11 @@
 					</div>
 				</div>
 				<!-- /. ROW  -->
-				<hr />
+				<c:if test="${requestScope.errMsg != '' && requestScope.errMsg != null}">
+					<div class="alert alert-success" id="msg">
+                    	${errMsg}
+                	</div>
+                </c:if>
 				<div class="row" id="section1">
 					<div class="col-md-3 col-sm-6 col-xs-6">
 						<div class="panel panel-back noti-box">
@@ -81,7 +93,7 @@
 								class="fa fa-crosshairs"></i>
 							</span>
 							<div class="text-box">
-								<p class="main-text">12</p>
+								<p class="main-text">${sessionScope.numOfSensors}</p>
 								<marquee class="text-muted">Sensors You Have</marquee>
 							</div>
 						</div>
@@ -92,7 +104,7 @@
 								class="fa fa-info-circle"></i>
 							</span>
 							<div class="text-box">
-								<p class="main-text">30</p>
+								<p class="main-text">${sessionScope.thisProvideTotalUsers}</p>
 								<marquee class="text-muted">Users Using Your Sensors</marquee>
 							</div>
 						</div>
@@ -103,7 +115,7 @@
 								class="fa fa-usd"></i>
 							</span>
 							<div class="text-box">
-								<p class="main-text">240</p>
+								<p class="main-text">$${sessionScope.thisProviderTotalEarning}</p>
 								<marquee class="text-muted">Total Earnings</marquee>
 							</div>
 						</div>
@@ -114,7 +126,7 @@
 								class="fa fa-warning"></i>
 							</span>
 							<div class="text-box">
-								<p class="main-text">3</p>
+								<p class="main-text">0</p>
 								<marquee class="text-muted">Sensors are not working properly</marquee>
 							</div>
 						</div>
@@ -122,12 +134,6 @@
 				</div>
 				<!-- /. ROW  -->
 				
-				<c:if test="${requestScope.errMsg != '' && requestScope.errMsg != null}">
-					<div class="alert alert-success" id="msg">
-                    	${errMsg}
-                	</div>
-                </c:if>
-				<hr />
 				<div class="row" id="section2">
 					
 					<!-- <div class="col-sm-12 col-xs-12 ">
@@ -172,21 +178,13 @@
 										class="table table-striped table-bordered table-hover">
 										<thead>
 											<tr>
-												<th>#</th>
-												<th>User Id</th>
-												<th>Dimensions</th>
+												<th>Sensor ID</th>
 												<th>Signal Speed</th>
 												<th>Signal Type</th>
-												<th>No. of Pins</th>
 												<th>Output Signal</th>
-												<th>Operating Range From</th>
-												<th>Operating Range To</th>
-												<th>Installation Date & Time</th>
-												<th>Removal Date & Time</th>
+												<th>Installation Date</th>
+												<th>Removal Date</th>
 												<th>Status</th>
-												<th>Total Earning</th>
-												<th>Latitude</th>
-												<th>Longitude</th>
 												<th>City</th>
 											</tr>
 										</thead>
@@ -224,21 +222,9 @@
 										class="table table-striped table-bordered table-hover">
 										<thead>
 											<tr>
-												<th>#</th>
-												<th>User Id</th>
-												<th>Dimensions</th>
-												<th>Signal Speed</th>
-												<th>Signal Type</th>
-												<th>No. of Pins</th>
-												<th>Output Signal</th>
-												<th>Operating Range From</th>
-												<th>Operating Range To</th>
+												<th>Sensor ID</th>
 												<th>Installation Date & Time</th>
-												<th>Removal Date & Time</th>
 												<th>Status</th>
-												<th>Total Earning</th>
-												<th>Latitude</th>
-												<th>Longitude</th>
 												<th>City</th>
 												<th>Remove</th>
 											</tr>
@@ -270,137 +256,7 @@
 	<!-- DATA TABLE SCRIPTS -->
     <script src="pages/assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="pages/assets/js/dataTables/dataTables.bootstrap.js"></script>
-    <script>
-		    // Dashboard content display
-		    $(document).ready(function(){
-		    $("#provider_dashboard").click(function(){
-		        
-		        	$("#section2").fadeIn("slow");
-		        	$("#section3").fadeIn("slow");
-		        	$("#section4").fadeIn("slow");
-		        	$("#section5").fadeIn("slow");
-		        	$("#provider_dashboard").addClass("active-menu");
-		        	$("#addSensor").removeClass("active-menu");
-		        	$("#removeSensor").removeClass("active-menu");
-		    });
-		    });
-
-            // Add Sensor Form ajax call
-            $(document).ready(function(){
-            $("#addSensor").click(function(){
-                $.ajax({url: "addSensor.ac", success: function(result){
-                	$("#section2").fadeOut("slow");
-                	$("#section3").fadeOut("slow");
-                	$("#section4").fadeOut("slow");
-                	$("#section5").fadeOut("slow");
-                	$("#provider_dashboard").removeClass("active-menu");
-                	$("#removeSensor").removeClass("active-menu");
-                	$("#addSensor").addClass("active-menu");
-                    $("#addSensorSection").html(result);
-                }});
-            });
-            });
-            
-         // Remove Sensor ajax call
-            $(document).ready(function(){
-            $("#removeSensor").click(function(){
-            	$('#remove_virtual_sensors').DataTable({
-        			"ajax" : "removeSensor.ac",
-        			"columns" : [ {
-        				"data" : "virtualSensorId"
-        			}, {
-        				"data" : "user.userId"
-        			}, {
-        				"data" : "dimensions"
-        			}, {
-        				"data" : "signalSpeed"
-        			}, {
-        				"data" : "signalType"
-        			}, {
-        				"data" : "numOfPins"
-        			}, {
-        				"data" : "outputSignal"
-        			}, {
-        				"data" : "operatingRangeFrom"
-        			}, {
-        				"data" : "operatingRangeTo"
-        			}, {
-        				"data" : "installationDateTime"
-        			}, {
-        				"data" : "removalDateTime"
-        			}, {
-        				"data" : "status"
-        			}, {
-        				"data" : "totalEarning"
-        			}, {
-        				"data" : "latitude"
-        			}, {
-        				"data" : "longitude"
-        			}, {
-        				"data" : "sensorCity"
-        			} , {
-	                    "targets": -1,
-	                    "data": null,
-	                    "defaultContent": "<a href='#' id='removeButton' onclick=''>Remove</a>"
-	                }
-        			]
-	            	
-        		});
-            	
-            	$("#section2").fadeOut("slow");
-            	$("#section3").fadeOut("slow");
-            	$("#section4").fadeOut("slow");
-            	$("#section5").fadeOut("slow");
-            	$("#addSensorSection").fadeOut("slow");
-            	$("#provider_dashboard").removeClass("active-menu");
-            	$("#addSensor").removeClass("active-menu");
-            	$("#removeSensor").addClass("active-menu");
-            	$("#removeSensorSection").fadeIn("slow");
-            	
-            });
-            });
-         
-           
-            $(document).ready(function() {
-        		$('#virtual_sensors').DataTable({
-        			"ajax" : "removeSensor.ac",
-        			"columns" : [ {
-        				"data" : "virtualSensorId"
-        			}, {
-        				"data" : "user.userId"
-        			}, {
-        				"data" : "dimensions"
-        			}, {
-        				"data" : "signalSpeed"
-        			}, {
-        				"data" : "signalType"
-        			}, {
-        				"data" : "numOfPins"
-        			}, {
-        				"data" : "outputSignal"
-        			}, {
-        				"data" : "operatingRangeFrom"
-        			}, {
-        				"data" : "operatingRangeTo"
-        			}, {
-        				"data" : "installationDateTime"
-        			}, {
-        				"data" : "removalDateTime"
-        			}, {
-        				"data" : "status"
-        			}, {
-        				"data" : "totalEarning"
-        			}, {
-        				"data" : "latitude"
-        			}, {
-        				"data" : "longitude"
-        			}, {
-        				"data" : "sensorCity"
-        			} ]
-        		});
-        	});
-    </script>
 	<!-- CUSTOM SCRIPTS -->
-	<script src="pages/assets/js/custom.js"></script>
+	<script src="pages/assets/js/provider-custom.js"></script>
 </body>
 </html>

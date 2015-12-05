@@ -2,6 +2,7 @@
  * 
  */
 package com.cloud.controller;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -106,7 +107,20 @@ public class UserController {
 				
 				session.setAttribute("validUser", validUser);
 				if(validUser.getUserType().equals("provider")){
+					
 					model.addAttribute("virtualSensor", new VirtualSensor());
+					// getting No. of sensors
+					List<VirtualSensor> allVirtualSensors = sensorDao.getAllSensorByUserId(validUser);
+					session.setAttribute("allSensorsForThisUser", allVirtualSensors);
+					session.setAttribute("numOfSensors", allVirtualSensors.size());
+					
+					// Finding no of users using this providers sensor
+					int totalUsers = usageDao.getAllUsersUsingThisProvidersSensor(allVirtualSensors);
+					session.setAttribute("thisProvideTotalUsers", totalUsers);
+					
+					// Getting total earning for this provider.
+					Double totalEarning = usageDao.getProviderTotalEarning(allVirtualSensors);
+					session.setAttribute("thisProviderTotalEarning", totalEarning);
 				}
 				// Loading virtual sensor controllers manually for the first time when you run this application
 				if(sensorDao.getAllVsc().size() == 0){
@@ -151,7 +165,9 @@ public class UserController {
 		
 		System.out.println("user created."+ user.getEmail());
 		try {
-			user.setLastLogin(new Date());
+			Date dt = new Date();
+			Timestamp ts = new Timestamp(dt.getTime());
+			user.setLastLogin(ts);
 			userDao.save(user);
 		} catch (DaoException e) {
 			e.printStackTrace();
@@ -222,7 +238,9 @@ public class UserController {
 				usage.setUserId(validUser.getUserId());
 				usage.setVirtualSensorId(vs.getVirtualSensorId());
 				usage.setVscId(vsc.getVsControllerId());
-				usage.setAllocationDate(new Date());
+				Date dt = new Date();
+				Timestamp ts = new Timestamp(dt.getTime());
+				usage.setAllocationDate(ts);
 				usage.setAmount(0.0);
 				usage.setBilling(0.0);
 				usage.setReleaseDate(null);
@@ -231,7 +249,10 @@ public class UserController {
 				// update controller cpu utilization and memory.
 				Double currentCpu = vsc.getCpuUtilization();
 				Double currentMemory = vsc.getMemoryAvailable();
+				// increase CPU utilization by 12%
 				vsc.setCpuUtilization(currentCpu+12.0);
+				
+				// increase memory usage by 10%
 				vsc.setMemoryAvailable(currentMemory+10.0);
 				sensorDao.updateVscResources(vsc);
 			}
