@@ -62,6 +62,23 @@ public class UserController {
 		sdf.setLenient(false);
 		CustomDateEditor cde = new CustomDateEditor(sdf, false);
 		binder.registerCustomEditor(Date.class, cde);
+		
+		try {
+			User adminUser = userDao.findByUserName("admin@gmail.com");
+			if (adminUser == null) {
+				adminUser = new User();
+				adminUser.setFirstName("System");
+				adminUser.setLastName("Admin");
+				adminUser.setEmail("admin@gmail.com");
+				adminUser.setPassword("1234");
+				adminUser.setPhoneNum("1234567890");
+				adminUser.setLastLogin(new Timestamp(new Date().getTime()));
+				adminUser.setUserType("admin");
+				userDao.save(adminUser);
+			}
+		} catch (DaoException e) {
+			
+		}		
 	}
 	
 	@RequestMapping(value = "/user.ac", method = RequestMethod.GET)
@@ -103,11 +120,11 @@ public class UserController {
 		
 		try {
 			User validUser = userDao.getValidUser(user);
-			if(validUser != null){
-				
+			if(validUser != null) {				
 				session.setAttribute("validUser", validUser);
-				if(validUser.getUserType().equals("provider")){
-					
+				validUser.setLastLogin(new Timestamp(new Date().getTime()));
+				userDao.update(validUser);
+				if(validUser.getUserType().equals("provider")) {					
 					model.addAttribute("virtualSensor", new VirtualSensor());
 					// getting No. of sensors
 					List<VirtualSensor> allVirtualSensors = sensorDao.getAllSensorByUserId(validUser);

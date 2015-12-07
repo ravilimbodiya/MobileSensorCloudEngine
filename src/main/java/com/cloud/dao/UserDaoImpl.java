@@ -52,7 +52,10 @@ public class UserDaoImpl implements UserDao {
 	
 	public User findByUserName(String userName) throws DaoException{
 		try {
-			List list = hibernateTemplate.find("from User where userName=?",userName);
+			List list = hibernateTemplate.find("from User where email=?",userName);
+			if (list.size() == 0) {
+				return null;
+			}
 			return (User)list.get(0);
 		} catch (DataAccessException e) {
 			e.printStackTrace();
