@@ -41,4 +41,8 @@
 	<bean id="usageDao" class="com.cloud.dao.UsageDaoImpl">
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
+	
+	<bean id="billPayDao" class="com.cloud.dao.BillPayDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
 </beans>

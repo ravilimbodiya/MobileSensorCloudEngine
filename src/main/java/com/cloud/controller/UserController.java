@@ -30,9 +30,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cloud.dao.BillPayDao;
 import com.cloud.dao.UsageDao;
 import com.cloud.dao.UserDao;
 import com.cloud.dao.VirtualSensorDao;
+import com.cloud.entity.BillPay;
 import com.cloud.entity.Usage;
 import com.cloud.entity.User;
 import com.cloud.entity.VirtualSensor;
@@ -55,6 +57,9 @@ public class UserController {
 	
 	@Autowired
 	private UsageDao usageDao;
+	
+	@Autowired
+	private BillPayDao billPayDao;
 	
 	@InitBinder
 	public void init(WebDataBinder binder){
@@ -90,9 +95,7 @@ public class UserController {
 			e.printStackTrace();
 		}
 		return user;
-	}
-
-	
+	}	
 	
 	@RequestMapping(value="/login.ac", method = RequestMethod.GET)
 	public String login(Model model, HttpSession session) {
@@ -197,18 +200,6 @@ public class UserController {
 		model.addAttribute("errMsg", "Registration Successful. Please login.");
 		return "login";
 	}
-	
-	/*@RequestMapping(value = "/users.ac", method = RequestMethod.PUT)
-	public ResponseEntity<User> updateUser(@RequestParam String userName, @RequestBody User user) {
-		System.out.println("user updated.");
-		return new ResponseEntity<User>(user, HttpStatus.OK);
-	}*/
-	
-	/*@RequestMapping(value = "/users.ac", method = RequestMethod.DELETE)
-	public ResponseEntity<User> deleteUser(@RequestParam String userName) {
-		System.out.println("user deleted.");
-		return new ResponseEntity<User>(new User(), HttpStatus.NO_CONTENT);
-	}*/
 	
 	@RequestMapping(value = "/sensors.ac", method = RequestMethod.GET)
 	public @ResponseBody List<VirtualSensor> getSensors(@RequestParam int userId) {		
@@ -351,5 +342,33 @@ public class UserController {
 			e.printStackTrace();
 		}
 		return sensorsData;
+	}
+	
+	@RequestMapping(value="/showBill.ac", method = RequestMethod.GET)
+	public String showBill(Model model, HttpSession session) {
+		
+		try {
+			User validUser = (User) session.getAttribute("validUser");
+			List<Usage> usageList = usageDao.getUsageByUserId(validUser);
+			double amount = 0;
+			if (usageList.size() > 0) {
+				amount = usageList.get(0).getAmount();
+			}
+			model.addAttribute("billingAmount", amount);
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		return "billPayForm";
+	}
+	
+	@RequestMapping(value="/payBill.ac", method = RequestMethod.POST)
+	public String payBill(@ModelAttribute("billPay") BillPay billPay, HttpSession session, Model model) {
+		try {			
+			billPayDao.payBill(billPay);
+		} catch (DaoException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("errMsg", "Bill Paid Successfully.");
+		return "user-home";
 	}
 }

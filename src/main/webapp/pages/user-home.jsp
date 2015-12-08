@@ -58,10 +58,10 @@
 					</li>
 					<li>
 						<a href="#" id="usage"><i class="fa fa-bar-chart-o fa-3x"></i>Usage</a>
-					</li>
+					</li> -->
 					<li>
-						<a href="#" id="billing"><i class="fa fa-usd fa-3x"></i>Billing</a>
-					</li>	 -->			
+						<a href="#" id="billPay"><i class="fa fa-usd fa-3x"></i>Pay Bill</a>
+					</li>			
 				</ul>
 			</div>
 		</nav>
@@ -146,29 +146,30 @@
 				
 				</div>
 				
+				<div id="billPaySection">
 				
+				</div>			
                         
-                        <div class="panel-body">
-                            
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title" id="myModalLabel">UV Radiation in your area</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            UV Index in requested City: 3 which is below Danger.
-                                            <br>You are Safe.
-                                            <br>Thank You!
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+               	<div class="panel-body">                   
+                	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                       <div class="modal-dialog">
+                           <div class="modal-content">
+                               <div class="modal-header">
+                                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                   <h4 class="modal-title" id="myModalLabel">UV Radiation in your area</h4>
+                               </div>
+                               <div class="modal-body">
+                                   UV Index in requested City: 3 which is below Danger.
+                                   <br>You are Safe.
+                                   <br>Thank You!
+                               </div>
+                               <div class="modal-footer">
+                                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               	</div>
                    
 											
 			</div>		

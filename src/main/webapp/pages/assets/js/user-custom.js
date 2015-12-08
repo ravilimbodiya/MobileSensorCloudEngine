@@ -84,9 +84,10 @@
             	$("#section2").fadeIn("slow");
             	$("#section3").fadeIn("slow");
             	$("#reqSensorSection").fadeOut("slow");
+            	$("#billPaySection").fadeOut("slow");
             	$("#user_dashboard").addClass("active-menu");
             	$("#reqSensor").removeClass("active-menu");
-            	$("#manageSensor").removeClass("active-menu");
+            	$("#billPay").removeClass("active-menu");
         	});
         	
         	$("#reqSensor").click(function(){
@@ -98,10 +99,29 @@
 		            	$("#section2").fadeOut("slow");
 		            	$("#section3").fadeOut("slow");
 		            	$("#reqSensorSection").fadeIn("slow");
+		            	$("#billPaySection").fadeOut("slow");
 		            	$("#user_dashboard").removeClass("active-menu");
 		            	$("#reqSensor").addClass("active-menu");
-		            	$("#manageSensor").removeClass("active-menu");
+		            	$("#billPay").removeClass("active-menu");
 		                $("#reqSensorSection").html(result);
+                	}
+                });
+        	});
+        	
+        	$("#billPay").click(function(){
+                $.ajax({url: "showBill.ac", method: "get", success: 
+                	function(result) {
+		            	$("#msg").fadeOut("slow");
+		            	$("#section0").fadeOut("slow");
+		            	$("#section1").fadeOut("slow");
+		            	$("#section2").fadeOut("slow");
+		            	$("#section3").fadeOut("slow");
+		            	$("#reqSensorSection").fadeOut("slow");
+		            	$("#billPaySection").fadeIn("slow");
+		            	$("#user_dashboard").removeClass("active-menu");
+		            	$("#reqSensor").removeClass("active-menu");
+		            	$("#billPay").addClass("active-menu");
+		                $("#billPaySection").html(result);
                 	}
                 });
         	});
