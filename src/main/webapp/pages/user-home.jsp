@@ -75,11 +75,19 @@
 					</div>
 				</div>				
 				<!-- /. ROW  -->
-				<c:if test="${requestScope.errMsg != '' && requestScope.errMsg != null}">
-					<div class="alert alert-success" id="msg">
-                    	${errMsg}
-                	</div>
-                </c:if>
+				<c:choose>
+					<c:when test="${requestScope.errMsg != '' && requestScope.errMsg != null}">
+						<div class="alert alert-danger" id="msg">
+                    		${errMsg}
+                		</div>
+					</c:when>
+					<c:when test="${requestScope.sucMsg != '' && requestScope.sucMsg != null}">
+						<div class="alert alert-success" id="msg">
+                    		${errMsg}
+                		</div>
+					</c:when>
+					<c:otherwise></c:otherwise>
+				</c:choose>
 				<!-- /. ROW  -->
 				<div class="row" id="section1">					
 					<div class="col-md-12 col-sm-12 col-xs-12">
@@ -149,25 +157,8 @@
 				
                         
                         <div class="panel-body">
-                            
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title" id="myModalLabel">UV Radiation in your area</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            UV Index in requested City: 3 which is below Danger.
-                                            <br>You are Safe.
-                                            <br>Thank You!
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="modal fade" id="showSensorReading" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        </div>
                         </div>
                    
 											

@@ -64,7 +64,7 @@ public class SensorProviderController {
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}
-		model.addAttribute("errMsg", "Sensor Added Successfully.");
+		model.addAttribute("sucMsg", "Sensor Added Successfully.");
 		return "provider-home";
 	}
 
@@ -90,7 +90,7 @@ public class SensorProviderController {
 				sensorDao.updateVirtualSensor(vs);
 				usageDao.updateByVSId(vs.getVirtualSensorId());
 			}
-			model.addAttribute("errMsg", "Sensor removed successfully.");
+			model.addAttribute("sucMsg", "Sensor removed successfully.");
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}

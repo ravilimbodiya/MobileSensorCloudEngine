@@ -37,7 +37,9 @@ import com.cloud.entity.Usage;
 import com.cloud.entity.User;
 import com.cloud.entity.VirtualSensor;
 import com.cloud.entity.VirtualSensorController;
+import com.cloud.entity.VirtualSensorData;
 import com.cloud.exception.DaoException;
+import com.cloud.service.SensorData;
 import com.cloud.validator.RegistrationValidator;
 
 /**
@@ -56,12 +58,32 @@ public class UserController {
 	@Autowired
 	private UsageDao usageDao;
 	
+	@Autowired
+	private SensorData sensorDataService;
+	
 	@InitBinder
 	public void init(WebDataBinder binder){
 		SimpleDateFormat sdf = new SimpleDateFormat("d/M/yyyy");
 		sdf.setLenient(false);
 		CustomDateEditor cde = new CustomDateEditor(sdf, false);
 		binder.registerCustomEditor(Date.class, cde);
+		
+		try {
+			User adminUser = userDao.findByUserName("admin@gmail.com");
+			if (adminUser == null) {
+				adminUser = new User();
+				adminUser.setFirstName("System");
+				adminUser.setLastName("Admin");
+				adminUser.setEmail("admin@gmail.com");
+				adminUser.setPassword("1234");
+				adminUser.setPhoneNum("1234567890");
+				adminUser.setLastLogin(new Timestamp(new Date().getTime()));
+				adminUser.setUserType("admin");
+				userDao.save(adminUser);
+			}
+		} catch (DaoException e) {
+			
+		}		
 	}
 	
 	@RequestMapping(value = "/user.ac", method = RequestMethod.GET)
@@ -103,11 +125,11 @@ public class UserController {
 		
 		try {
 			User validUser = userDao.getValidUser(user);
-			if(validUser != null){
-				
+			if(validUser != null) {				
 				session.setAttribute("validUser", validUser);
-				if(validUser.getUserType().equals("provider")){
-					
+				validUser.setLastLogin(new Timestamp(new Date().getTime()));
+				userDao.update(validUser);
+				if(validUser.getUserType().equals("provider")) {					
 					model.addAttribute("virtualSensor", new VirtualSensor());
 					// getting No. of sensors
 					List<VirtualSensor> allVirtualSensors = sensorDao.getAllSensorByUserId(validUser);
@@ -260,8 +282,11 @@ public class UserController {
 				// increase memory usage by 10%
 				vsc.setMemoryAvailable(currentMemory+10.0);
 				sensorDao.updateVscResources(vsc);
+				model.addAttribute("sucMsg", "Congratulations! You have got your Sensor.");
+			} else {
+				model.addAttribute("errMsg", "You already have a sensor for this location.");
 			}
-			model.addAttribute("errMsg", "Congratulations! You have got your Sensor.");
+			
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}
@@ -334,5 +359,20 @@ public class UserController {
 			e.printStackTrace();
 		}
 		return sensorsData;
+	}
+	
+	
+	@RequestMapping(value="/getSensorReading.ac", method = RequestMethod.GET)
+	public String getSensorReading(@RequestParam Integer vsId, HttpSession session, Model model) {
+		
+		try {
+			VirtualSensorData vsd = sensorDataService.getSensorDataFromWebService(vsId);
+			model.addAttribute("virtualSensorData", vsd);
+		} catch (DaoException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "sensorDataModelWindow";
 	}
 }

@@ -41,4 +41,7 @@
 	<bean id="usageDao" class="com.cloud.dao.UsageDaoImpl">
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
+	
+	<bean id="sensorDataService" class="com.cloud.service.SensorDataService">
+	</bean>
 </beans>

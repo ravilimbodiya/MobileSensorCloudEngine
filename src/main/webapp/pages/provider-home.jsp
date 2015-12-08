@@ -81,11 +81,19 @@
 					</div>
 				</div>
 				<!-- /. ROW  -->
-				<c:if test="${requestScope.errMsg != '' && requestScope.errMsg != null}">
-					<div class="alert alert-success" id="msg">
-                    	${errMsg}
-                	</div>
-                </c:if>
+				<c:choose>
+					<c:when test="${requestScope.errMsg != '' && requestScope.errMsg != null}">
+						<div class="alert alert-danger" id="msg">
+                    		${errMsg}
+                		</div>
+					</c:when>
+					<c:when test="${requestScope.sucMsg != '' && requestScope.sucMsg != null}">
+						<div class="alert alert-success" id="msg">
+                    		${errMsg}
+                		</div>
+					</c:when>
+					<c:otherwise></c:otherwise>
+				</c:choose>
 				<div class="row" id="section1">
 					<div class="col-md-3 col-sm-6 col-xs-6">
 						<div class="panel panel-back noti-box">

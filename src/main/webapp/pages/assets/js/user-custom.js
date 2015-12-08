@@ -57,16 +57,38 @@
 	    			}, {
 	                    "targets": -1,
 	                    "data": null,
-	                    "defaultContent": "<button id='reading' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#myModal'>Sensor Reading</button>"
+	                    "defaultContent": "<button id='reading' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#showSensorReading'>Sensor Reading</button>",
+	                    "render": function ( data, type, row ) {
+		    					if(row.releaseDate == null){
+		    						return "<button id='reading' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#showSensorReading'>Sensor Reading</button>";
+		    					} else {
+			                    	return "<fieldset disabled='disabled'><button id='reading' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#showSensorReading'>Sensor Reading</button></fieldset>";
+		    					}
+		    				}
 	                }, {
 	                    "targets": -1,
 	                    "data": null,
-	                    "defaultContent": "<button id='deactivate' class='btn btn-danger btn-sm'>Deactivate</button>"
+	                    "defaultContent": "<button id='deactivate' class='btn btn-danger btn-sm'>Deactivate</button>",
+	                    "render": function ( data, type, row ) {
+	    					if(row.releaseDate == null){
+	    						return "<button id='deactivate' class='btn btn-danger btn-sm'>Deactivate</button>";
+	    					} else {
+		                    	return "<fieldset disabled='disabled'><button id='deactivate' class='btn btn-danger btn-sm'>Deactivate</button></fieldset>";
+	    					}
+	    				}
 	                }
     			]            	
     		});
         	
-        	
+        	$('#user_sensors tbody').on( 'click', '#reading', function () {
+        		var row = sensorTable.row( $(this).parents('tr'));
+                var data = row.data();
+                $.ajax({url: "getSensorReading.ac?vsId=" + data.virtualSensorId, method: "get", success: 
+                	function(result) {
+		            	$('#showSensorReading').html(result);
+                	}
+                });
+            } );
         	
         	$('#user_sensors tbody').on( 'click', '#deactivate', function () {
         		var row = sensorTable.row( $(this).parents('tr'));

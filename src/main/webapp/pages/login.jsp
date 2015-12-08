@@ -39,11 +39,19 @@
     <div class="container">
         <div class="row text-center ">
             <div class="col-md-12">
-                <br /><c:if test="${requestScope.errMsg != '' && requestScope.errMsg != null}">
-					<div class="alert alert-danger" id="msg">
-                    	${errMsg}
-                	</div>
-                </c:if><br />
+                <br /><c:choose>
+					<c:when test="${requestScope.errMsg != '' && requestScope.errMsg != null}">
+						<div class="alert alert-danger" id="msg">
+                    		${errMsg}
+                		</div>
+					</c:when>
+					<c:when test="${requestScope.sucMsg != '' && requestScope.sucMsg != null}">
+						<div class="alert alert-success" id="msg">
+                    		${errMsg}
+                		</div>
+					</c:when>
+					<c:otherwise></c:otherwise>
+				</c:choose><br />
                 <h2> MSCE : Login</h2>               
                 <h5>( Login to access UV sensor data )</h5>
                 <br />
