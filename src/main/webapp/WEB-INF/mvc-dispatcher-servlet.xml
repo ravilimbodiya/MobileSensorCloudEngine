@@ -44,4 +44,8 @@
 	
 	<bean id="sensorDataService" class="com.cloud.service.SensorDataService">
 	</bean>
+	
+	<bean id="billPayDao" class="com.cloud.dao.BillPayDaoImpl">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
 </beans>

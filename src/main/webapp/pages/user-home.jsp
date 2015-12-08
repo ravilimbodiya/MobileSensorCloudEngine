@@ -58,10 +58,10 @@
 					</li>
 					<li>
 						<a href="#" id="usage"><i class="fa fa-bar-chart-o fa-3x"></i>Usage</a>
-					</li>
+					</li> -->
 					<li>
-						<a href="#" id="billing"><i class="fa fa-usd fa-3x"></i>Billing</a>
-					</li>	 -->			
+						<a href="#" id="billPay"><i class="fa fa-usd fa-3x"></i>Pay Bill</a>
+					</li>			
 				</ul>
 			</div>
 		</nav>
@@ -154,7 +154,9 @@
 				
 				</div>
 				
+				<div id="billPaySection">
 				
+				</div>			
                         
                         <div class="panel-body">
                         <div class="modal fade" id="showSensorReading" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
