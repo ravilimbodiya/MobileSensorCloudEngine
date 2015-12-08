@@ -11,6 +11,19 @@ import java.util.Date;
  *
  */
 public class BillPay{
+	
+	private Integer paymentId;
+	private Integer userId;
+	private String userName;
+	private Long creditCardNumber;
+	private Integer expiryMonth;
+	private Integer expiryYear;
+	private Integer cvv;
+	private Timestamp paymentDate;
+	private Double amount;
+	
+	public BillPay() {
+	}
 
 	public Integer getPaymentId() {
 		return paymentId;
@@ -36,21 +49,14 @@ public class BillPay{
 		this.userName = userName;
 	}
 
-	public Integer getCreditCardNumber() {
+	public Long getCreditCardNumber() {
 		return creditCardNumber;
 	}
 
-	public void setCreditCardNumber(Integer creditCardNumber) {
+	public void setCreditCardNumber(Long creditCardNumber) {
 		this.creditCardNumber = creditCardNumber;
 	}
 
-	public Timestamp getExpirationDate() {
-		return expirationDate;
-	}
-
-	public void setExpirationDate(Timestamp expirationDate) {
-		this.expirationDate = expirationDate;
-	}
 
 	public Timestamp getPaymentDate() {
 		return paymentDate;
@@ -68,17 +74,38 @@ public class BillPay{
 		this.amount = amount;
 	}
 
-	private Integer paymentId;
-	private Integer userId;
-	private String userName;
-	private Integer creditCardNumber;
-	private Timestamp expirationDate;
-	private Timestamp paymentDate;
-	private Double amount;
+	
 	
 	@Override
 	public String toString() {
-		return "BillPay [paymentId=" + paymentId + ", userId=" + userId + ", userName=" + userName + ", creditCardNumber="
-				+ creditCardNumber + ", expirationDate=" + expirationDate + ", paymentDate=" + paymentDate + ", amount=" + amount + "]";
+		return "BillPay [paymentId=" + paymentId + ", userId=" + userId + ", userName=" + userName
+				+ ", creditCardNumber=" + creditCardNumber + ", expiryMonth=" + expiryMonth + ", expiryYear="
+				+ expiryYear + ", cvv=" + cvv + ", paymentDate=" + paymentDate + ", amount=" + amount + "]";
+	}
+
+	public Integer getCvv() {
+		return cvv;
+	}
+
+	public void setCvv(Integer cvv) {
+		this.cvv = cvv;
+	}
+	
+
+
+	public Integer getExpiryMonth() {
+		return expiryMonth;
+	}
+
+	public void setExpiryMonth(Integer expiryMonth) {
+		this.expiryMonth = expiryMonth;
+	}
+
+	public Integer getExpiryYear() {
+		return expiryYear;
+	}
+
+	public void setExpiryYear(Integer expiryYear) {
+		this.expiryYear = expiryYear;
 	}
 }

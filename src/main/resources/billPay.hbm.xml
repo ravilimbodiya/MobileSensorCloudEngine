@@ -3,15 +3,17 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.cloud.entity.Usage" table="bill_pay">
+	<class name="com.cloud.entity.BillPay" table="bill_pay">
 		<id name="paymentId" type="integer">
 			<column name="payment_id" />
 			<generator class="identity" />
 		</id>
         <property name="userId" type="integer" column="user_id"/>
-        <property name="userName" type="string" column="credit_card_number"/>
-        <property name="creditCardNumber" type="integer" column="credit_card_number"/>
-        <property name="expirationDate" type="timestamp" column="expiration_date"/>		
+        <property name="userName" type="string" column="card_holder_name"/>
+        <property name="creditCardNumber" type="long" column="credit_card_number"/>
+        <property name="expiryMonth" type="integer" column="expiry_month"/>	
+        <property name="expiryYear" type="integer" column="expiry_year"/>
+        <property name="cvv" type="integer" column="cvv"/>	
 		<property name="amount" column="amount" type="double" not-null="true"></property>
 		<property name="paymentDate" column="payment_date" type="timestamp"></property>
 		

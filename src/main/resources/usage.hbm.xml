@@ -13,6 +13,7 @@
         <property name="vscId" type="integer" column="vsc_id"/>
 		<property name="allocationDate" column="allocation_date" type="timestamp"></property>
 		<property name="releaseDate" column="release_date" type="timestamp"></property>
+		<property name="lastPaymentDate" column="last_payment_date" type="timestamp"></property>
 		<property name="amount" column="amount" type="double" not-null="true"></property>
 		<property name="billing" column="billing" type="double" not-null="true"></property>
 		

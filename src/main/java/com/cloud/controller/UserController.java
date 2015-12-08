@@ -259,6 +259,7 @@ public class UserController {
 				Date dt = new Date();
 				Timestamp ts = new Timestamp(dt.getTime());
 				usage.setAllocationDate(ts);
+				usage.setLastPaymentDate(ts);
 				usage.setAmount(0.0);
 				usage.setBilling(0.0);
 				usage.setReleaseDate(null);
@@ -305,9 +306,9 @@ public class UserController {
 			for (Usage usage : userSensors) {
 				if(usage.getReleaseDate() == null){
 					Date todayDate = new Date();
-					diff=(int) ((todayDate.getTime() - usage.getAllocationDate().getTime())/(60*60 * 1000));
+					diff=(int) ((todayDate.getTime() - usage.getLastPaymentDate().getTime())/(60*60 * 1000));
 				} else {
-					diff=(int) ((usage.getReleaseDate().getTime() - usage.getAllocationDate().getTime())/(60*60 * 1000));
+					diff=(int) ((usage.getReleaseDate().getTime() - usage.getLastPaymentDate().getTime())/(60*60 * 1000));
 				}
 				usage.setBilling((double) diff);
 				Double amt = (double) (diff * 5);
@@ -374,10 +375,13 @@ public class UserController {
 			User validUser = (User) session.getAttribute("validUser");
 			List<Usage> usageList = usageDao.getUsageByUserId(validUser);
 			double amount = 0;
-			if (usageList.size() > 0) {
-				amount = usageList.get(0).getAmount();
+			for (Usage usage : usageList) {
+				amount += usage.getAmount();
 			}
-			model.addAttribute("billingAmount", amount);
+			BillPay billPay = new BillPay();
+			billPay.setAmount(amount);
+			billPay.setUserId(validUser.getUserId());
+			model.addAttribute("billPay", billPay);
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}
@@ -386,12 +390,26 @@ public class UserController {
 	
 	@RequestMapping(value="/payBill.ac", method = RequestMethod.POST)
 	public String payBill(@ModelAttribute("billPay") BillPay billPay, HttpSession session, Model model) {
-		try {			
+		try {
+			User validUser = (User) session.getAttribute("validUser");
+			Timestamp ts = new Timestamp(new Date().getTime());
+			billPay.setPaymentDate(ts);
+			billPay.setUserId(validUser.getUserId());
 			billPayDao.payBill(billPay);
+			
+			List<Usage> usageList = usageDao.getUsageByUserId(validUser);
+			for (Usage usage : usageList) {
+				usage.setAmount(0.0);
+				//usage.setBilling(0.0);
+				Timestamp ts1 = new Timestamp(new Date().getTime());
+				usage.setLastPaymentDate(ts1);
+				usageDao.save(usage);
+			}
+				
 		} catch (DaoException e) {
 			e.printStackTrace();
 		}
-		model.addAttribute("errMsg", "Bill Paid Successfully.");
+		model.addAttribute("sucMsg", "Bill Paid Successfully.");
 		return "user-home";
 	}
 }

@@ -23,5 +23,6 @@
 		<mapping resource="virtualSensor.hbm.xml" />
 		<mapping resource="usage.hbm.xml" />
 		<mapping resource="virtualSensorController.hbm.xml" />
+		<mapping resource="billPay.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

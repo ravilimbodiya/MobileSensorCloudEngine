@@ -21,8 +21,20 @@ public class Usage{
 	private Integer vscId;
 	private Timestamp allocationDate;
 	private Timestamp releaseDate;
+	private Timestamp lastPaymentDate;
 	private Double amount;
 	private Double billing;
+	
+	public Timestamp getLastPaymentDate() {
+		return lastPaymentDate;
+	}
+
+
+	public void setLastPaymentDate(Timestamp lastPaymentDate) {
+		this.lastPaymentDate = lastPaymentDate;
+	}
+
+
 	
 	
 	public Integer getUsageId() {
@@ -54,8 +66,8 @@ public class Usage{
 	@Override
 	public String toString() {
 		return "Usage [usageId=" + usageId + ", virtualSensorId=" + virtualSensorId + ", userId=" + userId + ", vscId="
-				+ vscId + ", allocationDate=" + allocationDate + ", releaseDate=" + releaseDate + ", amount=" + amount
-				+ ", billing=" + billing + "]";
+				+ vscId + ", allocationDate=" + allocationDate + ", releaseDate=" + releaseDate + ", lastPaymentDate="
+				+ lastPaymentDate + ", amount=" + amount + ", billing=" + billing + "]";
 	}
 
 

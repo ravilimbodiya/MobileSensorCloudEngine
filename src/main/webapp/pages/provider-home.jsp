@@ -89,7 +89,7 @@
 					</c:when>
 					<c:when test="${requestScope.sucMsg != '' && requestScope.sucMsg != null}">
 						<div class="alert alert-success" id="msg">
-                    		${errMsg}
+                    		${sucMsg}
                 		</div>
 					</c:when>
 					<c:otherwise></c:otherwise>
