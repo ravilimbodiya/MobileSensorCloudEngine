@@ -1,7 +1,6 @@
 package com.cloud.entity;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 public class User {
 

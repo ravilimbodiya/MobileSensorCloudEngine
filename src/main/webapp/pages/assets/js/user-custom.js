@@ -85,7 +85,9 @@
                 var data = row.data();
                 $.ajax({url: "getSensorReading.ac?vsId=" + data.virtualSensorId, method: "get", success: 
                 	function(result) {
-		            	$('#showSensorReading').html(result);
+	                	setTimeout(function () {
+	                		$('#showSensorReading').html(result);
+	                	}, 500);
                 	}
                 });
             } );

@@ -53,10 +53,3 @@
 			</div>
 		</div>
 	</div>
-<script type="text/javascript">
-/* $("#modalCloseButton").click(function(){
-	$("showSensorReading").html("");
-	
-}); */
-
-</script>

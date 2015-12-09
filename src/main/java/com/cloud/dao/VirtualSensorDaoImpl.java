@@ -5,7 +5,6 @@ package com.cloud.dao;
 
 import java.util.List;
 
-import org.hibernate.Hibernate;
 import org.springframework.dao.DataAccessException;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 

@@ -20,7 +20,7 @@ public class SensorDataService implements SensorData {
 
 	@Override
 	public VirtualSensorData getSensorDataFromWebService(Integer vsId) throws Exception {
-		URL url = new URL("http://localhost:8080/sensorData?sensorId="+vsId);
+		URL url = new URL("http://52.53.230.204:8080/sensorData?sensorId="+vsId);
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		VirtualSensorData vsd = new VirtualSensorData();
 		try {
